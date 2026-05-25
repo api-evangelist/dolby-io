@@ -1,0 +1,118 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Dolby.io
+providerId: dolby-io
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Media
+  - Streaming
+  - WebRTC
+  - Live Streaming
+  - Player
+  - Advertising
+description: |
+  Dolby.io / Dolby OptiView migrated to a custom-quote pricing model. The legacy dolby.io
+  developer signup offered a $50 free credit and a $25/month pay-as-you-go credit across the
+  Communications and Media APIs, billed per minute of conferencing or per minute of media
+  processed. Dolby OptiView (Streaming, Playback, Advertising) is sold via Request Pricing /
+  Contact Enterprise. Plans below capture the legacy public pay-as-you-go signals and the
+  current enterprise posture for the three OptiView pillars.
+sources:
+  - https://optiview.dolby.com/plans/
+  - https://dolby.io/
+  - https://www.g2.com/products/dolby-io/pricing
+  - https://news.dolby.com/en-WW/203113-dolby-upgrades-dolby-io-introduces-transcoding-music-mastering-and-more-to-developer-platform/
+plans:
+  - id: dolby-io-legacy-pay-as-you-go
+    name: Legacy Dolby.io Pay-As-You-Go
+    type: usage-based
+    description: Original Dolby.io developer plan covering Communications and Media APIs with a monthly free credit and per-minute usage billing.
+    entries:
+      - label: Monthly free credit
+        name: free_credit
+        type: included
+        metric: usd
+        limit: 25
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: One-time signup credit
+        name: signup_credit
+        type: included
+        metric: usd
+        limit: 50
+        timeFrame: lifetime
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Conferencing minutes
+        name: conferencing_minutes
+        type: metered
+        metric: minutes
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'See Dolby invoice'
+        userMultiplied: false
+      - label: Media processing minutes
+        name: media_minutes
+        type: metered
+        metric: minutes
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 'See Dolby invoice'
+        userMultiplied: false
+  - id: dolby-optiview-streaming
+    name: OptiView Real-time & Live Streaming
+    type: enterprise
+    description: Custom-quote enterprise plan for OptiView Real-time Streaming (Millicast) and OptiView Live (THEOlive).
+    entries:
+      - label: Custom contract
+        name: contract
+        type: contract
+        metric: usd
+        limit: -1
+        timeFrame: contract
+        geo: global
+        unit: 1
+        price: Custom
+        userMultiplied: false
+  - id: dolby-optiview-playback
+    name: OptiView Playback (THEOplayer)
+    type: enterprise
+    description: Custom-quote enterprise plan for OptiView Player SDKs across Web, Android, iOS, React Native, Flutter, Chromecast, and Roku.
+    entries:
+      - label: Custom contract
+        name: contract
+        type: contract
+        metric: usd
+        limit: -1
+        timeFrame: contract
+        geo: global
+        unit: 1
+        price: Custom
+        userMultiplied: false
+  - id: dolby-optiview-advertising
+    name: OptiView Advertising (SGAI)
+    type: enterprise
+    description: Custom-quote enterprise plan for Server-Guided Ad Insertion with Google Ad Manager integration.
+    entries:
+      - label: Custom contract
+        name: contract
+        type: contract
+        metric: usd
+        limit: -1
+        timeFrame: contract
+        geo: global
+        unit: 1
+        price: Custom
+        userMultiplied: false

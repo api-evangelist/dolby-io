@@ -1,0 +1,462 @@
+openapi: 3.0.3
+info:
+  title: Dolby OptiView Real-time Streaming API
+  description: |
+    REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
+    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
+    encoder profiles, clusters, analytics, and webhooks. All requests are
+    authenticated with a Bearer API Secret created in the streaming dashboard
+    (Settings -> Security -> API Secrets).
+  version: '2026.05'
+  contact:
+    name: Dolby OptiView Support
+    url: https://optiview.dolby.com/docs/millicast/
+servers:
+  - url: https://api.millicast.com/api
+    description: Production REST API
+security:
+  - BearerAuth: []
+tags:
+  - name: PublishToken
+    description: Create and manage publish (broadcaster) tokens.
+  - name: SubscribeToken
+    description: Create and manage subscribe (viewer) tokens.
+  - name: Webhook
+    description: Register and manage event-driven webhooks for feeds, recordings, thumbnails, transcoders, and viewer connections.
+  - name: Analytics
+    description: Account-level usage, tracking, and advanced reporting.
+  - name: Cluster
+    description: Cluster discovery for region-specific publish/subscribe URLs.
+paths:
+  /publish_token:
+    post:
+      tags: [PublishToken]
+      summary: Create Publish Token
+      description: Create a new publish token bound to one or more stream names. Tokens may include geo restrictions, allowed origins, and recording configuration.
+      operationId: createPublishToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublishTokenCreate'
+      responses:
+        '200':
+          description: Publish token created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishToken'
+  /publish_token/list:
+    get:
+      tags: [PublishToken]
+      summary: List Publish Tokens
+      operationId: listPublishTokens
+      parameters:
+        - name: page
+          in: query
+          schema: {type: integer, minimum: 0}
+        - name: itemsOnPage
+          in: query
+          schema: {type: integer, minimum: 1, maximum: 100}
+      responses:
+        '200':
+          description: Page of publish tokens
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublishToken'
+  /publish_token/{tokenID}:
+    get:
+      tags: [PublishToken]
+      summary: Get Publish Token
+      operationId: getPublishToken
+      parameters:
+        - name: tokenID
+          in: path
+          required: true
+          schema: {type: integer}
+      responses:
+        '200':
+          description: Publish token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishToken'
+    patch:
+      tags: [PublishToken]
+      summary: Update Publish Token
+      operationId: updatePublishToken
+      parameters:
+        - name: tokenID
+          in: path
+          required: true
+          schema: {type: integer}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublishTokenUpdate'
+      responses:
+        '200':
+          description: Publish token updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishToken'
+    delete:
+      tags: [PublishToken]
+      summary: Delete Publish Token
+      operationId: deletePublishToken
+      parameters:
+        - name: tokenID
+          in: path
+          required: true
+          schema: {type: integer}
+      responses:
+        '204':
+          description: Publish token deleted
+  /publish_token/account/tokens:
+    get:
+      tags: [PublishToken]
+      summary: List Active Publish Token IDs
+      operationId: listActivePublishTokenIds
+      responses:
+        '200':
+          description: Active token IDs for the account
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {type: integer}
+  /subscribe_token:
+    post:
+      tags: [SubscribeToken]
+      summary: Create Subscribe Token
+      description: Create a viewer token bound to specific streams, with optional IP, origin, geo, or referer restrictions.
+      operationId: createSubscribeToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscribeTokenCreate'
+      responses:
+        '200':
+          description: Subscribe token created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscribeToken'
+  /subscribe_token/list:
+    get:
+      tags: [SubscribeToken]
+      summary: List Subscribe Tokens
+      operationId: listSubscribeTokens
+      responses:
+        '200':
+          description: Subscribe tokens
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubscribeToken'
+  /subscribe_token/{tokenID}:
+    get:
+      tags: [SubscribeToken]
+      summary: Get Subscribe Token
+      operationId: getSubscribeToken
+      parameters:
+        - name: tokenID
+          in: path
+          required: true
+          schema: {type: integer}
+      responses:
+        '200':
+          description: Subscribe token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscribeToken'
+    patch:
+      tags: [SubscribeToken]
+      summary: Update Subscribe Token
+      operationId: updateSubscribeToken
+      parameters:
+        - name: tokenID
+          in: path
+          required: true
+          schema: {type: integer}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscribeTokenUpdate'
+      responses:
+        '200':
+          description: Subscribe token updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscribeToken'
+    delete:
+      tags: [SubscribeToken]
+      summary: Delete Subscribe Token
+      operationId: deleteSubscribeToken
+      parameters:
+        - name: tokenID
+          in: path
+          required: true
+          schema: {type: integer}
+      responses:
+        '204':
+          description: Subscribe token deleted
+  /webhooks:
+    get:
+      tags: [Webhook]
+      summary: List Webhooks
+      operationId: listWebhooks
+      responses:
+        '200':
+          description: Configured webhooks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      tags: [Webhook]
+      summary: Create Webhook
+      description: Register a webhook URL to receive feeds, recordings, thumbnails, transcoder, and viewer-connection events. Payloads are signed with HMAC-SHA1 in the X-Millicast-Signature header.
+      operationId: createWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreate'
+      responses:
+        '200':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /webhooks/{webhookID}:
+    delete:
+      tags: [Webhook]
+      summary: Delete Webhook
+      operationId: deleteWebhook
+      parameters:
+        - name: webhookID
+          in: path
+          required: true
+          schema: {type: integer}
+      responses:
+        '204':
+          description: Webhook removed
+  /analytics/tracking/total:
+    get:
+      tags: [Analytics]
+      summary: Get Account Tracking Totals
+      description: Return aggregate publish and viewer minute totals across the account.
+      operationId: getAnalyticsTrackingTotal
+      parameters:
+        - name: startDate
+          in: query
+          schema: {type: string, format: date}
+        - name: endDate
+          in: query
+          schema: {type: string, format: date}
+      responses:
+        '200':
+          description: Aggregated analytics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsTotals'
+  /cluster:
+    get:
+      tags: [Cluster]
+      summary: Get Cluster
+      description: Return the publish/subscribe URLs for the region the account is provisioned in.
+      operationId: getCluster
+      responses:
+        '200':
+          description: Cluster info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Secret
+  schemas:
+    PublishToken:
+      type: object
+      properties:
+        id: {type: integer}
+        label: {type: string}
+        token: {type: string, description: "JWT used by the broadcaster (WebRTC/WHIP) to publish."}
+        addedOn: {type: string, format: date-time}
+        expiresOn: {type: string, format: date-time, nullable: true}
+        isActive: {type: boolean}
+        streams:
+          type: array
+          items:
+            type: object
+            properties:
+              streamName: {type: string}
+              isRegex: {type: boolean}
+        allowedOrigins:
+          type: array
+          items: {type: string}
+        originCluster: {type: string, nullable: true}
+        record: {type: boolean}
+        multisource: {type: boolean}
+        enableThumbnails: {type: boolean}
+    PublishTokenCreate:
+      type: object
+      required: [label, streams]
+      properties:
+        label: {type: string}
+        streams:
+          type: array
+          items:
+            type: object
+            properties:
+              streamName: {type: string}
+              isRegex: {type: boolean, default: false}
+        allowedOrigins:
+          type: array
+          items: {type: string}
+        record: {type: boolean, default: false}
+        multisource: {type: boolean, default: false}
+        enableThumbnails: {type: boolean, default: false}
+        expiresOn:
+          type: string
+          format: date-time
+          nullable: true
+    PublishTokenUpdate:
+      type: object
+      properties:
+        label: {type: string}
+        isActive: {type: boolean}
+        allowedOrigins:
+          type: array
+          items: {type: string}
+        record: {type: boolean}
+        enableThumbnails: {type: boolean}
+    SubscribeToken:
+      type: object
+      properties:
+        id: {type: integer}
+        label: {type: string}
+        token: {type: string}
+        addedOn: {type: string, format: date-time}
+        expiresOn: {type: string, format: date-time, nullable: true}
+        isActive: {type: boolean}
+        streams:
+          type: array
+          items:
+            type: object
+            properties:
+              streamName: {type: string}
+              isRegex: {type: boolean}
+        allowedOrigins:
+          type: array
+          items: {type: string}
+        allowedIpAddresses:
+          type: array
+          items: {type: string}
+        bindIpsOnUsage: {type: integer, nullable: true}
+        allowedCountries:
+          type: array
+          items: {type: string}
+        deniedCountries:
+          type: array
+          items: {type: string}
+    SubscribeTokenCreate:
+      type: object
+      required: [label, streams]
+      properties:
+        label: {type: string}
+        streams:
+          type: array
+          items:
+            type: object
+            properties:
+              streamName: {type: string}
+              isRegex: {type: boolean, default: false}
+        allowedOrigins:
+          type: array
+          items: {type: string}
+        allowedIpAddresses:
+          type: array
+          items: {type: string}
+        bindIpsOnUsage: {type: integer, nullable: true}
+        allowedCountries:
+          type: array
+          items: {type: string}
+        deniedCountries:
+          type: array
+          items: {type: string}
+        expiresOn:
+          type: string
+          format: date-time
+          nullable: true
+    SubscribeTokenUpdate:
+      type: object
+      properties:
+        label: {type: string}
+        isActive: {type: boolean}
+        allowedOrigins:
+          type: array
+          items: {type: string}
+        allowedIpAddresses:
+          type: array
+          items: {type: string}
+    Webhook:
+      type: object
+      properties:
+        id: {type: integer}
+        url: {type: string, format: uri}
+        secret: {type: string, description: "HMAC-SHA1 secret used to sign event payloads (X-Millicast-Signature header)."}
+        isFeedHooks: {type: boolean}
+        isRecordingHooks: {type: boolean}
+        isThumbnailHooks: {type: boolean}
+        isTranscoderHooks: {type: boolean}
+        isViewerConnectionHooks: {type: boolean}
+    WebhookCreate:
+      type: object
+      required: [url]
+      properties:
+        url: {type: string, format: uri}
+        isFeedHooks: {type: boolean, default: false}
+        isRecordingHooks: {type: boolean, default: false}
+        isThumbnailHooks: {type: boolean, default: false}
+        isTranscoderHooks: {type: boolean, default: false}
+        isViewerConnectionHooks: {type: boolean, default: false}
+    AnalyticsTotals:
+      type: object
+      properties:
+        publishedMinutes: {type: number}
+        viewedMinutes: {type: number}
+        bytesTransferred: {type: number}
+        startDate: {type: string, format: date}
+        endDate: {type: string, format: date}
+    Cluster:
+      type: object
+      properties:
+        publishUrl: {type: string, format: uri}
+        subscribeUrl: {type: string, format: uri}
+        wsUrl: {type: string, format: uri}

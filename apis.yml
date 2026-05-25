@@ -1,0 +1,306 @@
+aid: dolby-io
+url: https://raw.githubusercontent.com/api-evangelist/dolby-io/refs/heads/main/apis.yml
+name: Dolby.io
+tags:
+- Media
+- Streaming
+- Real-time Streaming
+- WebRTC
+- Live Streaming
+- Low Latency
+- Video
+- Audio
+- Broadcast
+- Player
+- Advertising
+- Dolby OptiView
+- Millicast
+- THEOlive
+- THEOplayer
+kind: contract
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+apis:
+- aid: dolby-io:dolby-io-realtime-streaming-api
+  name: Dolby OptiView Real-time Streaming API
+  tags:
+  - Real-time Streaming
+  - WebRTC
+  - WHIP
+  - WHEP
+  - Live Streaming
+  - Low Latency
+  - Tokens
+  - Webhooks
+  - Analytics
+  humanURL: https://optiview.dolby.com/docs/millicast/
+  properties:
+  - url: https://optiview.dolby.com/docs/millicast/
+    type: Documentation
+  - url: https://optiview.dolby.com/docs/millicast/token-api/
+    type: Documentation
+  - url: https://optiview.dolby.com/docs/millicast/webhooks/
+    type: Documentation
+  - url: https://optiview.dolby.com/docs/millicast/getting-started/using-rest-apis/
+    type: Documentation
+  - url: openapi/dolby-io-realtime-streaming-api-openapi.yml
+    type: OpenAPI
+  - url: capabilities/realtime-streaming-publish-tokens.yaml
+    type: NaftikoCapability
+  - url: capabilities/realtime-streaming-subscribe-tokens.yaml
+    type: NaftikoCapability
+  - url: capabilities/realtime-streaming-webhooks.yaml
+    type: NaftikoCapability
+  - url: capabilities/realtime-streaming-analytics.yaml
+    type: NaftikoCapability
+  - url: json-schema/dolby-io-publish-token-schema.json
+    type: JSONSchema
+  - url: json-schema/dolby-io-subscribe-token-schema.json
+    type: JSONSchema
+  - url: json-schema/dolby-io-webhook-schema.json
+    type: JSONSchema
+  - url: json-ld/dolby-io-context.jsonld
+    type: JSONLD
+  description: Real-time WebRTC streaming platform (formerly Millicast). Manage publish and subscribe
+    tokens, configure webhook delivery for feeds, recordings, thumbnails, transcoders, and viewer
+    connections, retrieve account analytics, and discover regional cluster URLs. Supports WHIP/WHEP,
+    SRT, RTMP/RTMPS ingest with H.264, H.265, VP8, VP9, AV1 video and Opus audio. Sub-500ms latency
+    to global audiences at scale.
+- aid: dolby-io:dolby-io-theolive-api
+  name: Dolby OptiView Live (THEOlive) API
+  tags:
+  - Live Streaming
+  - Low Latency
+  - Channels
+  - Transcoding
+  - DRM
+  - Webhooks
+  - Analytics
+  humanURL: https://optiview.dolby.com/docs/theolive/api/
+  properties:
+  - url: https://optiview.dolby.com/docs/theolive/
+    type: Documentation
+  - url: https://optiview.dolby.com/docs/theolive/api/
+    type: Documentation
+  - url: https://api.theo.live/v2/api-docs/swagger.json
+    type: OpenAPI
+  - url: openapi/dolby-io-theolive-api-openapi.yml
+    type: OpenAPI
+  - url: capabilities/theolive-channels.yaml
+    type: NaftikoCapability
+  - url: capabilities/theolive-ingests.yaml
+    type: NaftikoCapability
+  - url: capabilities/theolive-engines.yaml
+    type: NaftikoCapability
+  - url: capabilities/theolive-distributions.yaml
+    type: NaftikoCapability
+  - url: capabilities/theolive-webhooks.yaml
+    type: NaftikoCapability
+  description: Low-latency live streaming API (formerly THEOlive). Programmatic control of Channels,
+    Ingests (RTMP push/pull, SRT, SDI), Engines (transcoding, DRM, overlays, ABR ladders),
+    Distributions (geo-blocking, IP/referrer restrictions, WebRTC delivery), Regions, Webhooks
+    (30+ event types with delivery logs), and Analytics (transcoding minutes, viewing minutes,
+    bytes transferred, browser/country breakdowns). Supports Nielsen tracking, server-side ads,
+    DRM, and DVR. v2 API published at api.theo.live with HTTP Basic auth.
+- aid: dolby-io:dolby-io-media-api
+  name: Dolby.io Media API
+  tags:
+  - Media Processing
+  - Audio Enhancement
+  - Noise Reduction
+  - Music Mastering
+  - Transcoding
+  - Analyze
+  humanURL: https://docs.dolby.io/media-apis/
+  properties:
+  - url: https://docs.dolby.io/media-apis/
+    type: Documentation
+  - url: https://www.postman.com/dolbyio/dolby-io-media-apis/overview
+    type: Documentation
+  description: Legacy Dolby.io Media APIs for cloud-based audio and video processing. Includes
+    Enhance (noise reduction, leveling, dialog isolation), Analyze (loudness, speech metrics,
+    diagnostics), Transcode (web/mobile output formats), Diagnose (audio quality reporting), and
+    Music Mastering. Jobs are submitted with media URLs and polled or webhook-notified. Status
+    monitored at status.dolby.io. Use of these APIs is migrating to the OptiView platform.
+- aid: dolby-io:dolby-io-communications-api
+  name: Dolby.io Communications API
+  tags:
+  - Communications
+  - Conferencing
+  - WebRTC
+  - Voice
+  - Video
+  - Recording
+  - Legacy
+  humanURL: https://docs.dolby.io/communications-apis/
+  properties:
+  - url: https://docs.dolby.io/communications-apis/
+    type: Documentation
+  - url: https://docs.dolby.io/communications-apis/reference/introduction-to-streaming-api
+    type: Documentation
+  description: Legacy Communications APIs for high-quality WebRTC voice and video conferencing
+    with spatial audio, music mode, noise suppression, and dial-in/dial-out. Includes Client Access
+    Token, Conference, Recording, Monitor, Mixer Direct, Streaming (RTMP/HLS), and Webhooks
+    services. Documentation now redirects to the OptiView portal; status.dolby.io still tracks
+    these services. Generally superseded by the OptiView product line; existing customers should
+    contact Dolby for migration guidance.
+- aid: dolby-io:dolby-optiview-ads-api
+  name: Dolby OptiView Ads API
+  tags:
+  - Advertising
+  - Server-Guided Ad Insertion
+  - SGAI
+  - Live Streaming
+  - Manifest
+  humanURL: https://optiview.dolby.com/docs/ads/
+  properties:
+  - url: https://optiview.dolby.com/docs/ads/
+    type: Documentation
+  - url: https://optiview.dolby.com/docs/ad-engine/
+    type: Documentation
+  description: Server-Guided Ad Insertion (SGAI) for live streaming. The Signaling Service
+    enriches origin manifests with advanced ad-break markers and integrates with Google Ad Manager
+    for ad decisioning; the Ad Engine handles ad-format transformation; the OptiView Player fetches
+    and replaces creatives client-side. Supports Full Screen, Double Box, and L-shape ad formats
+    across web, mobile, and TV platforms.
+- aid: dolby-io:dolby-optiview-player-sdk
+  name: Dolby OptiView Player SDK (THEOplayer)
+  tags:
+  - Player
+  - SDK
+  - HLS
+  - MPEG-DASH
+  - DRM
+  - Advertising
+  humanURL: https://optiview.dolby.com/docs/theoplayer/
+  properties:
+  - url: https://optiview.dolby.com/docs/theoplayer/
+    type: Documentation
+  - url: https://optiview.dolby.com/docs/open-video-ui/
+    type: Documentation
+  description: Cross-platform video player (formerly THEOplayer) with SDKs for Web, Android, iOS &
+    tvOS, React Native, Flutter, Chromecast, and Roku. Supports HLS, MPEG-DASH, DRM, advertising
+    integration, low-latency WebRTC playback through the OptiView Real-time Streaming feed, and
+    the Open Video UI component library for fully customizable player interfaces. Latest series
+    11.x; long history of releases back to 4.x.
+common:
+- type: Portal
+  url: https://optiview.dolby.com
+- type: Portal
+  url: https://dolby.io
+- type: Documentation
+  url: https://optiview.dolby.com/docs/
+- type: Documentation
+  url: https://docs.dolby.io/
+- type: GettingStarted
+  url: https://optiview.dolby.com/docs/millicast/getting-started/
+- type: SignUp
+  url: https://streaming.dolby.io
+- type: StatusPage
+  url: https://status.dolby.io
+- type: Pricing
+  url: https://optiview.dolby.com/plans/
+- type: Plans
+  url: plans/dolby-io-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/dolby-io-rate-limits.yml
+- type: FinOps
+  url: finops/dolby-io-finops.yml
+- type: Blog
+  url: https://dolby.io/blog/
+- type: PrivacyPolicy
+  url: https://www.dolby.com/about/legal/privacy-policy/
+- type: TermsOfService
+  url: https://www.dolby.com/about/legal/terms-of-service-for-dolby-io/
+- type: TrustCenter
+  url: https://trust.dolby.com/
+- type: GitHubOrganization
+  url: https://github.com/dolbyio
+- type: GitHubOrganization
+  url: https://github.com/dolbyio-samples
+- type: SDK
+  url: https://github.com/dolbyio/dolbyio-rest-apis-client-node
+  name: REST APIs Client for Node.js
+- type: SDK
+  url: https://github.com/dolbyio/dolbyio-rest-apis-client-python
+  name: REST APIs Client for Python
+- type: SDK
+  url: https://github.com/dolbyio/dolbyio-rest-apis-client-dotnet
+  name: REST APIs Client for .NET
+- type: SDK
+  url: https://github.com/dolbyio/rts-uikit-ios
+  name: Real-time Streaming UIKit for iOS
+- type: Tool
+  url: https://github.com/dolbyio/web-webrtc-stats
+  name: WebRTC Stats Parser
+- type: CodeExamples
+  url: https://github.com/dolbyio-samples
+  name: Dolby.io Samples GitHub Org
+- type: CodeExamples
+  url: https://github.com/dolbyio-samples/streaming-WHIP-WHEP-node-sample
+  name: WHIP/WHEP Node Sample
+- type: CodeExamples
+  url: https://github.com/dolbyio-samples/streaming-webhook-thumbnails
+  name: Streaming Webhook Thumbnails Sample
+- type: CodeExamples
+  url: https://github.com/dolbyio-samples/stream-app-web-viewer
+  name: WebRTC Low-Latency Streaming App (4K)
+- type: Tools
+  url: https://github.com/dolbyio/awesome-audio
+  name: Awesome Audio
+- type: Forum
+  url: https://github.com/orgs/dolbyio/discussions
+- type: Webhooks
+  url: https://optiview.dolby.com/docs/millicast/webhooks/
+- type: ChangeLog
+  url: https://optiview.dolby.com/docs/release-notes/
+- type: Features
+  data:
+  - OptiView Real-time Streaming (Millicast) — sub-500ms WebRTC streaming to 100k+ viewers
+  - WHIP and WHEP protocol support for standards-based publish and playback
+  - Multi-protocol ingest — WebRTC, SRT, RTMP, RTMPS
+  - Video codec support — H.264, H.265, VP8, VP9, AV1; Opus audio
+  - Publish and Subscribe token APIs with regex stream names, geo restrictions, IP binding
+  - Webhooks for feeds, recordings, thumbnails, transcoders, and viewer connections (HMAC-SHA1 signed)
+  - Account-level analytics — publish minutes, viewer minutes, bytes transferred
+  - OptiView Live (THEOlive) — live channels with low latency, Nielsen tracking, DRM, server-side ads
+  - Channels, Ingests, Engines, Distributions resource model with full REST and GraphQL surfaces
+  - Server-Guided Ad Insertion (SGAI) with Google Ad Manager integration
+  - OptiView Player SDKs — Web, Android, iOS/tvOS, React Native, Flutter, Chromecast, Roku
+  - Open Video UI component library for player customization
+  - Legacy Media APIs — Enhance, Analyze, Transcode, Diagnose, Music Mastering
+  - Legacy Communications APIs — WebRTC conferencing, spatial audio, recording, RTMP/HLS streaming
+  - Official REST API client SDKs for Node.js, Python, and .NET
+  - Real-time Streaming UI Kit for iOS (Swift)
+  - WebRTC statistics parser for browser-side diagnostics
+  - Region presence across US East/West, Europe, Asia-Pacific, and South America
+  - Bearer-token authentication via per-account API Secrets
+  - Status page tracking core services and regional infrastructure
+  sources:
+  - https://optiview.dolby.com/
+  - https://optiview.dolby.com/docs/millicast/
+  - https://optiview.dolby.com/docs/theolive/
+  - https://optiview.dolby.com/docs/theoplayer/
+  - https://optiview.dolby.com/docs/ads/
+  - https://optiview.dolby.com/plans/
+  - https://github.com/dolbyio
+  - https://github.com/dolbyio-samples
+  - https://status.dolby.io
+  updated: '2026-05-25'
+created: '2026-05-25T00:00:00.000Z'
+modified: '2026-05-25'
+position: Consuming
+description: Dolby.io (now branded as Dolby OptiView) is Dolby Laboratories' developer platform for
+  media, streaming, communications, and advertising APIs. Originally launched as a hub for Dolby's
+  audio and video processing services (Media APIs, Communications APIs), the platform has
+  consolidated around three OptiView pillars — Real-time Streaming (formerly Millicast), Live
+  Streaming (formerly THEOlive), and Playback (formerly THEOplayer) — with an Advertising pillar
+  built on Server-Guided Ad Insertion. The platform powers live sports streaming for the NFL,
+  NASCAR, Paddy Power, and other large broadcasters, with sub-500ms WebRTC delivery, multi-format
+  ingest (WHIP/WHEP, SRT, RTMP), and cross-platform playback SDKs.
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com
+  X: apievangelist
+  url: https://apievangelist.com
+specificationVersion: '0.16'

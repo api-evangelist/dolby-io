@@ -1,0 +1,116 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dolby OptiView Real-time Streaming — Publish Tokens
+  description: Create, list, retrieve, update, and delete publish (broadcaster) tokens on the Dolby OptiView Real-time Streaming platform (Millicast). Lead operation; Create Publish Token.
+  tags:
+  - Dolby
+  - OptiView
+  - Real-time Streaming
+  - Millicast
+  - Publish Tokens
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    MILLICAST_API_SECRET: MILLICAST_API_SECRET
+capability:
+  consumes:
+  - type: http
+    namespace: publish-tokens
+    baseUri: https://api.millicast.com/api
+    description: Publish-token management on the OptiView Real-time Streaming REST API.
+    resources:
+    - name: publish-token
+      path: /publish_token
+      operations:
+      - name: createPublishToken
+        method: POST
+        description: Create a new publish token for one or more stream names.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listPublishTokens
+        method: GET
+        path: /publish_token/list
+        description: List publish tokens for the account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.
+      - name: getPublishToken
+        method: GET
+        path: /publish_token/{tokenID}
+        description: Retrieve a publish token by ID.
+        inputParameters:
+        - name: tokenID
+          in: path
+          type: integer
+          required: true
+      - name: updatePublishToken
+        method: PATCH
+        path: /publish_token/{tokenID}
+        description: Update a publish token (label, active flag, allowed origins, recording).
+        inputParameters:
+        - name: tokenID
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deletePublishToken
+        method: DELETE
+        path: /publish_token/{tokenID}
+        description: Delete a publish token.
+        inputParameters:
+        - name: tokenID
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.MILLICAST_API_SECRET}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: publish-tokens-rest
+    port: 8080
+    description: REST adapter for OptiView Real-time Streaming publish-token management.
+    resources:
+    - path: /v1/publish_token
+      name: publish-token
+      description: REST surface for publish tokens.
+      operations:
+      - method: POST
+        name: createPublishToken
+        description: Create a publish token.
+        call: publish-tokens.createPublishToken
+        with:
+          body: rest.body
+  - type: mcp
+    namespace: publish-tokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OptiView Real-time Streaming publish-token management.
+    tools:
+    - name: dolby-create-publish-token
+      description: Create a publish token for OptiView Real-time Streaming.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: publish-tokens.createPublishToken
+      with:
+        body: tools.body

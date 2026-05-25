@@ -1,0 +1,58 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dolby OptiView Real-time Streaming — Analytics
+  description: Retrieve account-level publish-minute, viewer-minute, and bytes-transferred totals from the Dolby OptiView Real-time Streaming platform.
+  tags:
+  - Dolby
+  - OptiView
+  - Real-time Streaming
+  - Analytics
+  - Reporting
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    MILLICAST_API_SECRET: MILLICAST_API_SECRET
+capability:
+  consumes:
+  - type: http
+    namespace: analytics
+    baseUri: https://api.millicast.com/api
+    description: Analytics retrieval on the OptiView Real-time Streaming REST API.
+    resources:
+    - name: tracking-total
+      path: /analytics/tracking/total
+      operations:
+      - name: getAnalyticsTrackingTotal
+        method: GET
+        description: Return aggregated publish and viewer totals across the account.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.MILLICAST_API_SECRET}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: analytics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OptiView Real-time Streaming analytics.
+    tools:
+    - name: dolby-get-tracking-total
+      description: Fetch publish and viewer minute totals for the account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: analytics.getAnalyticsTrackingTotal
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate

@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dolby OptiView Real-time Streaming — Webhooks
+  description: Register webhook URLs to receive feed, recording, thumbnail, transcoder, and viewer-connection events from the Dolby OptiView Real-time Streaming platform. Payloads are signed with HMAC-SHA1 in the X-Millicast-Signature header.
+  tags:
+  - Dolby
+  - OptiView
+  - Real-time Streaming
+  - Webhooks
+  - Events
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    MILLICAST_API_SECRET: MILLICAST_API_SECRET
+capability:
+  consumes:
+  - type: http
+    namespace: webhooks
+    baseUri: https://api.millicast.com/api
+    description: Webhook management on the OptiView Real-time Streaming REST API.
+    resources:
+    - name: webhooks
+      path: /webhooks
+      operations:
+      - name: listWebhooks
+        method: GET
+        description: List configured webhooks for the account.
+      - name: createWebhook
+        method: POST
+        description: Register a webhook URL with selected event categories.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteWebhook
+        method: DELETE
+        path: /webhooks/{webhookID}
+        description: Delete a webhook by ID.
+        inputParameters:
+        - name: webhookID
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.MILLICAST_API_SECRET}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OptiView Real-time Streaming webhook management.
+    tools:
+    - name: dolby-create-webhook
+      description: Register a webhook to receive OptiView Real-time Streaming events.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: webhooks.createWebhook
+      with:
+        body: tools.body

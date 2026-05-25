@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.millicast.com/api/subscribe_token",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_SECRET",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "label": "premium-viewer",
+      "streams": [{ "streamName": "stage-a", "isRegex": false }],
+      "allowedCountries": ["US", "CA", "GB"],
+      "deniedCountries": [],
+      "bindIpsOnUsage": 2,
+      "expiresOn": "2026-12-31T23:59:59Z"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": 9013,
+      "label": "premium-viewer",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.viewer",
+      "addedOn": "2026-05-25T15:35:11Z",
+      "expiresOn": "2026-12-31T23:59:59Z",
+      "isActive": true,
+      "streams": [{ "streamName": "stage-a", "isRegex": false }],
+      "allowedCountries": ["US", "CA", "GB"]
+    }
+  }
+}

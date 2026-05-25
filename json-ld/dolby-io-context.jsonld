@@ -1,0 +1,101 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "dolby": "https://api.millicast.com/api/",
+    "theolive": "https://api.theo.live/v2/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "PublishToken": {
+      "@id": "dolby:PublishToken",
+      "@context": {
+        "id": { "@id": "dolby:PublishToken/id", "@type": "xsd:integer" },
+        "label": { "@id": "schema:name", "@type": "xsd:string" },
+        "token": { "@id": "dolby:PublishToken/token", "@type": "xsd:string" },
+        "isActive": { "@id": "dolby:PublishToken/isActive", "@type": "xsd:boolean" },
+        "addedOn": { "@id": "dcterms:created", "@type": "xsd:dateTime" },
+        "expiresOn": { "@id": "dolby:PublishToken/expiresOn", "@type": "xsd:dateTime" },
+        "streams": { "@id": "dolby:PublishToken/streams", "@container": "@list" },
+        "record": { "@id": "dolby:PublishToken/record", "@type": "xsd:boolean" },
+        "multisource": { "@id": "dolby:PublishToken/multisource", "@type": "xsd:boolean" }
+      }
+    },
+
+    "SubscribeToken": {
+      "@id": "dolby:SubscribeToken",
+      "@context": {
+        "id": { "@id": "dolby:SubscribeToken/id", "@type": "xsd:integer" },
+        "label": { "@id": "schema:name", "@type": "xsd:string" },
+        "token": { "@id": "dolby:SubscribeToken/token", "@type": "xsd:string" },
+        "isActive": { "@id": "dolby:SubscribeToken/isActive", "@type": "xsd:boolean" },
+        "allowedCountries": { "@id": "dolby:SubscribeToken/allowedCountries", "@container": "@list" },
+        "deniedCountries": { "@id": "dolby:SubscribeToken/deniedCountries", "@container": "@list" },
+        "allowedIpAddresses": { "@id": "dolby:SubscribeToken/allowedIpAddresses", "@container": "@list" }
+      }
+    },
+
+    "Webhook": {
+      "@id": "dolby:Webhook",
+      "@context": {
+        "id": { "@id": "dolby:Webhook/id", "@type": "xsd:integer" },
+        "url": { "@id": "schema:url", "@type": "xsd:anyURI" },
+        "secret": { "@id": "dolby:Webhook/secret", "@type": "xsd:string" },
+        "isFeedHooks": { "@id": "dolby:Webhook/isFeedHooks", "@type": "xsd:boolean" },
+        "isRecordingHooks": { "@id": "dolby:Webhook/isRecordingHooks", "@type": "xsd:boolean" },
+        "isThumbnailHooks": { "@id": "dolby:Webhook/isThumbnailHooks", "@type": "xsd:boolean" },
+        "isTranscoderHooks": { "@id": "dolby:Webhook/isTranscoderHooks", "@type": "xsd:boolean" },
+        "isViewerConnectionHooks": { "@id": "dolby:Webhook/isViewerConnectionHooks", "@type": "xsd:boolean" }
+      }
+    },
+
+    "WebhookEvent": {
+      "@id": "dolby:WebhookEvent",
+      "@context": {
+        "type": { "@id": "dolby:WebhookEvent/type", "@type": "xsd:string" },
+        "event": { "@id": "dolby:WebhookEvent/event", "@type": "xsd:string" },
+        "timestamp": { "@id": "dolby:WebhookEvent/timestamp", "@type": "xsd:long" },
+        "data": { "@id": "dolby:WebhookEvent/data" }
+      }
+    },
+
+    "Channel": {
+      "@id": "theolive:Channel",
+      "@context": {
+        "id": { "@id": "theolive:Channel/id", "@type": "xsd:string" },
+        "name": { "@id": "schema:name", "@type": "xsd:string" },
+        "alias": { "@id": "theolive:Channel/alias", "@type": "xsd:string" },
+        "status": { "@id": "theolive:Channel/status", "@type": "xsd:string" }
+      }
+    },
+
+    "Ingest": {
+      "@id": "theolive:Ingest",
+      "@context": {
+        "id": { "@id": "theolive:Ingest/id", "@type": "xsd:string" },
+        "type": { "@id": "theolive:Ingest/type", "@type": "xsd:string" },
+        "url": { "@id": "schema:url", "@type": "xsd:anyURI" }
+      }
+    },
+
+    "Engine": {
+      "@id": "theolive:Engine",
+      "@context": {
+        "id": { "@id": "theolive:Engine/id", "@type": "xsd:string" },
+        "profile": { "@id": "theolive:Engine/profile", "@type": "xsd:string" },
+        "status": { "@id": "theolive:Engine/status", "@type": "xsd:string" }
+      }
+    },
+
+    "Distribution": {
+      "@id": "theolive:Distribution",
+      "@context": {
+        "id": { "@id": "theolive:Distribution/id", "@type": "xsd:string" },
+        "type": { "@id": "theolive:Distribution/type", "@type": "xsd:string" },
+        "allowedCountries": { "@id": "theolive:Distribution/allowedCountries", "@container": "@list" },
+        "deniedCountries": { "@id": "theolive:Distribution/deniedCountries", "@container": "@list" }
+      }
+    }
+  }
+}

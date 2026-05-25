@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/dolby-io/dolby-io-publish-token-schema.json",
+  "title": "Dolby OptiView Publish Token",
+  "description": "Schema for the Publish Token request and response objects on the Dolby OptiView Real-time Streaming (Millicast) REST API.",
+  "type": "object",
+  "definitions": {
+    "PublishTokenCreate": {
+      "type": "object",
+      "description": "Request body for POST /publish_token.",
+      "required": ["label", "streams"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Human-readable label for the token."
+        },
+        "streams": {
+          "type": "array",
+          "description": "List of stream names (or regex patterns) the token is valid for.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "streamName": { "type": "string" },
+              "isRegex": { "type": "boolean", "default": false }
+            },
+            "required": ["streamName"]
+          }
+        },
+        "allowedOrigins": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "originCluster": { "type": "string" },
+        "record": { "type": "boolean", "default": false },
+        "multisource": { "type": "boolean", "default": false },
+        "enableThumbnails": { "type": "boolean", "default": false },
+        "expiresOn": { "type": "string", "format": "date-time" }
+      }
+    },
+    "PublishToken": {
+      "type": "object",
+      "description": "Publish token response object.",
+      "required": ["id", "token", "label", "streams"],
+      "properties": {
+        "id": { "type": "integer" },
+        "label": { "type": "string" },
+        "token": {
+          "type": "string",
+          "description": "JWT used by the broadcaster (WebRTC/WHIP) to publish."
+        },
+        "addedOn": { "type": "string", "format": "date-time" },
+        "expiresOn": { "type": "string", "format": "date-time" },
+        "isActive": { "type": "boolean" },
+        "streams": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "streamName": { "type": "string" },
+              "isRegex": { "type": "boolean" }
+            }
+          }
+        },
+        "allowedOrigins": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "record": { "type": "boolean" },
+        "multisource": { "type": "boolean" },
+        "enableThumbnails": { "type": "boolean" }
+      }
+    }
+  }
+}

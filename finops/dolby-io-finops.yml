@@ -1,0 +1,110 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Dolby.io
+providerId: dolby-io
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - Streaming
+  - Media
+description: |
+  FOCUS-aligned FinOps definition for the Dolby.io / Dolby OptiView platform. Usage is metered in
+  publish-minutes, viewer-minutes, transcoder-minutes, bytes-transferred, ad-impressions, and
+  media-processing-minutes depending on the product. Most OptiView contracts are commit-based
+  with overage billing; the legacy Dolby.io developer plan was pure pay-as-you-go.
+sources:
+  - https://optiview.dolby.com/plans/
+  - https://optiview.dolby.com/docs/millicast/
+  - https://optiview.dolby.com/docs/theolive/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Dolby Laboratories
+serviceCategory: Streaming and Media
+billingModel:
+  pricingCategory: Usage-Based / Commit
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  primaryUnit: minute
+  secondaryUnits:
+    - byte
+    - impression
+    - viewer
+    - stream
+    - container_hour
+focusColumns:
+  ServiceName: Dolby OptiView
+  ServiceCategory: Streaming and Media
+  ProviderName: Dolby Laboratories
+  PublisherName: Dolby Laboratories
+  InvoiceIssuerName: Dolby Laboratories
+  PricingCategory: Usage-Based
+  PricingUnit: minute
+  BillingCurrency: USD
+meters:
+  - name: publish_minutes
+    unit: minute
+    aggregation: sum
+    dimensions:
+      - stream
+      - region
+      - account
+    description: Minutes of broadcaster (publisher) connection time to OptiView Real-time Streaming.
+  - name: viewer_minutes
+    unit: minute
+    aggregation: sum
+    dimensions:
+      - stream
+      - region
+      - account
+    description: Minutes of subscriber (viewer) connection time to OptiView Real-time Streaming or Live.
+  - name: transcoder_minutes
+    unit: minute
+    aggregation: sum
+    dimensions:
+      - channel
+      - engine
+      - profile
+    description: Engine transcoding minutes on OptiView Live.
+  - name: bytes_transferred
+    unit: byte
+    aggregation: sum
+    dimensions:
+      - distribution
+      - region
+    description: Egress bytes delivered to viewers (CDN / WebRTC).
+  - name: media_processing_minutes
+    unit: minute
+    aggregation: sum
+    dimensions:
+      - service
+      - job_id
+    description: Legacy Media API processing minutes (Enhance, Analyze, Transcode, Music Mastering).
+  - name: ad_impressions
+    unit: impression
+    aggregation: sum
+    dimensions:
+      - channel
+      - format
+    description: Server-Guided Ad Insertion impressions on OptiView Advertising.
+discountLevers:
+  - name: Annual commit
+    description: Pre-purchased commit reduces effective per-minute and per-GB rates.
+  - name: Multi-product bundle
+    description: Bundling Streaming + Playback + Advertising under one contract lowers blended pricing.
+  - name: Free signup credit
+    description: Legacy Dolby.io developer plan included a $50 lifetime credit plus $25/month.

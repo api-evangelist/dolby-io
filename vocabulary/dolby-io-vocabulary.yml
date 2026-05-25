@@ -1,0 +1,88 @@
+vocabulary: Dolby.io / Dolby OptiView
+version: '1.0'
+created: '2026-05-25'
+modified: '2026-05-25'
+description: |
+  Operational vocabulary for the Dolby.io / Dolby OptiView platform — Real-time Streaming
+  (Millicast), Live Streaming (THEOlive), Playback (THEOplayer), Advertising (SGAI), and the
+  legacy Media and Communications APIs.
+terms:
+  - term: Publish Token
+    aliases: [Broadcaster Token, Publish Key]
+    domain: Real-time Streaming
+    definition: Bearer token authorizing a client to broadcast one or more named streams via WHIP, WebRTC, RTMP, or SRT.
+  - term: Subscribe Token
+    aliases: [Viewer Token, Subscribe Key]
+    domain: Real-time Streaming
+    definition: Bearer token authorizing a client to view one or more named streams via WHEP or WebRTC, with optional geo, IP, and origin restrictions.
+  - term: API Secret
+    aliases: [Account Secret, Bearer Token]
+    domain: Authentication
+    definition: Account-level secret created in the OptiView dashboard (Settings -> Security) and sent as Authorization Bearer for all REST calls.
+  - term: WHIP
+    expansion: WebRTC HTTP Ingest Protocol
+    domain: Real-time Streaming
+    definition: Standardized HTTP-based protocol for publishing WebRTC streams.
+  - term: WHEP
+    expansion: WebRTC HTTP Egress Protocol
+    domain: Real-time Streaming
+    definition: Standardized HTTP-based protocol for subscribing to WebRTC streams.
+  - term: Cluster
+    domain: Real-time Streaming
+    definition: Regional ingest/egress point. The /cluster endpoint returns publish, subscribe, and websocket URLs for the account's region.
+  - term: Feed Hook
+    domain: Webhooks
+    definition: Webhook event fired when a stream starts or stops publishing.
+  - term: Recording Hook
+    aliases: [Media Hook]
+    domain: Webhooks
+    definition: Webhook event fired when a recording starts, completes, or is deleted.
+  - term: Thumbnail Hook
+    domain: Webhooks
+    definition: Webhook event fired when a thumbnail is captured during a stream.
+  - term: Transcoder Hook
+    domain: Webhooks
+    definition: Webhook event fired when a transcoder changes state.
+  - term: ViewerConnection Hook
+    domain: Webhooks
+    definition: Webhook event fired when a viewer connects or disconnects.
+  - term: X-Millicast-Signature
+    domain: Webhooks
+    definition: HMAC-SHA1 signature header used to verify webhook authenticity.
+  - term: Channel
+    domain: OptiView Live
+    definition: A live streaming entity that ties together ingests, engines, and distributions.
+  - term: Ingest
+    domain: OptiView Live
+    definition: An input source (RTMP push/pull, SRT, SDI) feeding a channel.
+  - term: Engine
+    domain: OptiView Live
+    definition: A transcoding pipeline that produces ABR ladders, applies DRM, overlays, and outputs.
+  - term: Distribution
+    domain: OptiView Live
+    definition: A delivery endpoint exposing channel output to viewers with geo, IP, and referer security controls.
+  - term: ABR Ladder
+    domain: OptiView Live
+    definition: Adaptive Bitrate ladder defining the encoded variants emitted by an engine.
+  - term: Server-Guided Ad Insertion
+    aliases: [SGAI]
+    domain: OptiView Advertising
+    definition: Ad-break signaling enriched in the origin manifest, with the player fetching and replacing creatives client-side.
+  - term: Ad Engine
+    domain: OptiView Advertising
+    definition: Format-transformation service that adapts ad creatives for live streaming formats (Full Screen, Double Box, L-shape).
+  - term: Enhance
+    domain: Media APIs
+    definition: Legacy Dolby.io API for noise reduction, dialog isolation, and audio leveling on uploaded media.
+  - term: Analyze
+    domain: Media APIs
+    definition: Legacy Dolby.io API for measuring audio loudness, speech metrics, and diagnostics.
+  - term: Transcode
+    domain: Media APIs
+    definition: Legacy Dolby.io API for converting media into web and mobile formats.
+  - term: Music Mastering
+    domain: Media APIs
+    definition: Legacy Dolby.io API for AI-assisted music mastering.
+  - term: Diagnose
+    domain: Media APIs
+    definition: Legacy Dolby.io API that produces an audio quality report for an asset.

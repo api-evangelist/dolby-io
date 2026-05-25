@@ -1,0 +1,85 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dolby OptiView Live (THEOlive) — Ingests
+  description: Manage channel input sources (RTMP push/pull, SRT, SDI) on the Dolby OptiView Live (THEOlive) platform.
+  tags:
+  - Dolby
+  - OptiView
+  - THEOlive
+  - Live Streaming
+  - Ingests
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    THEOLIVE_USER: THEOLIVE_USER
+    THEOLIVE_PASSWORD: THEOLIVE_PASSWORD
+capability:
+  consumes:
+  - type: http
+    namespace: ingests
+    baseUri: https://api.theo.live/v2
+    description: Ingest management on the OptiView Live (THEOlive) REST API.
+    resources:
+    - name: ingests
+      path: /ingests
+      operations:
+      - name: listIngests
+        method: GET
+      - name: createIngest
+        method: POST
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: getIngest
+        method: GET
+        path: /ingests/{ingestID}
+        inputParameters:
+        - name: ingestID
+          in: path
+          type: string
+          required: true
+      - name: updateIngest
+        method: PUT
+        path: /ingests/{ingestID}
+        inputParameters:
+        - name: ingestID
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteIngest
+        method: DELETE
+        path: /ingests/{ingestID}
+        inputParameters:
+        - name: ingestID
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: basic
+      key: Authorization
+      value: 'Basic {{env.THEOLIVE_USER}}:{{env.THEOLIVE_PASSWORD}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: ingests-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OptiView Live ingest management.
+    tools:
+    - name: theolive-create-ingest
+      description: Create an ingest source for a channel.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ingests.createIngest
+      with:
+        body: tools.body

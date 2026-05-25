@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.millicast.com/api/webhooks",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_SECRET",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "url": "https://hooks.example.com/dolby",
+      "isFeedHooks": true,
+      "isRecordingHooks": true,
+      "isThumbnailHooks": false,
+      "isTranscoderHooks": true,
+      "isViewerConnectionHooks": false
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": 471,
+      "url": "https://hooks.example.com/dolby",
+      "secret": "s3cret-h7sH",
+      "isFeedHooks": true,
+      "isRecordingHooks": true,
+      "isThumbnailHooks": false,
+      "isTranscoderHooks": true,
+      "isViewerConnectionHooks": false
+    }
+  },
+  "event": {
+    "type": "feeds",
+    "event": "started",
+    "timestamp": 1779812345000,
+    "data": {
+      "streamName": "stage-a",
+      "accountId": "abc123"
+    }
+  }
+}

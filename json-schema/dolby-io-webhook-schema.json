@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/dolby-io/dolby-io-webhook-schema.json",
+  "title": "Dolby OptiView Webhook",
+  "description": "Schema for the Webhook configuration and event payload on the Dolby OptiView Real-time Streaming (Millicast) REST API.",
+  "type": "object",
+  "definitions": {
+    "WebhookCreate": {
+      "type": "object",
+      "required": ["url"],
+      "description": "Request body for POST /webhooks.",
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "isFeedHooks": { "type": "boolean", "default": false },
+        "isRecordingHooks": { "type": "boolean", "default": false },
+        "isThumbnailHooks": { "type": "boolean", "default": false },
+        "isTranscoderHooks": { "type": "boolean", "default": false },
+        "isViewerConnectionHooks": { "type": "boolean", "default": false }
+      }
+    },
+    "Webhook": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "url": { "type": "string", "format": "uri" },
+        "secret": {
+          "type": "string",
+          "description": "HMAC-SHA1 secret used to sign payloads in the X-Millicast-Signature header."
+        },
+        "isFeedHooks": { "type": "boolean" },
+        "isRecordingHooks": { "type": "boolean" },
+        "isThumbnailHooks": { "type": "boolean" },
+        "isTranscoderHooks": { "type": "boolean" },
+        "isViewerConnectionHooks": { "type": "boolean" }
+      }
+    },
+    "WebhookEvent": {
+      "type": "object",
+      "description": "Event payload delivered to a webhook URL. Includes type, event, timestamp, and event-specific data.",
+      "required": ["type", "event", "timestamp"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["feeds", "recordings", "media", "thumbnail", "transcoder", "viewerConnection"]
+        },
+        "event": { "type": "string" },
+        "timestamp": { "type": "integer" },
+        "data": { "type": "object" }
+      }
+    }
+  }
+}

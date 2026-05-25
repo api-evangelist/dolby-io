@@ -1,0 +1,42 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Dolby.io
+providerId: dolby-io
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Streaming
+  - WebRTC
+  - Rate Limiting
+description: |
+  Dolby.io / OptiView does not publish per-account REST rate-limit numbers for the Real-time
+  Streaming or Live APIs. The platform enforces account-level resource limits
+  (concurrent streams, concurrent viewers, transcoder count, bandwidth) negotiated as part of
+  the customer contract. Public documentation calls out four practical constraints:
+   - Webhook delivery is fire-and-forget (no retries on failure).
+   - Webhook payload order is not guaranteed.
+   - Bound-IP subscribe tokens enforce a hard cap on simultaneous IPs after first use.
+   - REST tokens (publish, subscribe) carry per-token activity flags and expiration.
+sources:
+  - https://optiview.dolby.com/docs/millicast/webhooks/
+  - https://optiview.dolby.com/docs/millicast/managing-your-tokens/
+  - https://optiview.dolby.com/docs/millicast/getting-started/using-rest-apis/
+algorithm: contract-negotiated
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+limits:
+  - api: OptiView Real-time Streaming REST API
+    scope: account
+    notes: Concurrent publish streams, concurrent viewers, recording hours, and bandwidth are negotiated per contract; no public RPM/RPS published.
+  - api: OptiView Real-time Streaming Webhooks
+    scope: webhook
+    notes: Fire-and-forget delivery, no retries, no ordering guarantees. HMAC-SHA1 signed payloads.
+  - api: OptiView Live (THEOlive) REST API
+    scope: account
+    notes: Concurrent channels, transcoder minutes, viewer minutes, and bytes transferred negotiated per contract.
+  - api: Legacy Media APIs
+    scope: account
+    notes: Media job concurrency tied to the legacy $25/month free credit and pay-as-you-go billing.

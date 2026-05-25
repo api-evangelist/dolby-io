@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.millicast.com/api/publish_token",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_SECRET",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "label": "live-event-2026",
+      "streams": [
+        { "streamName": "stage-a", "isRegex": false },
+        { "streamName": "stage-b", "isRegex": false }
+      ],
+      "allowedOrigins": ["https://app.example.com"],
+      "record": true,
+      "enableThumbnails": true
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": 1042,
+      "label": "live-event-2026",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example",
+      "addedOn": "2026-05-25T15:32:11Z",
+      "isActive": true,
+      "streams": [
+        { "streamName": "stage-a", "isRegex": false },
+        { "streamName": "stage-b", "isRegex": false }
+      ],
+      "allowedOrigins": ["https://app.example.com"],
+      "record": true,
+      "multisource": false,
+      "enableThumbnails": true
+    }
+  }
+}

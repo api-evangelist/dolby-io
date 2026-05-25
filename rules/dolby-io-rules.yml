@@ -1,0 +1,71 @@
+extends:
+  - spectral:oas
+documentationUrl: https://github.com/api-evangelist/dolby-io
+formats:
+  - oas3
+functions: []
+rules:
+  dolby-info-contact:
+    description: Every Dolby.io API must declare contact information pointing at Dolby support.
+    given: '$.info'
+    severity: warn
+    then:
+      field: contact
+      function: truthy
+  dolby-info-description:
+    description: Every Dolby.io API must include an info.description.
+    given: '$.info'
+    severity: error
+    then:
+      field: description
+      function: truthy
+  dolby-server-https:
+    description: Dolby.io REST servers must use HTTPS.
+    given: '$.servers[*].url'
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+  dolby-bearer-auth:
+    description: Dolby OptiView Real-time Streaming endpoints must declare Bearer authentication.
+    given: '$.components.securitySchemes'
+    severity: warn
+    then:
+      function: truthy
+  dolby-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    given: '$.paths[*][get,post,put,patch,delete].summary'
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][A-Za-z0-9 ]+$'
+  dolby-operation-id-camel-case:
+    description: operationId must be camelCase.
+    given: '$.paths[*][get,post,put,patch,delete].operationId'
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]+$'
+  dolby-tag-required:
+    description: Every operation must declare at least one tag.
+    given: '$.paths[*][get,post,put,patch,delete]'
+    severity: warn
+    then:
+      field: tags
+      function: truthy
+  dolby-2xx-response:
+    description: Every operation must define at least one 2xx response.
+    given: '$.paths[*][get,post,put,patch,delete].responses'
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            '^2[0-9]{2}$':
+              type: object
+          additionalProperties: true
