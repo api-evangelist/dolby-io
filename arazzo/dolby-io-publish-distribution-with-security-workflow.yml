@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Dolby OptiView Publish a Secured Distribution
+  summary: Create a distribution for a channel and attach a token security key to protect playback.
+  description: >-
+    Stands up a viewer-facing distribution for a THEOlive channel and secures
+    it. The workflow creates a distribution (the playback endpoint configuration)
+    and then adds a token security key to it so that playback can be gated. The
+    two operations chain on the distribution id returned by the first step.
+    Every step inlines its Authorization header and request body so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: theoliveApi
+  url: ../openapi/dolby-io-theolive-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: publish-distribution-with-security
+  summary: Create a channel distribution and attach a security key to it.
+  description: >-
+    Creates a distribution on a channel and then registers a security key on
+    that distribution to protect playback.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - channelId
+    - distributionName
+    - keyValue
+    properties:
+      authorization:
+        type: string
+        description: HTTP Basic Authorization header value.
+      channelId:
+        type: string
+        description: The id of the channel to create the distribution for.
+      distributionName:
+        type: string
+        description: Name of the distribution.
+      targetLatency:
+        type: number
+        description: Optional target latency in seconds for the distribution.
+      keyName:
+        type: string
+        description: Optional display name for the security key.
+      keyValue:
+        type: string
+        description: The security key value used to sign playback tokens.
+  steps:
+  - stepId: createDistribution
+    description: >-
+      Create the distribution on the channel. Returns the distribution id under
+      data.
+    operationId: create-channel-distribution
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.distributionName
+        enabled: true
+        targetLatency: $inputs.targetLatency
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      distributionId: $response.body#/data/id
+  - stepId: addSecurityKey
+    description: >-
+      Attach a security key to the new distribution so playback URLs can be
+      token-protected. Returns the security key id under data.
+    operationId: create-distribution-security-key
+    parameters:
+    - name: id
+      in: path
+      value: $steps.createDistribution.outputs.distributionId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.keyName
+        key: $inputs.keyValue
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      keyId: $response.body#/data/id
+  outputs:
+    distributionId: $steps.createDistribution.outputs.distributionId
+    securityKeyId: $steps.addSecurityKey.outputs.keyId

@@ -1,0 +1,163 @@
+arazzo: 1.0.1
+info:
+  title: Dolby OptiView Attach Ingest and Engine then Go Live
+  summary: Add an ingest and a transcoding engine to a channel, start it, and poll until playing.
+  description: >-
+    Builds out a THEOlive channel's transcode pipeline end to end. The workflow
+    creates an ingest (the source feed), provisions a transcoding engine bound
+    to that ingest with a chosen ABR ladder, starts the channel, then poll-loops
+    the channel until its documented status reaches playing or error. Engine
+    deployment and start-up are asynchronous, so the poll loop mirrors the async
+    media-job pattern. Every step inlines its Authorization header and request
+    body so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: theoliveApi
+  url: ../openapi/dolby-io-theolive-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: attach-ingest-engine-and-go-live
+  summary: Create an ingest and engine on a channel, start it, and wait for playing.
+  description: >-
+    Attaches a source ingest and a transcoding engine to an existing channel,
+    starts the channel, and waits until the channel status settles on playing
+    or error.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - channelId
+    - ingestName
+    - ingestType
+    - engineName
+    - region
+    - abrLadderId
+    properties:
+      authorization:
+        type: string
+        description: HTTP Basic Authorization header value.
+      channelId:
+        type: string
+        description: The id of the channel to attach the ingest and engine to.
+      ingestName:
+        type: string
+        description: Name of the ingest to create.
+      ingestType:
+        type: string
+        description: Ingest type (rtmp-push, rtmp-pull, srt-pull, srt-push, or sdi-pull).
+      ingestUrl:
+        type: string
+        description: Source URL (required for pull ingest types).
+      region:
+        type: string
+        description: Region id to deploy the engine in (and required for rtmp-push ingests).
+      engineName:
+        type: string
+        description: Name of the transcoding engine to create.
+      abrLadderId:
+        type: string
+        description: ABR ladder id used for the engine quality configuration.
+  steps:
+  - stepId: createIngest
+    description: >-
+      Create the ingest (source feed) on the channel. Returns the ingest id and
+      stream key under data.
+    operationId: create-channel-ingest
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.ingestName
+        type: $inputs.ingestType
+        url: $inputs.ingestUrl
+        region: $inputs.region
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ingestId: $response.body#/data/id
+      streamKey: $response.body#/data/streamKey
+  - stepId: createEngine
+    description: >-
+      Provision a transcoding engine bound to the new ingest, deployed in the
+      requested region with the chosen ABR ladder.
+    operationId: create-channel-engine
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: application/json
+      payload:
+        ingestId: $steps.createIngest.outputs.ingestId
+        name: $inputs.engineName
+        region: $inputs.region
+        quality:
+          abrLadderId: $inputs.abrLadderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      engineId: $response.body#/data/id
+      engineStatus: $response.body#/data/status
+  - stepId: startChannel
+    description: Start the channel, which boots the newly attached engine.
+    operationId: start-channel
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 204
+  - stepId: pollChannelStatus
+    description: >-
+      Poll the channel until its status reaches playing (live) or error. Status
+      transitions through deploying, starting, waiting and ingesting while the
+      engine spins up.
+    operationId: get-channel
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/data/status
+    onSuccess:
+    - name: live
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.status == "playing"
+        type: jsonpath
+    - name: failed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.status == "error"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollChannelStatus
+      criteria:
+      - context: $response.body
+        condition: $.data.status != "playing" && $.data.status != "error"
+        type: jsonpath
+  outputs:
+    ingestId: $steps.createIngest.outputs.ingestId
+    engineId: $steps.createEngine.outputs.engineId
+    finalStatus: $steps.pollChannelStatus.outputs.status

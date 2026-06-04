@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Dolby OptiView Provision a Broadcast Token with Cluster
+  summary: Discover the account cluster, create a publish token, then read it back to confirm.
+  description: >-
+    Prepares a broadcaster to go live on Dolby OptiView Real-time Streaming
+    (Millicast). The workflow first discovers the region-specific publish URL
+    for the account's provisioned cluster, then creates a publish token bound to
+    a stream name, and finally reads the token back to confirm it is active. The
+    create and read operations chain on the returned token id. Every step inlines
+    its Bearer Authorization header and request body so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: streamingApi
+  url: ../openapi/dolby-io-realtime-streaming-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-broadcast-token-with-cluster
+  summary: Resolve the cluster, create a publish token, and confirm it.
+  description: >-
+    Reads the account cluster's publish URL, creates a publish token for a
+    stream, and reads the new token back to confirm it is active.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - label
+    - streamName
+    properties:
+      authorization:
+        type: string
+        description: Bearer Authorization header value (e.g. "Bearer <API Secret>").
+      label:
+        type: string
+        description: Human-readable label for the publish token.
+      streamName:
+        type: string
+        description: The stream name the publish token is bound to.
+  steps:
+  - stepId: getCluster
+    description: >-
+      Discover the publish/subscribe URLs for the region the account is
+      provisioned in.
+    operationId: getCluster
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      publishUrl: $response.body#/publishUrl
+  - stepId: createPublishToken
+    description: >-
+      Create a publish token bound to the supplied stream name. Returns the
+      token id and the broadcaster JWT.
+    operationId: createPublishToken
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: application/json
+      payload:
+        label: $inputs.label
+        streams:
+        - streamName: $inputs.streamName
+          isRegex: false
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tokenId: $response.body#/id
+      token: $response.body#/token
+  - stepId: confirmToken
+    description: >-
+      Read the new publish token back and confirm it is active.
+    operationId: getPublishToken
+    parameters:
+    - name: tokenID
+      in: path
+      value: $steps.createPublishToken.outputs.tokenId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/isActive == true
+    outputs:
+      isActive: $response.body#/isActive
+  outputs:
+    publishUrl: $steps.getCluster.outputs.publishUrl
+    tokenId: $steps.createPublishToken.outputs.tokenId
+    token: $steps.createPublishToken.outputs.token
+    isActive: $steps.confirmToken.outputs.isActive

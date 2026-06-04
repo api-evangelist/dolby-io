@@ -1,0 +1,86 @@
+arazzo: 1.0.1
+info:
+  title: Dolby OptiView Provision a Viewer Token
+  summary: Create a geo-restricted subscribe token for a stream, then read it back to confirm.
+  description: >-
+    Issues a viewer (subscribe) token for a Dolby OptiView Real-time Streaming
+    feed and confirms it. The workflow creates a subscribe token bound to a
+    stream name with optional country allow/deny restrictions, then reads the
+    token back to confirm it is active. The two operations chain on the returned
+    token id. Every step inlines its Bearer Authorization header and request body
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: streamingApi
+  url: ../openapi/dolby-io-realtime-streaming-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-viewer-token
+  summary: Create a subscribe token for a stream and confirm it is active.
+  description: >-
+    Creates a viewer token bound to a stream with optional geo restrictions and
+    reads it back to confirm it is active.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - label
+    - streamName
+    properties:
+      authorization:
+        type: string
+        description: Bearer Authorization header value (e.g. "Bearer <API Secret>").
+      label:
+        type: string
+        description: Human-readable label for the subscribe token.
+      streamName:
+        type: string
+        description: The stream name the subscribe token is bound to.
+      allowedCountries:
+        type: array
+        description: Optional list of ISO country codes allowed to view the stream.
+        items:
+          type: string
+  steps:
+  - stepId: createSubscribeToken
+    description: >-
+      Create a subscribe token bound to the supplied stream name with optional
+      allowed-country restrictions. Returns the token id and viewer JWT.
+    operationId: createSubscribeToken
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: application/json
+      payload:
+        label: $inputs.label
+        streams:
+        - streamName: $inputs.streamName
+          isRegex: false
+        allowedCountries: $inputs.allowedCountries
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tokenId: $response.body#/id
+      token: $response.body#/token
+  - stepId: confirmToken
+    description: Read the new subscribe token back and confirm it is active.
+    operationId: getSubscribeToken
+    parameters:
+    - name: tokenID
+      in: path
+      value: $steps.createSubscribeToken.outputs.tokenId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/isActive == true
+    outputs:
+      isActive: $response.body#/isActive
+  outputs:
+    tokenId: $steps.createSubscribeToken.outputs.tokenId
+    token: $steps.createSubscribeToken.outputs.token
+    isActive: $steps.confirmToken.outputs.isActive

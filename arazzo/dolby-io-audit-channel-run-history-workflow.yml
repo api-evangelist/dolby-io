@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Dolby OptiView Audit Channel Run History
+  summary: Resolve a channel, list its engine runs, and pull its transcoding-minutes analytics.
+  description: >-
+    Produces an operational audit of a THEOlive channel. The workflow confirms
+    the channel exists and captures its current status, lists the historical
+    engine runs (each run records start, stop and configuration), and finally
+    pulls the transcoding-minutes analytics for a reporting window. The three
+    read operations chain on the channel id so a single pass yields a complete
+    run-and-usage picture. Every step inlines its Authorization header so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: theoliveApi
+  url: ../openapi/dolby-io-theolive-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: audit-channel-run-history
+  summary: Read a channel, its engine runs, and its transcoding-minutes analytics.
+  description: >-
+    Confirms a channel, lists its engine runs, and retrieves transcoding-minutes
+    analytics for a date range and resolution.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - channelId
+    - start
+    - end
+    - resolution
+    properties:
+      authorization:
+        type: string
+        description: HTTP Basic Authorization header value.
+      channelId:
+        type: string
+        description: The id of the channel to audit.
+      start:
+        type: string
+        description: Start of the analytics period (timestamp).
+      end:
+        type: string
+        description: End of the analytics period (timestamp).
+      resolution:
+        type: string
+        description: Analytics time resolution (15min, hour, day, or month).
+  steps:
+  - stepId: getChannel
+    description: Confirm the channel exists and capture its current status.
+    operationId: get-channel
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/data/status
+  - stepId: listRuns
+    description: >-
+      List the channel's engine runs. Each run includes its engineId, start and
+      config under data.
+    operationId: get-channel-runs
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runs: $response.body#/data
+      nextCursor: $response.body#/pagination/cursor
+  - stepId: getTranscodingMinutes
+    description: >-
+      Retrieve transcoding-minutes analytics for the channel over the requested
+      window and resolution.
+    operationId: get-channel-transcoding-minutes
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: start
+      in: query
+      value: $inputs.start
+    - name: end
+      in: query
+      value: $inputs.end
+    - name: resolution
+      in: query
+      value: $inputs.resolution
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      analytics: $response.body#/data
+  outputs:
+    channelStatus: $steps.getChannel.outputs.status
+    runs: $steps.listRuns.outputs.runs
+    transcodingMinutes: $steps.getTranscodingMinutes.outputs.analytics

@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: Dolby OptiView Tear Down a Channel
+  summary: Stop a channel, poll until it is fully stopped, then delete it.
+  description: >-
+    Cleanly decommissions a THEOlive channel. The workflow stops the channel,
+    poll-loops the channel until its documented status settles on stopped (so
+    no engines are still running), and only then deletes it. Shutdown is
+    asynchronous — the channel passes through the stopping state — so the poll
+    loop mirrors the async media-job pattern and guards the destructive delete.
+    Every step inlines its Authorization header so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: theoliveApi
+  url: ../openapi/dolby-io-theolive-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: teardown-channel
+  summary: Stop a channel, wait until it is stopped, then delete it.
+  description: >-
+    Stops a channel, polls until its status is stopped, and deletes the channel
+    once it is idle.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - channelId
+    properties:
+      authorization:
+        type: string
+        description: HTTP Basic Authorization header value.
+      channelId:
+        type: string
+        description: The id of the channel to tear down.
+  steps:
+  - stepId: stopChannel
+    description: Stop the channel, which stops all connected engines.
+    operationId: stop-channel
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 204
+  - stepId: pollChannelStatus
+    description: >-
+      Poll the channel until its status reaches stopped. The documented status
+      enum includes stopping before stopped. Branch to delete once stopped, or
+      keep polling while still stopping.
+    operationId: get-channel
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/data/status
+    onSuccess:
+    - name: idle
+      type: goto
+      stepId: deleteChannel
+      criteria:
+      - context: $response.body
+        condition: $.data.status == "stopped"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollChannelStatus
+      criteria:
+      - context: $response.body
+        condition: $.data.status != "stopped"
+        type: jsonpath
+  - stepId: deleteChannel
+    description: >-
+      Delete the now-idle channel. Returns 204 No Content on success.
+    operationId: delete-channel
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    channelId: $inputs.channelId
+    finalStatus: $steps.pollChannelStatus.outputs.status

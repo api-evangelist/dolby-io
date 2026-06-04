@@ -1,0 +1,92 @@
+arazzo: 1.0.1
+info:
+  title: Dolby OptiView Enable Recording Webhook and Token
+  summary: Register a recording webhook, then create a publish token that records its streams.
+  description: >-
+    Wires up server-side recording notifications and a recording-enabled
+    broadcast token for Dolby OptiView Real-time Streaming. The workflow first
+    registers a webhook subscribed to recording events (so your backend is told
+    when recordings start and finish), then creates a publish token with
+    recording enabled so the broadcaster's streams are captured. The flow
+    chains the webhook id into its outputs and ties both resources to the same
+    broadcaster setup. Every step inlines its Bearer Authorization header and
+    request body so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: streamingApi
+  url: ../openapi/dolby-io-realtime-streaming-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: enable-recording-webhook-and-token
+  summary: Create a recording webhook and a recording-enabled publish token.
+  description: >-
+    Registers a webhook for recording events and creates a publish token that
+    records its bound streams.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - webhookUrl
+    - label
+    - streamName
+    properties:
+      authorization:
+        type: string
+        description: Bearer Authorization header value (e.g. "Bearer <API Secret>").
+      webhookUrl:
+        type: string
+        description: The URL that will receive recording event callbacks.
+      label:
+        type: string
+        description: Human-readable label for the publish token.
+      streamName:
+        type: string
+        description: The stream name the publish token is bound to.
+  steps:
+  - stepId: createWebhook
+    description: >-
+      Register a webhook subscribed to recording events. Returns the webhook id
+      and the HMAC signing secret.
+    operationId: createWebhook
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: application/json
+      payload:
+        url: $inputs.webhookUrl
+        isRecordingHooks: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      webhookId: $response.body#/id
+      secret: $response.body#/secret
+  - stepId: createRecordingToken
+    description: >-
+      Create a publish token with recording enabled so the broadcaster's bound
+      stream is captured. Returns the token id and broadcaster JWT.
+    operationId: createPublishToken
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: application/json
+      payload:
+        label: $inputs.label
+        streams:
+        - streamName: $inputs.streamName
+          isRegex: false
+        record: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tokenId: $response.body#/id
+      token: $response.body#/token
+      record: $response.body#/record
+  outputs:
+    webhookId: $steps.createWebhook.outputs.webhookId
+    tokenId: $steps.createRecordingToken.outputs.tokenId
+    token: $steps.createRecordingToken.outputs.token

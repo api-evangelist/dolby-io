@@ -1,0 +1,119 @@
+arazzo: 1.0.1
+info:
+  title: Dolby OptiView Provision and Start a Channel
+  summary: Create a THEOlive channel, start it, and poll until it is live and playing.
+  description: >-
+    The foundational live-streaming lifecycle for Dolby OptiView THEOlive.
+    The workflow creates a channel, issues the start command that boots every
+    connected engine, and then poll-loops the channel resource until its
+    documented status reaches a terminal live state (playing) or an error.
+    THEOlive channel startup is asynchronous — engines move through deploying,
+    starting, waiting and ingesting states before reaching playing — so this
+    flow mirrors the async-job poll pattern the media APIs use. Every step
+    inlines its Authorization header and request body so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: theoliveApi
+  url: ../openapi/dolby-io-theolive-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-and-start-channel
+  summary: Create a channel, start it, and wait until it reaches the playing state.
+  description: >-
+    Creates a new THEOlive channel, fires the start command, then repeatedly
+    reads the channel until its status settles on playing (success) or error
+    (failure).
+  inputs:
+    type: object
+    required:
+    - authorization
+    - name
+    properties:
+      authorization:
+        type: string
+        description: HTTP Basic Authorization header value (e.g. "Basic <base64 user:pass>").
+      name:
+        type: string
+        description: Human-readable name for the new channel.
+      externalId:
+        type: string
+        description: Optional external identifier to correlate the channel with your system.
+      timeout:
+        type: number
+        description: Channel idle timeout in seconds. Pass 0 to never stop.
+  steps:
+  - stepId: createChannel
+    description: >-
+      Create the channel. The response returns the channel id and its initial
+      status (typically stopped) under data.
+    operationId: create-channel
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        externalId: $inputs.externalId
+        timeout: $inputs.timeout
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      channelId: $response.body#/data/id
+      initialStatus: $response.body#/data/status
+  - stepId: startChannel
+    description: >-
+      Start the channel, which boots all connected engines. Returns 204 No
+      Content on success.
+    operationId: start-channel
+    parameters:
+    - name: id
+      in: path
+      value: $steps.createChannel.outputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 204
+  - stepId: pollChannelStatus
+    description: >-
+      Read the channel and inspect its status. The documented status enum
+      includes deploying, starting, waiting, ingesting and playing. Loop back
+      until the channel is playing or has errored.
+    operationId: get-channel
+    parameters:
+    - name: id
+      in: path
+      value: $steps.createChannel.outputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/data/status
+    onSuccess:
+    - name: live
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.status == "playing"
+        type: jsonpath
+    - name: failed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.status == "error"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollChannelStatus
+      criteria:
+      - context: $response.body
+        condition: $.data.status != "playing" && $.data.status != "error"
+        type: jsonpath
+  outputs:
+    channelId: $steps.createChannel.outputs.channelId
+    finalStatus: $steps.pollChannelStatus.outputs.status

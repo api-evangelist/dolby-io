@@ -1,0 +1,90 @@
+arazzo: 1.0.1
+info:
+  title: Dolby OptiView Stop a Channel and Confirm Idle
+  summary: Stop a running channel and poll until it has fully settled in the stopped state.
+  description: >-
+    Gracefully winds down a live THEOlive channel. The workflow issues the stop
+    command, which stops every connected engine, then poll-loops the channel
+    until its documented status reaches the stopped terminal state (or error).
+    Shutdown is asynchronous — the channel passes through the stopping state
+    before reaching stopped — so the poll loop mirrors the async media-job
+    pattern. Every step inlines its Authorization header so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: theoliveApi
+  url: ../openapi/dolby-io-theolive-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: stop-channel-and-confirm-idle
+  summary: Stop a channel and wait until its status reaches stopped.
+  description: >-
+    Sends the stop command to a channel and polls the channel until its status
+    settles on stopped or error.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - channelId
+    properties:
+      authorization:
+        type: string
+        description: HTTP Basic Authorization header value.
+      channelId:
+        type: string
+        description: The id of the channel to stop.
+  steps:
+  - stepId: stopChannel
+    description: >-
+      Stop the channel, which stops all connected engines. Returns 204 No
+      Content on success.
+    operationId: stop-channel
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 204
+  - stepId: pollChannelStatus
+    description: >-
+      Read the channel and inspect its status. The documented status enum
+      includes stopping and stopped. Loop back until the channel is stopped or
+      has errored.
+    operationId: get-channel
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/data/status
+    onSuccess:
+    - name: idle
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.status == "stopped"
+        type: jsonpath
+    - name: failed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.status == "error"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollChannelStatus
+      criteria:
+      - context: $response.body
+        condition: $.data.status != "stopped" && $.data.status != "error"
+        type: jsonpath
+  outputs:
+    channelId: $inputs.channelId
+    finalStatus: $steps.pollChannelStatus.outputs.status

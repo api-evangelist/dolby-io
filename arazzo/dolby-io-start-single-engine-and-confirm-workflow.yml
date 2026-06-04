@@ -1,0 +1,105 @@
+arazzo: 1.0.1
+info:
+  title: Dolby OptiView Start a Single Engine and Confirm
+  summary: Select an engine on a channel, start it, and poll the engine until it is playing.
+  description: >-
+    Targets a single transcoding engine rather than the whole channel. The
+    workflow lists the channel's engines, starts the first one, then poll-loops
+    the engine resource until its documented status reaches playing or error.
+    Engine start-up is asynchronous — the engine moves through deploying,
+    starting, waiting and ingesting before playing — so the poll loop mirrors
+    the async media-job pattern. Every step inlines its Authorization header so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: theoliveApi
+  url: ../openapi/dolby-io-theolive-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: start-single-engine-and-confirm
+  summary: Start one engine on a channel and wait until it reaches the playing state.
+  description: >-
+    Resolves the engines attached to a channel, starts the first engine, and
+    polls that engine until its status settles on playing or error.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - channelId
+    properties:
+      authorization:
+        type: string
+        description: HTTP Basic Authorization header value.
+      channelId:
+        type: string
+        description: The id of the channel whose engine should be started.
+  steps:
+  - stepId: listEngines
+    description: >-
+      List the engines attached to the channel and capture the id of the first
+      engine to act on.
+    operationId: get-channel-engines
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.channelId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      engineId: $response.body#/data/0/id
+  - stepId: startEngine
+    description: Start the selected engine. Returns 204 No Content on success.
+    operationId: start-engine
+    parameters:
+    - name: id
+      in: path
+      value: $steps.listEngines.outputs.engineId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 204
+  - stepId: pollEngineStatus
+    description: >-
+      Read the engine and inspect its status. The documented status enum
+      includes deploying, starting, waiting, ingesting and playing. Loop back
+      until the engine is playing or has errored.
+    operationId: get-engine
+    parameters:
+    - name: id
+      in: path
+      value: $steps.listEngines.outputs.engineId
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/data/status
+    onSuccess:
+    - name: live
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.status == "playing"
+        type: jsonpath
+    - name: failed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.status == "error"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollEngineStatus
+      criteria:
+      - context: $response.body
+        condition: $.data.status != "playing" && $.data.status != "error"
+        type: jsonpath
+  outputs:
+    engineId: $steps.listEngines.outputs.engineId
+    finalStatus: $steps.pollEngineStatus.outputs.status
