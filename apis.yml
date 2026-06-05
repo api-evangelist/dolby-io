@@ -45,14 +45,6 @@ apis:
     type: Documentation
   - url: openapi/dolby-io-realtime-streaming-api-openapi.yml
     type: OpenAPI
-  - url: capabilities/realtime-streaming-publish-tokens.yaml
-    type: NaftikoCapability
-  - url: capabilities/realtime-streaming-subscribe-tokens.yaml
-    type: NaftikoCapability
-  - url: capabilities/realtime-streaming-webhooks.yaml
-    type: NaftikoCapability
-  - url: capabilities/realtime-streaming-analytics.yaml
-    type: NaftikoCapability
   - url: json-schema/dolby-io-publish-token-schema.json
     type: JSONSchema
   - url: json-schema/dolby-io-subscribe-token-schema.json
@@ -61,11 +53,13 @@ apis:
     type: JSONSchema
   - url: json-ld/dolby-io-context.jsonld
     type: JSONLD
-  description: Real-time WebRTC streaming platform (formerly Millicast). Manage publish and subscribe
-    tokens, configure webhook delivery for feeds, recordings, thumbnails, transcoders, and viewer
-    connections, retrieve account analytics, and discover regional cluster URLs. Supports WHIP/WHEP,
-    SRT, RTMP/RTMPS ingest with H.264, H.265, VP8, VP9, AV1 video and Opus audio. Sub-500ms latency
-    to global audiences at scale.
+  - url: graphql/dolby-io-graphql.md
+    type: GraphQL
+  description: >-
+    Real-time WebRTC streaming platform (formerly Millicast). Manage publish and subscribe tokens, configure webhook
+    delivery for feeds, recordings, thumbnails, transcoders, and viewer connections, retrieve account analytics, and
+    discover regional cluster URLs. Supports WHIP/WHEP, SRT, RTMP/RTMPS ingest with H.264, H.265, VP8, VP9, AV1 video
+    and Opus audio. Sub-500ms latency to global audiences at scale.
 - aid: dolby-io:dolby-io-theolive-api
   name: Dolby OptiView Live (THEOlive) API
   tags:
@@ -86,22 +80,12 @@ apis:
     type: OpenAPI
   - url: openapi/dolby-io-theolive-api-openapi.yml
     type: OpenAPI
-  - url: capabilities/theolive-channels.yaml
-    type: NaftikoCapability
-  - url: capabilities/theolive-ingests.yaml
-    type: NaftikoCapability
-  - url: capabilities/theolive-engines.yaml
-    type: NaftikoCapability
-  - url: capabilities/theolive-distributions.yaml
-    type: NaftikoCapability
-  - url: capabilities/theolive-webhooks.yaml
-    type: NaftikoCapability
-  description: Low-latency live streaming API (formerly THEOlive). Programmatic control of Channels,
-    Ingests (RTMP push/pull, SRT, SDI), Engines (transcoding, DRM, overlays, ABR ladders),
-    Distributions (geo-blocking, IP/referrer restrictions, WebRTC delivery), Regions, Webhooks
-    (30+ event types with delivery logs), and Analytics (transcoding minutes, viewing minutes,
-    bytes transferred, browser/country breakdowns). Supports Nielsen tracking, server-side ads,
-    DRM, and DVR. v2 API published at api.theo.live with HTTP Basic auth.
+  description: >-
+    Low-latency live streaming API (formerly THEOlive). Programmatic control of Channels, Ingests (RTMP push/pull,
+    SRT, SDI), Engines (transcoding, DRM, overlays, ABR ladders), Distributions (geo-blocking, IP/referrer
+    restrictions, WebRTC delivery), Regions, Webhooks (30+ event types with delivery logs), and Analytics (transcoding
+    minutes, viewing minutes, bytes transferred, browser/country breakdowns). Supports Nielsen tracking, server-side
+    ads, DRM, and DVR. v2 API published at api.theo.live with HTTP Basic auth.
 - aid: dolby-io:dolby-io-media-api
   name: Dolby.io Media API
   tags:
@@ -117,11 +101,11 @@ apis:
     type: Documentation
   - url: https://www.postman.com/dolbyio/dolby-io-media-apis/overview
     type: Documentation
-  description: Legacy Dolby.io Media APIs for cloud-based audio and video processing. Includes
-    Enhance (noise reduction, leveling, dialog isolation), Analyze (loudness, speech metrics,
-    diagnostics), Transcode (web/mobile output formats), Diagnose (audio quality reporting), and
-    Music Mastering. Jobs are submitted with media URLs and polled or webhook-notified. Status
-    monitored at status.dolby.io. Use of these APIs is migrating to the OptiView platform.
+  description: >-
+    Legacy Dolby.io Media APIs for cloud-based audio and video processing. Includes Enhance (noise reduction,
+    leveling, dialog isolation), Analyze (loudness, speech metrics, diagnostics), Transcode (web/mobile output
+    formats), Diagnose (audio quality reporting), and Music Mastering. Jobs are submitted with media URLs and polled
+    or webhook-notified. Status monitored at status.dolby.io. Use of these APIs is migrating to the OptiView platform.
 - aid: dolby-io:dolby-io-communications-api
   name: Dolby.io Communications API
   tags:
@@ -138,12 +122,12 @@ apis:
     type: Documentation
   - url: https://docs.dolby.io/communications-apis/reference/introduction-to-streaming-api
     type: Documentation
-  description: Legacy Communications APIs for high-quality WebRTC voice and video conferencing
-    with spatial audio, music mode, noise suppression, and dial-in/dial-out. Includes Client Access
-    Token, Conference, Recording, Monitor, Mixer Direct, Streaming (RTMP/HLS), and Webhooks
-    services. Documentation now redirects to the OptiView portal; status.dolby.io still tracks
-    these services. Generally superseded by the OptiView product line; existing customers should
-    contact Dolby for migration guidance.
+  description: >-
+    Legacy Communications APIs for high-quality WebRTC voice and video conferencing with spatial audio, music mode,
+    noise suppression, and dial-in/dial-out. Includes Client Access Token, Conference, Recording, Monitor, Mixer
+    Direct, Streaming (RTMP/HLS), and Webhooks services. Documentation now redirects to the OptiView portal;
+    status.dolby.io still tracks these services. Generally superseded by the OptiView product line; existing customers
+    should contact Dolby for migration guidance.
 - aid: dolby-io:dolby-optiview-ads-api
   name: Dolby OptiView Ads API
   tags:
@@ -158,11 +142,11 @@ apis:
     type: Documentation
   - url: https://optiview.dolby.com/docs/ad-engine/
     type: Documentation
-  description: Server-Guided Ad Insertion (SGAI) for live streaming. The Signaling Service
-    enriches origin manifests with advanced ad-break markers and integrates with Google Ad Manager
-    for ad decisioning; the Ad Engine handles ad-format transformation; the OptiView Player fetches
-    and replaces creatives client-side. Supports Full Screen, Double Box, and L-shape ad formats
-    across web, mobile, and TV platforms.
+  description: >-
+    Server-Guided Ad Insertion (SGAI) for live streaming. The Signaling Service enriches origin manifests with
+    advanced ad-break markers and integrates with Google Ad Manager for ad decisioning; the Ad Engine handles
+    ad-format transformation; the OptiView Player fetches and replaces creatives client-side. Supports Full Screen,
+    Double Box, and L-shape ad formats across web, mobile, and TV platforms.
 - aid: dolby-io:dolby-optiview-player-sdk
   name: Dolby OptiView Player SDK (THEOplayer)
   tags:
@@ -178,12 +162,14 @@ apis:
     type: Documentation
   - url: https://optiview.dolby.com/docs/open-video-ui/
     type: Documentation
-  description: Cross-platform video player (formerly THEOplayer) with SDKs for Web, Android, iOS &
-    tvOS, React Native, Flutter, Chromecast, and Roku. Supports HLS, MPEG-DASH, DRM, advertising
-    integration, low-latency WebRTC playback through the OptiView Real-time Streaming feed, and
-    the Open Video UI component library for fully customizable player interfaces. Latest series
-    11.x; long history of releases back to 4.x.
+  description: >-
+    Cross-platform video player (formerly THEOplayer) with SDKs for Web, Android, iOS & tvOS, React Native, Flutter,
+    Chromecast, and Roku. Supports HLS, MPEG-DASH, DRM, advertising integration, low-latency WebRTC playback through
+    the OptiView Real-time Streaming feed, and the Open Video UI component library for fully customizable player
+    interfaces. Latest series 11.x; long history of releases back to 4.x.
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/dolbyio/overview
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:
@@ -326,14 +312,14 @@ common:
 created: '2026-05-25T00:00:00.000Z'
 modified: '2026-05-25'
 position: Consuming
-description: Dolby.io (now branded as Dolby OptiView) is Dolby Laboratories' developer platform for
-  media, streaming, communications, and advertising APIs. Originally launched as a hub for Dolby's
-  audio and video processing services (Media APIs, Communications APIs), the platform has
-  consolidated around three OptiView pillars — Real-time Streaming (formerly Millicast), Live
-  Streaming (formerly THEOlive), and Playback (formerly THEOplayer) — with an Advertising pillar
-  built on Server-Guided Ad Insertion. The platform powers live sports streaming for the NFL,
-  NASCAR, Paddy Power, and other large broadcasters, with sub-500ms WebRTC delivery, multi-format
-  ingest (WHIP/WHEP, SRT, RTMP), and cross-platform playback SDKs.
+description: >-
+  Dolby.io (now branded as Dolby OptiView) is Dolby Laboratories' developer platform for media, streaming,
+  communications, and advertising APIs. Originally launched as a hub for Dolby's audio and video processing services
+  (Media APIs, Communications APIs), the platform has consolidated around three OptiView pillars — Real-time Streaming
+  (formerly Millicast), Live Streaming (formerly THEOlive), and Playback (formerly THEOplayer) — with an Advertising
+  pillar built on Server-Guided Ad Insertion. The platform powers live sports streaming for the NFL, NASCAR, Paddy
+  Power, and other large broadcasters, with sub-500ms WebRTC delivery, multi-format ingest (WHIP/WHEP, SRT, RTMP), and
+  cross-platform playback SDKs.
 maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
