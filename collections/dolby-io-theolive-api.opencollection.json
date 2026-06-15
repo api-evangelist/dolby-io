@@ -1,0 +1,2128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dolby OptiView THEOlive API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by external ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of channels to return (max 100)"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by channel name"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search channels based on ID or name"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of statuses to filter by"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by channel ID"
+              }
+            ]
+          },
+          "docs": "Get all channels"
+        },
+        {
+          "info": {
+            "name": "Create a new channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/channels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new channel"
+        },
+        {
+          "info": {
+            "name": "Get a channel by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of related resources to include. Valid values: ingests, distributions, engines"
+              }
+            ]
+          },
+          "docs": "Get a channel by ID"
+        },
+        {
+          "info": {
+            "name": "Update a channel by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.theo.live/v2/channels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a channel by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a channel by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.theo.live/v2/channels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "Delete a channel by ID"
+        },
+        {
+          "info": {
+            "name": "Start a channel (will start all connected engines)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/channels/:id/start",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "Start a channel (will start all connected engines)"
+        },
+        {
+          "info": {
+            "name": "Stop a channel (will stop all connected engines)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/channels/:id/stop",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "Stop a channel (will stop all connected engines)"
+        },
+        {
+          "info": {
+            "name": "Get ingests of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/ingests",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (max 100)"
+              }
+            ]
+          },
+          "docs": "Get ingests of a channel"
+        },
+        {
+          "info": {
+            "name": "Create an ingest for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/channels/:id/ingests",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an ingest for a channel"
+        },
+        {
+          "info": {
+            "name": "Get engines of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/engines",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (max 100)"
+              }
+            ]
+          },
+          "docs": "Get engines of a channel"
+        },
+        {
+          "info": {
+            "name": "Create an engine for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/channels/:id/engines",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an engine for a channel"
+        },
+        {
+          "info": {
+            "name": "Get distributions of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/distributions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (max 100)"
+              }
+            ]
+          },
+          "docs": "Get distributions of a channel"
+        },
+        {
+          "info": {
+            "name": "Create a distribution for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/channels/:id/distributions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a distribution for a channel"
+        },
+        {
+          "info": {
+            "name": "Send instream metadata for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/channels/:id/instream-metadata/:uuid",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Instream metadata UUID"
+              }
+            ]
+          },
+          "docs": "Send instream metadata for a channel"
+        },
+        {
+          "info": {
+            "name": "Get engine runs of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/runs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of runs to return"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Filter runs starting after this timestamp"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "Filter runs ending before this timestamp"
+              },
+              {
+                "name": "engineIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of engine IDs to filter by"
+              }
+            ]
+          },
+          "docs": "Get engine runs of a channel"
+        },
+        {
+          "info": {
+            "name": "Get transcoding minutes analytics for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/analytics/transcoding-minutes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Group results by engine or channel"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Time resolution for the analytics data"
+              },
+              {
+                "name": "engineIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of engine IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get transcoding minutes analytics for a channel"
+        },
+        {
+          "info": {
+            "name": "Get viewing minutes analytics for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/analytics/viewing-minutes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Group results by channel, distribution, or streaming format"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Time resolution for the analytics data"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get viewing minutes analytics for a channel"
+        },
+        {
+          "info": {
+            "name": "Get bytes transferred analytics for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/analytics/bytes-transferred",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Group results by channel, distribution, or streaming format"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Time resolution for the analytics data"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get bytes transferred analytics for a channel"
+        },
+        {
+          "info": {
+            "name": "Get viewing minutes grouped by browser for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/analytics/viewing-minutes/browsers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get viewing minutes grouped by browser for a channel"
+        },
+        {
+          "info": {
+            "name": "Get viewing minutes grouped by country for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/analytics/viewing-minutes/countries",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get viewing minutes grouped by country for a channel"
+        },
+        {
+          "info": {
+            "name": "Get bytes transferred grouped by browser for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/analytics/bytes-transferred/browsers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get bytes transferred grouped by browser for a channel"
+        },
+        {
+          "info": {
+            "name": "Get bytes transferred grouped by country for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/analytics/bytes-transferred/countries",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get bytes transferred grouped by country for a channel"
+        },
+        {
+          "info": {
+            "name": "Get country insights for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/analytics/insights/countries",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Time period for the insights"
+              },
+              {
+                "name": "channelIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of channel IDs to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              }
+            ]
+          },
+          "docs": "Data is only available for the last 30 days."
+        },
+        {
+          "info": {
+            "name": "Get browser and OS insights for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/analytics/insights/browsers-os",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Time period for the insights"
+              },
+              {
+                "name": "channelIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of channel IDs to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              }
+            ]
+          },
+          "docs": "Data is only available for the last 30 days."
+        },
+        {
+          "info": {
+            "name": "Get viewer count insights for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/analytics/insights/viewers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Time period for the insights"
+              },
+              {
+                "name": "channelIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of channel IDs to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              }
+            ]
+          },
+          "docs": "Data is only available for the last 30 days."
+        },
+        {
+          "info": {
+            "name": "List all custom endpoints of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/channels/:id/custom-endpoints",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "List all custom endpoints of a channel"
+        },
+        {
+          "info": {
+            "name": "Create a custom endpoint on a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/channels/:id/custom-endpoints",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a custom endpoint on a channel"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ingests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an ingest by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/ingests/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Ingest ID"
+              }
+            ]
+          },
+          "docs": "Get an ingest by ID"
+        },
+        {
+          "info": {
+            "name": "Update an ingest by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.theo.live/v2/ingests/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Ingest ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an ingest by ID"
+        },
+        {
+          "info": {
+            "name": "Delete an ingest by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.theo.live/v2/ingests/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Ingest ID"
+              }
+            ]
+          },
+          "docs": "Delete an ingest by ID"
+        },
+        {
+          "info": {
+            "name": "Get engines of an ingest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/ingests/:id/engines",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Ingest ID"
+              }
+            ]
+          },
+          "docs": "Get engines of an ingest"
+        },
+        {
+          "info": {
+            "name": "Create an engine for an ingest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/ingests/:id/engines",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Ingest ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an engine for an ingest"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Engines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an engine by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/engines/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Engine ID"
+              }
+            ]
+          },
+          "docs": "Get an engine by ID"
+        },
+        {
+          "info": {
+            "name": "Update an engine by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.theo.live/v2/engines/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Engine ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an engine by ID"
+        },
+        {
+          "info": {
+            "name": "Delete an engine by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.theo.live/v2/engines/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Engine ID"
+              }
+            ]
+          },
+          "docs": "Delete an engine by ID"
+        },
+        {
+          "info": {
+            "name": "Start an engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/engines/:id/start",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Engine ID"
+              }
+            ]
+          },
+          "docs": "Start an engine"
+        },
+        {
+          "info": {
+            "name": "Stop an engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/engines/:id/stop",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Engine ID"
+              }
+            ]
+          },
+          "docs": "Stop an engine"
+        },
+        {
+          "info": {
+            "name": "Get the last run of an engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/engines/:id/last-run",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Engine ID"
+              }
+            ]
+          },
+          "docs": "Get the last run of an engine"
+        },
+        {
+          "info": {
+            "name": "Get runs of an engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/engines/:id/runs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Engine ID"
+              }
+            ]
+          },
+          "docs": "Get runs of an engine"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Distributions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a distribution by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              }
+            ]
+          },
+          "docs": "Get a distribution by ID"
+        },
+        {
+          "info": {
+            "name": "Update a distribution by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.theo.live/v2/distributions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a distribution by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a distribution by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.theo.live/v2/distributions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              }
+            ]
+          },
+          "docs": "Delete a distribution by ID"
+        },
+        {
+          "info": {
+            "name": "Get security keys of a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id/security/keys",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              }
+            ]
+          },
+          "docs": "Get security keys of a distribution"
+        },
+        {
+          "info": {
+            "name": "Add a security key to a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/distributions/:id/security/keys",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a security key to a distribution"
+        },
+        {
+          "info": {
+            "name": "Delete all security keys of a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.theo.live/v2/distributions/:id/security/keys",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              }
+            ]
+          },
+          "docs": "Delete all security keys of a distribution"
+        },
+        {
+          "info": {
+            "name": "Get a specific security key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id/security/keys/:keyId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              },
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path",
+                "description": "Security key ID"
+              }
+            ]
+          },
+          "docs": "Get a specific security key"
+        },
+        {
+          "info": {
+            "name": "Delete a specific security key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.theo.live/v2/distributions/:id/security/keys/:keyId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              },
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path",
+                "description": "Security key ID"
+              }
+            ]
+          },
+          "docs": "Delete a specific security key"
+        },
+        {
+          "info": {
+            "name": "Get viewing minutes analytics for a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id/analytics/viewing-minutes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Group results by channel, distribution, or streaming format"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Time resolution for the analytics data"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get viewing minutes analytics for a distribution"
+        },
+        {
+          "info": {
+            "name": "Get bytes transferred analytics for a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id/analytics/bytes-transferred",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Group results by channel, distribution, or streaming format"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Time resolution for the analytics data"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get bytes transferred analytics for a distribution"
+        },
+        {
+          "info": {
+            "name": "Get viewing minutes grouped by browser for a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id/analytics/viewing-minutes/browsers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get viewing minutes grouped by browser for a distribution"
+        },
+        {
+          "info": {
+            "name": "Get viewing minutes grouped by country for a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id/analytics/viewing-minutes/countries",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get viewing minutes grouped by country for a distribution"
+        },
+        {
+          "info": {
+            "name": "Get bytes transferred grouped by browser for a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id/analytics/bytes-transferred/browsers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get bytes transferred grouped by browser for a distribution"
+        },
+        {
+          "info": {
+            "name": "Get bytes transferred grouped by country for a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id/analytics/bytes-transferred/countries",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get bytes transferred grouped by country for a distribution"
+        },
+        {
+          "info": {
+            "name": "Get country insights for a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id/analytics/insights/countries",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Time period for the insights"
+              },
+              {
+                "name": "channelIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of channel IDs to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              }
+            ]
+          },
+          "docs": "Data is only available for the last 30 days."
+        },
+        {
+          "info": {
+            "name": "Get browser and OS insights for a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id/analytics/insights/browsers-os",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Time period for the insights"
+              },
+              {
+                "name": "channelIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of channel IDs to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              }
+            ]
+          },
+          "docs": "Data is only available for the last 30 days."
+        },
+        {
+          "info": {
+            "name": "Get viewer count insights for a distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/distributions/:id/analytics/insights/viewers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Distribution ID"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Time period for the insights"
+              },
+              {
+                "name": "channelIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of channel IDs to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              }
+            ]
+          },
+          "docs": "Data is only available for the last 30 days."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Regions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all regions available for your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/regions"
+          },
+          "docs": "Get all regions available for your organization"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ABR Ladders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all ABR ladders for your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/abr"
+          },
+          "docs": "Get all ABR ladders for your organization"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/webhooks"
+          },
+          "docs": "Get all webhooks"
+        },
+        {
+          "info": {
+            "name": "Create a new webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theo.live/v2/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook"
+        },
+        {
+          "info": {
+            "name": "Get a webhook by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "Get a webhook by ID"
+        },
+        {
+          "info": {
+            "name": "Update a webhook by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.theo.live/v2/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a webhook by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a webhook by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.theo.live/v2/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "Delete a webhook by ID"
+        },
+        {
+          "info": {
+            "name": "Get a webhook secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/webhooks/:id/secret",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "Get a webhook secret"
+        },
+        {
+          "info": {
+            "name": "Get webhook logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/webhooks/:id/logs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start date in 'YYYY-MM-DDTHH:mm:ss.sssZ' format"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date in 'YYYY-MM-DDTHH:mm:ss.sssZ' format"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of logs to return (max 100)"
+              }
+            ]
+          },
+          "docs": "Get webhook logs"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custom Endpoint Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all custom endpoint providers for your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/custom-endpoint-providers"
+          },
+          "docs": "Get all custom endpoint providers for your organization"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custom Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a custom endpoint by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theo.live/v2/custom-endpoints/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Custom Endpoint ID"
+              }
+            ]
+          },
+          "docs": "Get a custom endpoint by ID"
+        },
+        {
+          "info": {
+            "name": "Update a custom endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.theo.live/v2/custom-endpoints/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Custom Endpoint ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a custom endpoint"
+        },
+        {
+          "info": {
+            "name": "Delete a custom endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.theo.live/v2/custom-endpoints/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Custom Endpoint ID"
+              }
+            ]
+          },
+          "docs": "Delete a custom endpoint"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1553 @@
+{
+  "item": [
+    {
+      "id": "aea15fa8-81a4-4b9a-aef1-f9ab4b97ea9f",
+      "name": "PublishToken",
+      "description": {
+        "content": "Create and manage publish (broadcaster) tokens.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2da915d2-610d-464d-bc00-9c6466449861",
+          "name": "Create Publish Token",
+          "request": {
+            "name": "Create Publish Token",
+            "description": {
+              "content": "Create a new publish token bound to one or more stream names. Tokens may include geo restrictions, allowed origins, and recording configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "publish_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"streams\": [\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"record\": false,\n  \"multisource\": false,\n  \"enableThumbnails\": false,\n  \"expiresOn\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a64c8d13-2838-4807-9633-db0abbe3e95d",
+              "name": "Publish token created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"streams\": [\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"record\": false,\n  \"multisource\": false,\n  \"enableThumbnails\": false,\n  \"expiresOn\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2841,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"1970-12-07T23:37:26.226Z\",\n  \"expiresOn\": \"1947-07-21T12:53:42.269Z\",\n  \"isActive\": true,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"originCluster\": \"string\",\n  \"record\": false,\n  \"multisource\": false,\n  \"enableThumbnails\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c16c8a7c-737e-4e6e-b42f-d00f479a49b3",
+          "name": "List Publish Tokens",
+          "request": {
+            "name": "List Publish Tokens",
+            "description": {},
+            "url": {
+              "path": [
+                "publish_token",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "itemsOnPage",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "708bfdb0-9881-4f52-92c3-c57fa13e76b2",
+              "name": "Page of publish tokens",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "itemsOnPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8910,\n    \"label\": \"string\",\n    \"token\": \"string\",\n    \"addedOn\": \"1996-05-05T21:08:16.821Z\",\n    \"expiresOn\": \"2019-05-15T11:43:36.254Z\",\n    \"isActive\": true,\n    \"streams\": [\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": false\n      },\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": false\n      }\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"originCluster\": \"string\",\n    \"record\": false,\n    \"multisource\": false,\n    \"enableThumbnails\": false\n  },\n  {\n    \"id\": 6710,\n    \"label\": \"string\",\n    \"token\": \"string\",\n    \"addedOn\": \"1961-08-09T08:05:24.923Z\",\n    \"expiresOn\": \"1971-12-11T17:48:43.499Z\",\n    \"isActive\": true,\n    \"streams\": [\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": true\n      },\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": false\n      }\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"originCluster\": \"string\",\n    \"record\": false,\n    \"multisource\": false,\n    \"enableThumbnails\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0bf8f46-9d99-4b3a-86ba-1d0efe157fe7",
+          "name": "Get Publish Token",
+          "request": {
+            "name": "Get Publish Token",
+            "description": {},
+            "url": {
+              "path": [
+                "publish_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd333523-51e2-4fff-8c93-a352a0f84e02",
+              "name": "Publish token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1729,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"2007-03-01T01:01:56.495Z\",\n  \"expiresOn\": \"1957-02-04T03:46:12.930Z\",\n  \"isActive\": true,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"originCluster\": \"string\",\n  \"record\": false,\n  \"multisource\": false,\n  \"enableThumbnails\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67029802-200c-4098-b7da-519dab24b336",
+          "name": "Update Publish Token",
+          "request": {
+            "name": "Update Publish Token",
+            "description": {},
+            "url": {
+              "path": [
+                "publish_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"record\": \"<boolean>\",\n  \"enableThumbnails\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3b5193c9-409d-4bc8-a4fe-3e2ab1c50bbd",
+              "name": "Publish token updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"record\": \"<boolean>\",\n  \"enableThumbnails\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1729,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"2007-03-01T01:01:56.495Z\",\n  \"expiresOn\": \"1957-02-04T03:46:12.930Z\",\n  \"isActive\": true,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"originCluster\": \"string\",\n  \"record\": false,\n  \"multisource\": false,\n  \"enableThumbnails\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5d2089d-e07f-4d58-8d0f-660ab65c4893",
+          "name": "Delete Publish Token",
+          "request": {
+            "name": "Delete Publish Token",
+            "description": {},
+            "url": {
+              "path": [
+                "publish_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fcee065-fd18-4790-a52a-dc3cd4575ef4",
+              "name": "Publish token deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6238ff6d-54b1-4fd0-ae74-65b4b0f69f90",
+          "name": "List Active Publish Token IDs",
+          "request": {
+            "name": "List Active Publish Token IDs",
+            "description": {},
+            "url": {
+              "path": [
+                "publish_token",
+                "account",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d8597cc-bcd8-46bd-a5bf-eb1c730d5534",
+              "name": "Active token IDs for the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token",
+                    "account",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  3403,\n  400\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3eee9f79-8558-494b-bcc1-993ecef9d8e7",
+      "name": "SubscribeToken",
+      "description": {
+        "content": "Create and manage subscribe (viewer) tokens.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "59b56196-203e-442b-a392-8fedbd637fcd",
+          "name": "Create Subscribe Token",
+          "request": {
+            "name": "Create Subscribe Token",
+            "description": {
+              "content": "Create a viewer token bound to specific streams, with optional IP, origin, geo, or referer restrictions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscribe_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"streams\": [\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedIpAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bindIpsOnUsage\": \"<integer>\",\n  \"allowedCountries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedCountries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiresOn\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "625bd2da-e5dd-4af3-85bd-e9b26e0bc3c3",
+              "name": "Subscribe token created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscribe_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"streams\": [\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedIpAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bindIpsOnUsage\": \"<integer>\",\n  \"allowedCountries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedCountries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiresOn\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6111,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"1982-11-05T14:54:26.714Z\",\n  \"expiresOn\": \"1950-02-16T08:05:54.055Z\",\n  \"isActive\": true,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": true\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"allowedIpAddresses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bindIpsOnUsage\": 3690,\n  \"allowedCountries\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deniedCountries\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "734db118-5e03-4d46-9fd5-a0ed4cc92553",
+          "name": "List Subscribe Tokens",
+          "request": {
+            "name": "List Subscribe Tokens",
+            "description": {},
+            "url": {
+              "path": [
+                "subscribe_token",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d2fbbcf-b23b-4650-a063-1bd9a0ddbc14",
+              "name": "Subscribe tokens",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscribe_token",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2820,\n    \"label\": \"string\",\n    \"token\": \"string\",\n    \"addedOn\": \"1954-08-27T02:46:14.067Z\",\n    \"expiresOn\": \"2026-03-08T16:28:15.273Z\",\n    \"isActive\": false,\n    \"streams\": [\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": false\n      },\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": true\n      }\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"allowedIpAddresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bindIpsOnUsage\": 8135,\n    \"allowedCountries\": [\n      \"string\",\n      \"string\"\n    ],\n    \"deniedCountries\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": 7135,\n    \"label\": \"string\",\n    \"token\": \"string\",\n    \"addedOn\": \"2009-04-10T15:13:05.486Z\",\n    \"expiresOn\": \"1981-03-12T21:55:12.219Z\",\n    \"isActive\": true,\n    \"streams\": [\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": false\n      },\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": false\n      }\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"allowedIpAddresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bindIpsOnUsage\": 2355,\n    \"allowedCountries\": [\n      \"string\",\n      \"string\"\n    ],\n    \"deniedCountries\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a08303be-cf81-4d68-88c2-8f8d32d476a0",
+          "name": "Get Subscribe Token",
+          "request": {
+            "name": "Get Subscribe Token",
+            "description": {},
+            "url": {
+              "path": [
+                "subscribe_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "016eca42-1abf-4284-b5c7-f1396b47630e",
+              "name": "Subscribe token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscribe_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7538,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"2018-08-15T04:26:54.299Z\",\n  \"expiresOn\": \"2012-12-29T15:36:39.728Z\",\n  \"isActive\": true,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"allowedIpAddresses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bindIpsOnUsage\": 173,\n  \"allowedCountries\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deniedCountries\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a2d6925-ea91-4f5a-8e95-a72abc4eb9fc",
+          "name": "Update Subscribe Token",
+          "request": {
+            "name": "Update Subscribe Token",
+            "description": {},
+            "url": {
+              "path": [
+                "subscribe_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedIpAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0028c0b6-f1b6-4054-82db-a921628ff51a",
+              "name": "Subscribe token updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscribe_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedIpAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7538,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"2018-08-15T04:26:54.299Z\",\n  \"expiresOn\": \"2012-12-29T15:36:39.728Z\",\n  \"isActive\": true,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"allowedIpAddresses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bindIpsOnUsage\": 173,\n  \"allowedCountries\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deniedCountries\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bf3ced0-c69b-4247-9a10-256daf4be826",
+          "name": "Delete Subscribe Token",
+          "request": {
+            "name": "Delete Subscribe Token",
+            "description": {},
+            "url": {
+              "path": [
+                "subscribe_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "313e7836-d426-45b2-9a4a-51a60e0b874e",
+              "name": "Subscribe token deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscribe_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5517ec18-1f3f-4cc7-8ec5-8f5f6c497221",
+      "name": "Webhook",
+      "description": {
+        "content": "Register and manage event-driven webhooks for feeds, recordings, thumbnails, transcoders, and viewer connections.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f7bfc0e3-e712-42b6-b083-dca5d1557633",
+          "name": "List Webhooks",
+          "request": {
+            "name": "List Webhooks",
+            "description": {},
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "953d30cb-ea6e-4af6-9fa7-b5e8d1779480",
+              "name": "Configured webhooks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4685,\n    \"url\": \"http://zTCllLTfEohmtrMFeWT.cnukkV1yiV+ywHGsJjj.ECgs0IykGixwxm8toXi1lpSH,ISPro,nGp\",\n    \"secret\": \"string\",\n    \"isFeedHooks\": true,\n    \"isRecordingHooks\": true,\n    \"isThumbnailHooks\": false,\n    \"isTranscoderHooks\": false,\n    \"isViewerConnectionHooks\": true\n  },\n  {\n    \"id\": 7516,\n    \"url\": \"http://KwdAlrnwBNGnzflsedZLJa.afrtkTrQlfyckGwGbykCGBu,WsK\",\n    \"secret\": \"string\",\n    \"isFeedHooks\": false,\n    \"isRecordingHooks\": false,\n    \"isThumbnailHooks\": false,\n    \"isTranscoderHooks\": true,\n    \"isViewerConnectionHooks\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d98df0b-4657-4d74-9d48-1deb7d4b2feb",
+          "name": "Create Webhook",
+          "request": {
+            "name": "Create Webhook",
+            "description": {
+              "content": "Register a webhook URL to receive feeds, recordings, thumbnails, transcoder, and viewer-connection events. Payloads are signed with HMAC-SHA1 in the X-Millicast-Signature header.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"isFeedHooks\": false,\n  \"isRecordingHooks\": false,\n  \"isThumbnailHooks\": false,\n  \"isTranscoderHooks\": false,\n  \"isViewerConnectionHooks\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2cdad285-abb1-4a16-8cbd-a30a34f672cf",
+              "name": "Webhook created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"isFeedHooks\": false,\n  \"isRecordingHooks\": false,\n  \"isThumbnailHooks\": false,\n  \"isTranscoderHooks\": false,\n  \"isViewerConnectionHooks\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3827,\n  \"url\": \"https://afxO.mfmdtBF6RcnE66qyocY-PmB+Om6COHpcbQLHw4mDvj7A6Kkux36XJVLW,F\",\n  \"secret\": \"string\",\n  \"isFeedHooks\": false,\n  \"isRecordingHooks\": false,\n  \"isThumbnailHooks\": false,\n  \"isTranscoderHooks\": true,\n  \"isViewerConnectionHooks\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1894734-6ba4-4e93-94da-d6c42e828b4f",
+          "name": "Delete Webhook",
+          "request": {
+            "name": "Delete Webhook",
+            "description": {},
+            "url": {
+              "path": [
+                "webhooks",
+                ":webhookID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "webhookID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6144e24c-21fc-499c-a6f4-928f73c492ea",
+              "name": "Webhook removed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":webhookID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "webhookID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "43e5e3dc-1e2f-436f-9f97-1b1d2a6f04bc",
+      "name": "Analytics",
+      "description": {
+        "content": "Account-level usage, tracking, and advanced reporting.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69c7f313-cd97-44db-9b34-12b8098400e1",
+          "name": "Get Account Tracking Totals",
+          "request": {
+            "name": "Get Account Tracking Totals",
+            "description": {
+              "content": "Return aggregate publish and viewer minute totals across the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "tracking",
+                "total"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd14dec8-1f4e-4d96-978b-996b9c5c302f",
+              "name": "Aggregated analytics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "tracking",
+                    "total"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"publishedMinutes\": 9910.16848341353,\n  \"viewedMinutes\": 5137.833410201951,\n  \"bytesTransferred\": 4746.942624510648,\n  \"startDate\": \"1948-09-08\",\n  \"endDate\": \"1995-03-04\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2e71302d-855c-411d-940d-e7a3d91c7f6b",
+      "name": "Cluster",
+      "description": {
+        "content": "Cluster discovery for region-specific publish/subscribe URLs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d15dc31f-4be9-488c-905f-6d758ae87005",
+          "name": "Get Cluster",
+          "request": {
+            "name": "Get Cluster",
+            "description": {
+              "content": "Return the publish/subscribe URLs for the region the account is provisioned in.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cluster"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b95e92d-5f8f-4d37-bbc2-d5ea91f15db7",
+              "name": "Cluster info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cluster"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"publishUrl\": \"https://nRRLrtsIb.zeNWCMxpII1QGsAE\",\n  \"subscribeUrl\": \"https://JXVyBwfhax.eewEFc1ONBQmOxyGUv-6Kt.ghotlgmDbKu090\",\n  \"wsUrl\": \"http://BMAkDjypNBvvfriOxXgjos.hkiOvuCNxTr3ZyDa+zRk5T5OisY39iCpHCT+I68Eefonwa,EfmW,WTMy\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.millicast.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ab4f9a41-b10b-4dc1-9129-fac5dcd957dd",
+    "name": "Dolby OptiView Real-time Streaming API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io\nReal-time Streaming) — publish/subscribe tokens, recordings, transcoders,\nencoder profiles, clusters, analytics, and webhooks. All requests are\nauthenticated with a Bearer API Secret created in the streaming dashboard\n(Settings -> Security -> API Secrets).\n\n\nContact Support:\n Name: Dolby OptiView Support",
+      "type": "text/plain"
+    }
+  }
+}

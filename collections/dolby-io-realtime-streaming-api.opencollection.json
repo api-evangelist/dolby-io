@@ -1,0 +1,325 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dolby OptiView Real-time Streaming API",
+    "version": "2026.05"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PublishToken",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Publish Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/publish_token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new publish token bound to one or more stream names. Tokens may include geo restrictions, allowed origins, and recording configuration."
+        },
+        {
+          "info": {
+            "name": "List Publish Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/publish_token/list",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "itemsOnPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Publish Tokens"
+        },
+        {
+          "info": {
+            "name": "Get Publish Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/publish_token/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Publish Token"
+        },
+        {
+          "info": {
+            "name": "Update Publish Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.millicast.com/api/publish_token/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Publish Token"
+        },
+        {
+          "info": {
+            "name": "Delete Publish Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.millicast.com/api/publish_token/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Publish Token"
+        },
+        {
+          "info": {
+            "name": "List Active Publish Token IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/publish_token/account/tokens"
+          },
+          "docs": "List Active Publish Token IDs"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SubscribeToken",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Subscribe Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/subscribe_token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a viewer token bound to specific streams, with optional IP, origin, geo, or referer restrictions."
+        },
+        {
+          "info": {
+            "name": "List Subscribe Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/subscribe_token/list"
+          },
+          "docs": "List Subscribe Tokens"
+        },
+        {
+          "info": {
+            "name": "Get Subscribe Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/subscribe_token/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Subscribe Token"
+        },
+        {
+          "info": {
+            "name": "Update Subscribe Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.millicast.com/api/subscribe_token/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Subscribe Token"
+        },
+        {
+          "info": {
+            "name": "Delete Subscribe Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.millicast.com/api/subscribe_token/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Subscribe Token"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/webhooks"
+          },
+          "docs": "List Webhooks"
+        },
+        {
+          "info": {
+            "name": "Create Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a webhook URL to receive feeds, recordings, thumbnails, transcoder, and viewer-connection events. Payloads are signed with HMAC-SHA1 in the X-Millicast-Signature header."
+        },
+        {
+          "info": {
+            "name": "Delete Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.millicast.com/api/webhooks/:webhookID",
+            "params": [
+              {
+                "name": "webhookID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Webhook"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Tracking Totals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/analytics/tracking/total",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return aggregate publish and viewer minute totals across the account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cluster",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/cluster"
+          },
+          "docs": "Return the publish/subscribe URLs for the region the account is provisioned in."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
