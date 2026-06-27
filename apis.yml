@@ -170,42 +170,39 @@ apis:
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/dolbyio/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/dolby-io-attach-ingest-engine-and-go-live-workflow.yml
-    name: Dolby OptiView Attach Ingest and Engine then Go Live
-    summary: Add an ingest and a transcoding engine to a channel, start it, and poll until playing.
-  - url: arazzo/dolby-io-audit-channel-run-history-workflow.yml
-    name: Dolby OptiView Audit Channel Run History
-    summary: Resolve a channel, list its engine runs, and pull its transcoding-minutes analytics.
-  - url: arazzo/dolby-io-enable-recording-webhook-and-token-workflow.yml
-    name: Dolby OptiView Enable Recording Webhook and Token
-    summary: Register a recording webhook, then create a publish token that records its streams.
-  - url: arazzo/dolby-io-inspect-engine-last-run-workflow.yml
-    name: Dolby OptiView Inspect an Engine's Last Run
-    summary: Pick an engine on a channel, fetch its most recent run, then list its full run history.
-  - url: arazzo/dolby-io-provision-and-start-channel-workflow.yml
-    name: Dolby OptiView Provision and Start a Channel
-    summary: Create a THEOlive channel, start it, and poll until it is live and playing.
-  - url: arazzo/dolby-io-provision-broadcast-token-with-cluster-workflow.yml
-    name: Dolby OptiView Provision a Broadcast Token with Cluster
-    summary: Discover the account cluster, create a publish token, then read it back to confirm.
-  - url: arazzo/dolby-io-provision-viewer-token-workflow.yml
-    name: Dolby OptiView Provision a Viewer Token
-    summary: Create a geo-restricted subscribe token for a stream, then read it back to confirm.
-  - url: arazzo/dolby-io-publish-distribution-with-security-workflow.yml
-    name: Dolby OptiView Publish a Secured Distribution
-    summary: Create a distribution for a channel and attach a token security key to protect playback.
-  - url: arazzo/dolby-io-start-single-engine-and-confirm-workflow.yml
-    name: Dolby OptiView Start a Single Engine and Confirm
-    summary: Select an engine on a channel, start it, and poll the engine until it is playing.
-  - url: arazzo/dolby-io-stop-channel-and-confirm-idle-workflow.yml
-    name: Dolby OptiView Stop a Channel and Confirm Idle
-    summary: Stop a running channel and poll until it has fully settled in the stopped state.
-  - url: arazzo/dolby-io-teardown-channel-workflow.yml
-    name: Dolby OptiView Tear Down a Channel
-    summary: Stop a channel, poll until it is fully stopped, then delete it.
+- type: Arazzo
+  url: arazzo/dolby-io-attach-ingest-engine-and-go-live-workflow.yml
+  name: Dolby OptiView Attach Ingest and Engine then Go Live
+- type: Arazzo
+  url: arazzo/dolby-io-audit-channel-run-history-workflow.yml
+  name: Dolby OptiView Audit Channel Run History
+- type: Arazzo
+  url: arazzo/dolby-io-enable-recording-webhook-and-token-workflow.yml
+  name: Dolby OptiView Enable Recording Webhook and Token
+- type: Arazzo
+  url: arazzo/dolby-io-inspect-engine-last-run-workflow.yml
+  name: Dolby OptiView Inspect an Engine's Last Run
+- type: Arazzo
+  url: arazzo/dolby-io-provision-and-start-channel-workflow.yml
+  name: Dolby OptiView Provision and Start a Channel
+- type: Arazzo
+  url: arazzo/dolby-io-provision-broadcast-token-with-cluster-workflow.yml
+  name: Dolby OptiView Provision a Broadcast Token with Cluster
+- type: Arazzo
+  url: arazzo/dolby-io-provision-viewer-token-workflow.yml
+  name: Dolby OptiView Provision a Viewer Token
+- type: Arazzo
+  url: arazzo/dolby-io-publish-distribution-with-security-workflow.yml
+  name: Dolby OptiView Publish a Secured Distribution
+- type: Arazzo
+  url: arazzo/dolby-io-start-single-engine-and-confirm-workflow.yml
+  name: Dolby OptiView Start a Single Engine and Confirm
+- type: Arazzo
+  url: arazzo/dolby-io-stop-channel-and-confirm-idle-workflow.yml
+  name: Dolby OptiView Stop a Channel and Confirm Idle
+- type: Arazzo
+  url: arazzo/dolby-io-teardown-channel-workflow.yml
+  name: Dolby OptiView Tear Down a Channel
 - type: Portal
   url: https://optiview.dolby.com
 - type: Portal
@@ -216,7 +213,7 @@ common:
   url: https://docs.dolby.io/
 - type: GettingStarted
   url: https://optiview.dolby.com/docs/millicast/getting-started/
-- type: SignUp
+- type: Signup
   url: https://streaming.dolby.io
 - type: StatusPage
   url: https://status.dolby.io
@@ -240,19 +237,19 @@ common:
   url: https://github.com/dolbyio
 - type: GitHubOrganization
   url: https://github.com/dolbyio-samples
-- type: SDK
+- type: SDKs
   url: https://github.com/dolbyio/dolbyio-rest-apis-client-node
   name: REST APIs Client for Node.js
-- type: SDK
+- type: SDKs
   url: https://github.com/dolbyio/dolbyio-rest-apis-client-python
   name: REST APIs Client for Python
-- type: SDK
+- type: SDKs
   url: https://github.com/dolbyio/dolbyio-rest-apis-client-dotnet
   name: REST APIs Client for .NET
-- type: SDK
+- type: SDKs
   url: https://github.com/dolbyio/rts-uikit-ios
   name: Real-time Streaming UIKit for iOS
-- type: Tool
+- type: Tools
   url: https://github.com/dolbyio/web-webrtc-stats
   name: WebRTC Stats Parser
 - type: CodeExamples
@@ -270,7 +267,7 @@ common:
 - type: Tools
   url: https://github.com/dolbyio/awesome-audio
   name: Awesome Audio
-- type: Forum
+- type: Forums
   url: https://github.com/orgs/dolbyio/discussions
 - type: Webhooks
   url: https://optiview.dolby.com/docs/millicast/webhooks/
