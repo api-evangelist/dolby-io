@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/dolby-io-realtime-streaming-api-openapi.yml, openapi/dolby-io-theolive-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: API Secret
+  sources:
+  - openapi/dolby-io-realtime-streaming-api-openapi.yml
+- name: BasicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/dolby-io-theolive-api-openapi.yml
