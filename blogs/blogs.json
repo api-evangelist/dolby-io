@@ -6,9 +6,10 @@
       "feed_url": "https://optiview.dolby.com/resources/blog/all/",
       "title": "",
       "saved": 0,
-      "method": "html"
+      "method": "html",
+      "error": "parse_failed"
     }
   ],
-  "post_count": 3,
-  "fetched": "2026-06-21T17:00:00Z"
+  "post_count": 5,
+  "fetched": "2026-07-11T11:43:46Z"
 }
