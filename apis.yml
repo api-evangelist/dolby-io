@@ -168,6 +168,8 @@ apis:
     the OptiView Real-time Streaming feed, and the Open Video UI component library for fully customizable player
     interfaces. Latest series 11.x; long history of releases back to 4.x.
 common:
+- type: AgenticAccess
+  url: agentic-access/dolby-io-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/dolby-io-vulnerability-disclosure.yml
 - type: DomainSecurity
