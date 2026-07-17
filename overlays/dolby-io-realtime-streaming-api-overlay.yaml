@@ -1,0 +1,27 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Dolby OptiView Real-time Streaming API
+  version: 1.0.0
+extends: openapi/dolby-io-realtime-streaming-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: dolby-io
+      x-apievangelist-product: OptiView Real-time Streaming (Millicast)
+      x-apievangelist-auth: http-bearer (API Secret)
+      x-apievangelist-artifacts:
+        authentication: authentication/dolby-io-authentication.yml
+        conventions: conventions/dolby-io-conventions.yml
+        data-model: data-model/dolby-io-data-model.yml
+        mcp: mcp/dolby-io-mcp.yml
+        packages: packages/dolby-io-packages.yml
+  - target: $.info
+    update:
+      x-apievangelist-webhooks:
+        signing: HMAC-SHA1
+        signature_header: X-Millicast-Signature
+  - target: $.info
+    update:
+      x-apievangelist-pagination:
+        style: offset
+        params: [page, itemsOnPage]

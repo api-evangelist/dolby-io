@@ -1,0 +1,45 @@
+generated: '2026-06-20'
+method: searched
+source: live probes of /.well-known/* across the Dolby OptiView / Dolby.io hosts
+notes: >-
+  Only dolby.com publishes a genuine /.well-known/security.txt (saved as
+  dolby-io-security.txt, RFC 9116). The docs.dolby.io and dolby.io hosts return
+  HTTP 200 for every /.well-known/* path but the body is the site's HTML shell
+  (Docusaurus / WordPress soft-200), not a real discovery document, so no raw
+  files were saved for them. api.millicast.com returns 403 (WAF); api.theo.live
+  returns 404.
+hosts:
+  - host: https://dolby.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: dolby-io-security.txt
+        type: SecurityTxt
+  - host: https://api.millicast.com
+    documents:
+      - {path: /.well-known/security.txt, status: 403}
+      - {path: /.well-known/openid-configuration, status: 403}
+      - {path: /.well-known/oauth-authorization-server, status: 403}
+      - {path: /.well-known/api-catalog, status: 403}
+      - {path: /.well-known/ai-plugin.json, status: 403}
+  - host: https://api.theo.live
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://optiview.dolby.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://docs.dolby.io
+    documents:
+      - {path: /.well-known/security.txt, status: 200, note: soft-200 HTML shell, not saved}
+      - {path: /.well-known/openid-configuration, status: 200, note: soft-200 HTML shell, not saved}
+      - {path: /.well-known/oauth-authorization-server, status: 200, note: soft-200 HTML shell, not saved}
+      - {path: /.well-known/api-catalog, status: 200, note: soft-200 HTML shell, not saved}
+      - {path: /.well-known/ai-plugin.json, status: 200, note: soft-200 HTML shell, not saved}

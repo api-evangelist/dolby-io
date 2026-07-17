@@ -1,0 +1,29 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Dolby OptiView THEOlive API
+  version: 1.0.0
+extends: openapi/dolby-io-theolive-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: dolby-io
+      x-apievangelist-product: OptiView Live (THEOlive)
+      x-apievangelist-auth: http-basic
+      x-apievangelist-artifacts:
+        authentication: authentication/dolby-io-authentication.yml
+        conventions: conventions/dolby-io-conventions.yml
+        data-model: data-model/dolby-io-data-model.yml
+        mcp: mcp/dolby-io-mcp.yml
+        packages: packages/dolby-io-packages.yml
+  - target: $.info
+    update:
+      x-apievangelist-webhooks:
+        signing: secret-based
+        secret_operation: get-webhook-secret
+        delivery_logs_operation: get-webhook-logs
+  - target: $.info
+    update:
+      x-apievangelist-pagination:
+        style: cursor
+        params: [cursor, limit]
+        response_fields: [pagination.hasMore, pagination.cursor]

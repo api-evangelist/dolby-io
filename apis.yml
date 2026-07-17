@@ -55,6 +55,8 @@ apis:
     type: JSONLD
   - url: graphql/dolby-io-graphql.md
     type: GraphQL
+  - url: overlays/dolby-io-realtime-streaming-api-overlay.yaml
+    type: Overlay
   description: >-
     Real-time WebRTC streaming platform (formerly Millicast). Manage publish and subscribe tokens, configure webhook
     delivery for feeds, recordings, thumbnails, transcoders, and viewer connections, retrieve account analytics, and
@@ -80,6 +82,8 @@ apis:
     type: OpenAPI
   - url: openapi/dolby-io-theolive-api-openapi.yml
     type: OpenAPI
+  - url: overlays/dolby-io-theolive-api-overlay.yaml
+    type: Overlay
   description: >-
     Low-latency live streaming API (formerly THEOlive). Programmatic control of Channels, Ingests (RTMP push/pull,
     SRT, SDI), Engines (transcoding, DRM, overlays, ABR ladders), Distributions (geo-blocking, IP/referrer
@@ -170,6 +174,28 @@ apis:
 common:
 - type: AgenticAccess
   url: agentic-access/dolby-io-agentic-access.yml
+- type: Packages
+  url: packages/dolby-io-packages.yml
+- type: WellKnown
+  url: well-known/dolby-io-well-known.yml
+- type: SecurityTxt
+  url: well-known/dolby-io-security.txt
+- type: MCPServer
+  url: mcp/dolby-io-mcp.yml
+- type: LLMsTxt
+  url: llms/dolby-io-llms.txt
+- type: Conformance
+  url: conformance/dolby-io-conformance.yml
+- type: Lifecycle
+  url: lifecycle/dolby-io-lifecycle.yml
+- type: Conventions
+  url: conventions/dolby-io-conventions.yml
+- type: CLI
+  url: cli/dolby-io-cli.yml
+- type: Components
+  url: components/dolby-io-components.yml
+- type: DataModel
+  url: data-model/dolby-io-data-model.yml
 - type: VulnerabilityDisclosure
   url: security/dolby-io-vulnerability-disclosure.yml
 - type: DomainSecurity
@@ -315,7 +341,7 @@ common:
   - https://status.dolby.io
   updated: '2026-05-25'
 created: '2026-05-25T00:00:00.000Z'
-modified: '2026-05-25'
+modified: '2026-06-20'
 position: Consuming
 description: >-
   Dolby.io (now branded as Dolby OptiView) is Dolby Laboratories' developer platform for media, streaming,

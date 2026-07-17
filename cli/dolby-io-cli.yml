@@ -1,0 +1,42 @@
+generated: '2026-06-20'
+method: searched
+source: https://pypi.org/project/dolbyio-rest-apis-cli/
+name: Dolby.io REST APIs CLI
+description: >-
+  Command Line Interface utility (Python) for the Dolby.io REST Communications
+  and Media APIs. Ships two top-level executables — `communications` and
+  `media` — that wrap the legacy Dolby.io REST surface. First-party, published
+  by DolbyIO.
+package:
+  registry: pypi
+  name: dolbyio-rest-apis-cli
+  version: 3.6.2
+  url: https://pypi.org/project/dolbyio-rest-apis-cli/
+  repo: https://github.com/dolbyio/dolbyio-rest-apis-client-python
+install:
+  - python3 -m pip install dolbyio-rest-apis-cli
+  - python3 -m pip install --upgrade dolbyio-rest-apis-cli
+binaries:
+  - communications
+  - media
+commands:
+  - group: communications
+    description: Wrapper for the Dolby.io Communications REST API.
+    examples:
+      - communications --help
+      - communications --version
+      - communications auth -k "APP_KEY" -s "APP_SECRET" --output json
+      - communications auth -k "APP_KEY" -s "APP_SECRET" --api --output access_token
+    subcommands:
+      - auth
+      - remix
+  - group: media
+    description: Wrapper for the Dolby.io Media (Enhance/Analyze/Transcode/Diagnose/Mastering) REST API.
+flows:
+  - name: Retrieve an access token into a shell variable
+    command: 'ACCESS_TOKEN=$(communications auth -k "APP_KEY" -s "APP_SECRET" --api --output access_token 2> /dev/null)'
+notes: >-
+  The CLI targets the legacy Communications and Media APIs, not the newer
+  OptiView Real-time Streaming / THEOlive REST surfaces. Command-group detail
+  beyond `auth`/`remix` is documented in the package README; captured here only
+  what the registry page publishes verbatim.

@@ -1,0 +1,41 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  openapi/*.yml servers[] + apis.yml (status page, changelog link, product
+  descriptions); no dedicated versioning/deprecation policy page was found
+notes: >-
+  Dolby OptiView does not publish a single versioning-policy or
+  deprecation-policy page. Lifecycle facts below are derived from the OpenAPI
+  server URLs, the apis.yml catalog, and product-consolidation notes. The
+  legacy Media and Communications APIs are being superseded by the OptiView
+  platform (documented as migrating), which is captured as product-level
+  deprecation rather than per-operation deprecation.
+versioning:
+  scheme: uri-path
+  apis:
+    - api: Dolby OptiView Real-time Streaming API
+      current: v2026.05
+      base: https://api.millicast.com/api
+    - api: Dolby OptiView THEOlive API
+      current: v2
+      base: https://api.theo.live/v2
+      note: v1 endpoints also served under https://api.theo.live
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  deprecated_products:
+    - name: Dolby.io Media API
+      status: legacy
+      note: cloud audio/video processing; use migrating to the OptiView platform
+    - name: Dolby.io Communications API
+      status: legacy
+      note: WebRTC conferencing; docs redirect to OptiView, superseded by the OptiView product line
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.dolby.io
+changelog: https://optiview.dolby.com/docs/release-notes/
+changelog_status: >-
+  the apis.yml ChangeLog URL (optiview.dolby.com/docs/release-notes/) returned
+  HTTP 404 on probe 2026-06-20; no dated changelog artifact was captured

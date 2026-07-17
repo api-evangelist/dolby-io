@@ -1,0 +1,64 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  openapi/dolby-io-realtime-streaming-api-openapi.yml,
+  openapi/dolby-io-theolive-api-openapi.yml, rate-limits/dolby-io-rate-limits.yml,
+  authentication/dolby-io-authentication.yml
+notes: >-
+  Cross-cutting request/response semantics derived from the two published
+  OpenAPI descriptions. The OptiView platform spans two independently-designed
+  APIs, so conventions differ per API and are recorded per API where they do.
+authentication:
+  style: per-api
+  real_time_streaming:
+    scheme: http bearer
+    detail: Bearer API Secret created in the streaming dashboard (Settings -> Security -> API Secrets)
+  theolive:
+    scheme: http basic
+    detail: HTTP Basic auth
+  see: authentication/dolby-io-authentication.yml
+pagination:
+  style: mixed
+  real_time_streaming:
+    style: offset
+    params: [page, itemsOnPage]
+  theolive:
+    style: cursor
+    params: [cursor, limit]
+    response_fields:
+      - pagination.hasMore
+      - pagination.cursor
+idempotency:
+  supported: unknown
+  detail: no Idempotency-Key header is declared in either OpenAPI description
+field_expansion:
+  supported: false
+metadata:
+  supported: partial
+  detail: THEOlive resources (e.g. channels) carry a name/metadata surface; no generic metadata key/value envelope is declared
+request_tracing:
+  request_id_header: unknown
+versioning:
+  style: uri-path
+  detail: real-time API pins a calendar version (2026.05); THEOlive uses /v2 (and /v1) path segments
+  see: lifecycle/dolby-io-lifecycle.yml
+error_envelope:
+  format: non-rfc9457
+  detail: >-
+    neither spec declares application/problem+json; THEOlive response schemas
+    include an `error` discriminator/field on several event and result shapes
+  see: null
+webhooks:
+  real_time_streaming:
+    signing: HMAC-SHA1
+    signature_header: X-Millicast-Signature
+    secret: returned as `secret` when creating a webhook
+  theolive:
+    signing: secret-based
+    detail: signing secret retrieved via get-webhook-secret; delivery logs via get-webhook-logs
+rate_limit_signaling:
+  documented: false
+  detail: >-
+    no per-account REST rate-limit numbers or X-RateLimit-* headers are
+    published; 429 is the throttled / quota-exceeded status
+  see: rate-limits/dolby-io-rate-limits.yml

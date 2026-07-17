@@ -1,0 +1,51 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  npm registry (@theoplayer/web-ui, theoplayer), dolbyio/rts-uikit-ios repo,
+  and OptiView Player / Open Video UI docs referenced in apis.yml
+description: >-
+  Client-side, embeddable UI components for building playback experiences on top
+  of the OptiView Player (THEOplayer) and Real-time Streaming platforms. Distinct
+  from the server-side REST SDKs in packages/.
+families:
+  - name: Open Video UI (Web)
+    kind: web-component library
+    description: >-
+      Customizable, framework-agnostic UI component library for the THEOplayer
+      Web SDK — prebuilt player chrome (controls, menus, gestures) as web
+      components that can be composed and themed.
+    loaders:
+      - registry: npm
+        name: "@theoplayer/web-ui"
+        version: 2.3.1
+        url: https://www.npmjs.com/package/@theoplayer/web-ui
+    docs: https://optiview.dolby.com/docs/open-video-ui/
+  - name: THEOplayer Player (Web / embeddable)
+    kind: embeddable player SDK
+    description: >-
+      The OptiView Player itself is embedded client-side and rendered into a
+      container element; supports HLS, MPEG-DASH, DRM, advertising, and
+      low-latency WebRTC playback via the Real-time Streaming feed.
+    loaders:
+      - registry: npm
+        name: theoplayer
+        version: 11.6.1
+        url: https://www.npmjs.com/package/theoplayer
+    docs: https://optiview.dolby.com/docs/theoplayer/
+  - name: THEOplayer React Native component
+    kind: react-native component
+    description: A THEOplayer <THEOplayerView> video component for React Native apps.
+    loaders:
+      - registry: npm
+        name: react-native-theoplayer
+        version: 11.4.0
+        url: https://www.npmjs.com/package/react-native-theoplayer
+  - name: Real-time Streaming UIKit (iOS)
+    kind: swift ui component library
+    description: >-
+      SwiftUI/UIKit components for building an OptiView Real-time Streaming
+      viewer/broadcaster experience on iOS.
+    loaders:
+      - registry: github
+        name: dolbyio/rts-uikit-ios
+        url: https://github.com/dolbyio/rts-uikit-ios

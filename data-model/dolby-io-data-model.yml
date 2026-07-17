@@ -1,0 +1,92 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  openapi/dolby-io-realtime-streaming-api-openapi.yml,
+  openapi/dolby-io-theolive-api-openapi.yml (paths, schemas, and $ref/id links)
+notes: >-
+  Entity-relationship graph derived from the OpenAPI path hierarchy and schema
+  references. Two independent APIs; entities are namespaced by API.
+entities:
+  # Real-time Streaming (Millicast)
+  - name: PublishToken
+    api: real-time-streaming
+    id_field: id
+    description: Broadcaster token bound to one or more stream names, with geo/origin/recording config.
+  - name: SubscribeToken
+    api: real-time-streaming
+    id_field: id
+    description: Viewer token bound to stream names, with geo restrictions and IP binding.
+  - name: RtsWebhook
+    api: real-time-streaming
+    id_field: id
+    description: Webhook subscription for feeds/recordings/thumbnails/transcoder/viewer events (HMAC-SHA1 signed).
+  - name: Cluster
+    api: real-time-streaming
+    description: Region-specific publish/subscribe cluster URL descriptor.
+  - name: AnalyticsTotals
+    api: real-time-streaming
+    description: Account-level usage totals (publish minutes, viewer minutes, bytes transferred).
+  # THEOlive
+  - name: Channel
+    api: theolive
+    id_field: id
+    description: A live channel; parent of ingests, engines, distributions, and runs.
+  - name: Ingest
+    api: theolive
+    id_field: id
+    description: An input (RTMP/SRT/SDI) attached to a channel; parent of engines.
+  - name: Engine
+    api: theolive
+    id_field: id
+    description: A transcoding/DRM/overlay engine attached to a channel/ingest; produces runs.
+  - name: Distribution
+    api: theolive
+    id_field: id
+    description: An output distribution for a channel; parent of security keys.
+  - name: SecurityKey
+    api: theolive
+    id_field: id
+    description: A distribution security key (token signing / access control).
+  - name: Run
+    api: theolive
+    description: An execution record of a channel/engine (last-run and run history).
+  - name: TheoWebhook
+    api: theolive
+    id_field: id
+    description: Webhook subscription (30+ event types) with signing secret and delivery logs.
+  - name: Region
+    api: theolive
+    description: Available processing/delivery region.
+relationships:
+  - from: Channel
+    to: Ingest
+    type: has_many
+    via: /channels/{id}/ingests
+  - from: Channel
+    to: Engine
+    type: has_many
+    via: /channels/{id}/engines
+  - from: Channel
+    to: Distribution
+    type: has_many
+    via: /channels/{id}/distributions
+  - from: Channel
+    to: Run
+    type: has_many
+    via: /channels/{id}/runs
+  - from: Ingest
+    to: Engine
+    type: has_many
+    via: /ingests/{id}/engines
+  - from: Distribution
+    to: SecurityKey
+    type: has_many
+    via: /distributions/{id}/security-keys
+  - from: Engine
+    to: Run
+    type: has_many
+    via: /engines/{id}/runs (get-engine-last-run, get-engine-runs)
+  - from: PublishToken
+    to: SubscribeToken
+    type: related
+    via: shared stream names

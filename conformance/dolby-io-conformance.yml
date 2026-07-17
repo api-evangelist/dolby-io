@@ -1,0 +1,49 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  openapi/dolby-io-realtime-streaming-api-openapi.yml,
+  openapi/dolby-io-theolive-api-openapi.yml, apis.yml
+notes: >-
+  Derived from the published OpenAPI security schemes, tags, and conventions.
+  Dolby OptiView is a media/streaming platform; healthcare/finance/identity
+  standards do not apply.
+standards:
+  - id: openapi-3
+    conforms: true
+    evidence: both APIs publish OpenAPI 3.0.x descriptions (3.0.3 real-time, 3.0.0 THEOlive)
+  - id: oauth2
+    conforms: false
+    evidence: no oauth2 securityScheme; auth is HTTP Bearer (API Secret) and HTTP Basic
+  - id: oidc
+    conforms: false
+  - id: http-bearer-auth
+    conforms: true
+    evidence: real-time API uses BearerAuth (type http, scheme bearer, API Secret)
+  - id: http-basic-auth
+    conforms: true
+    evidence: THEOlive API uses BasicAuth (type http, scheme basic)
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: no application/problem+json responses declared in either spec
+  - id: cursor-pagination
+    conforms: true
+    evidence: THEOlive list responses use pagination.hasMore + pagination.cursor
+  - id: offset-pagination
+    conforms: true
+    evidence: real-time list operations use page + itemsOnPage query parameters
+  - id: webhooks
+    conforms: true
+    evidence: both APIs manage event webhooks; real-time signs with HMAC-SHA1, THEOlive exposes a webhook signing secret
+  - id: whip-whep
+    conforms: true
+    evidence: OptiView Real-time Streaming supports the IETF WHIP/WHEP WebRTC ingest and egress protocols
+  - id: fhir-r4
+    conforms: false
+  - id: fapi
+    conforms: false
+  - id: scim2
+    conforms: false
+  - id: odata
+    conforms: false
+  - id: json-api
+    conforms: false
