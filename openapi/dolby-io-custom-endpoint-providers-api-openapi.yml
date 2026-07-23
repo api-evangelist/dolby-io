@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: Dolby OptiView Real-time Streaming ABR Ladders Custom Endpoint Providers API
+  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
+
+    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
+
+    encoder profiles, clusters, analytics, and webhooks. All requests are
+
+    authenticated with a Bearer API Secret created in the streaming dashboard
+
+    (Settings -> Security -> API Secrets).
+
+    '
+  version: '2026.05'
+  contact:
+    name: Dolby OptiView Support
+    url: https://optiview.dolby.com/docs/millicast/
+servers:
+- url: https://api.millicast.com/api
+  description: Production REST API
+security:
+- BearerAuth: []
+tags:
+- name: Custom Endpoint Providers
+paths:
+  /custom-endpoint-providers:
+    get:
+      tags:
+      - Custom Endpoint Providers
+      operationId: get-custom-endpoint-providers
+      summary: Get all custom endpoint providers for your organization
+      responses:
+        '200':
+          description: List of custom endpoint providers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomEndpointProviderListResult'
+components:
+  schemas:
+    CustomEndpointProviderListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomEndpointProvider'
+          description: List of custom endpoint providers
+      required:
+      - data
+    CustomEndpointProvider:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Provider name
+        organizationId:
+          type: string
+          description: Organization ID
+        inUse:
+          type: boolean
+          description: Whether any custom endpoints are using this provider
+        createdAt:
+          type: string
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          description: Last update timestamp
+      required:
+      - provider
+      - organizationId
+      - inUse
+      - createdAt
+      - updatedAt
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Secret

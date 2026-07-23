@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: Dolby OptiView Real-time Streaming ABR Ladders Analytics API
+  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
+
+    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
+
+    encoder profiles, clusters, analytics, and webhooks. All requests are
+
+    authenticated with a Bearer API Secret created in the streaming dashboard
+
+    (Settings -> Security -> API Secrets).
+
+    '
+  version: '2026.05'
+  contact:
+    name: Dolby OptiView Support
+    url: https://optiview.dolby.com/docs/millicast/
+servers:
+- url: https://api.millicast.com/api
+  description: Production REST API
+security:
+- BearerAuth: []
+tags:
+- name: Analytics
+  description: Account-level usage, tracking, and advanced reporting.
+paths:
+  /analytics/tracking/total:
+    get:
+      tags:
+      - Analytics
+      summary: Get Account Tracking Totals
+      description: Return aggregate publish and viewer minute totals across the account.
+      operationId: getAnalyticsTrackingTotal
+      parameters:
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Aggregated analytics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsTotals'
+components:
+  schemas:
+    AnalyticsTotals:
+      type: object
+      properties:
+        publishedMinutes:
+          type: number
+        viewedMinutes:
+          type: number
+        bytesTransferred:
+          type: number
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Secret

@@ -1,0 +1,66 @@
+openapi: 3.0.3
+info:
+  title: Dolby OptiView Real-time Streaming ABR Ladders Regions API
+  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
+
+    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
+
+    encoder profiles, clusters, analytics, and webhooks. All requests are
+
+    authenticated with a Bearer API Secret created in the streaming dashboard
+
+    (Settings -> Security -> API Secrets).
+
+    '
+  version: '2026.05'
+  contact:
+    name: Dolby OptiView Support
+    url: https://optiview.dolby.com/docs/millicast/
+servers:
+- url: https://api.millicast.com/api
+  description: Production REST API
+security:
+- BearerAuth: []
+tags:
+- name: Regions
+paths:
+  /regions:
+    get:
+      tags:
+      - Regions
+      operationId: get-regions
+      summary: Get all regions available for your organization
+      responses:
+        '200':
+          description: List of regions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionListResult'
+components:
+  schemas:
+    RegionListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Unique identifier of the region
+              name:
+                type: string
+                description: Display name of the region
+            required:
+            - id
+            - name
+          description: List of regions
+      required:
+      - data
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Secret

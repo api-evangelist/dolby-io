@@ -1,0 +1,127 @@
+openapi: 3.0.3
+info:
+  title: Dolby OptiView Real-time Streaming ABR Ladders Webhook API
+  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
+
+    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
+
+    encoder profiles, clusters, analytics, and webhooks. All requests are
+
+    authenticated with a Bearer API Secret created in the streaming dashboard
+
+    (Settings -> Security -> API Secrets).
+
+    '
+  version: '2026.05'
+  contact:
+    name: Dolby OptiView Support
+    url: https://optiview.dolby.com/docs/millicast/
+servers:
+- url: https://api.millicast.com/api
+  description: Production REST API
+security:
+- BearerAuth: []
+tags:
+- name: Webhook
+  description: Register and manage event-driven webhooks for feeds, recordings, thumbnails, transcoders, and viewer connections.
+paths:
+  /webhooks:
+    get:
+      tags:
+      - Webhook
+      summary: List Webhooks
+      operationId: listWebhooks
+      responses:
+        '200':
+          description: Configured webhooks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      tags:
+      - Webhook
+      summary: Create Webhook
+      description: Register a webhook URL to receive feeds, recordings, thumbnails, transcoder, and viewer-connection events. Payloads are signed with HMAC-SHA1 in the X-Millicast-Signature header.
+      operationId: createWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreate'
+      responses:
+        '200':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /webhooks/{webhookID}:
+    delete:
+      tags:
+      - Webhook
+      summary: Delete Webhook
+      operationId: deleteWebhook
+      parameters:
+      - name: webhookID
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Webhook removed
+components:
+  schemas:
+    WebhookCreate:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          format: uri
+        isFeedHooks:
+          type: boolean
+          default: false
+        isRecordingHooks:
+          type: boolean
+          default: false
+        isThumbnailHooks:
+          type: boolean
+          default: false
+        isTranscoderHooks:
+          type: boolean
+          default: false
+        isViewerConnectionHooks:
+          type: boolean
+          default: false
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+          format: uri
+        secret:
+          type: string
+          description: HMAC-SHA1 secret used to sign event payloads (X-Millicast-Signature header).
+        isFeedHooks:
+          type: boolean
+        isRecordingHooks:
+          type: boolean
+        isThumbnailHooks:
+          type: boolean
+        isTranscoderHooks:
+          type: boolean
+        isViewerConnectionHooks:
+          type: boolean
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Secret

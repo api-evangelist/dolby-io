@@ -1,0 +1,60 @@
+openapi: 3.0.3
+info:
+  title: Dolby OptiView Real-time Streaming ABR Ladders Cluster API
+  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
+
+    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
+
+    encoder profiles, clusters, analytics, and webhooks. All requests are
+
+    authenticated with a Bearer API Secret created in the streaming dashboard
+
+    (Settings -> Security -> API Secrets).
+
+    '
+  version: '2026.05'
+  contact:
+    name: Dolby OptiView Support
+    url: https://optiview.dolby.com/docs/millicast/
+servers:
+- url: https://api.millicast.com/api
+  description: Production REST API
+security:
+- BearerAuth: []
+tags:
+- name: Cluster
+  description: Cluster discovery for region-specific publish/subscribe URLs.
+paths:
+  /cluster:
+    get:
+      tags:
+      - Cluster
+      summary: Get Cluster
+      description: Return the publish/subscribe URLs for the region the account is provisioned in.
+      operationId: getCluster
+      responses:
+        '200':
+          description: Cluster info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+components:
+  schemas:
+    Cluster:
+      type: object
+      properties:
+        publishUrl:
+          type: string
+          format: uri
+        subscribeUrl:
+          type: string
+          format: uri
+        wsUrl:
+          type: string
+          format: uri
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Secret

@@ -1,0 +1,635 @@
+openapi: 3.0.3
+info:
+  title: Dolby OptiView Real-time Streaming ABR Ladders Webhooks API
+  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
+
+    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
+
+    encoder profiles, clusters, analytics, and webhooks. All requests are
+
+    authenticated with a Bearer API Secret created in the streaming dashboard
+
+    (Settings -> Security -> API Secrets).
+
+    '
+  version: '2026.05'
+  contact:
+    name: Dolby OptiView Support
+    url: https://optiview.dolby.com/docs/millicast/
+servers:
+- url: https://api.millicast.com/api
+  description: Production REST API
+security:
+- BearerAuth: []
+tags:
+- name: Webhooks
+paths:
+  /webhooks:
+    get:
+      tags:
+      - Webhooks
+      operationId: get-webhooks
+      summary: Get all webhooks
+      responses:
+        '200':
+          description: List of webhooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebhookResult'
+    post:
+      tags:
+      - Webhooks
+      operationId: create-webhook
+      summary: Create a new webhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWebhookBody'
+      responses:
+        '200':
+          description: Webhook created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookObjectResult'
+  /webhooks/{id}:
+    get:
+      tags:
+      - Webhooks
+      operationId: get-webhook
+      summary: Get a webhook by ID
+      parameters:
+      - schema:
+          type: string
+          description: Webhook ID
+        required: true
+        description: Webhook ID
+        name: id
+        in: path
+      responses:
+        '200':
+          description: The requested webhook
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookObjectResult'
+    patch:
+      tags:
+      - Webhooks
+      operationId: update-webhook
+      summary: Update a webhook by ID
+      parameters:
+      - schema:
+          type: string
+          description: Webhook ID
+        required: true
+        description: Webhook ID
+        name: id
+        in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWebhookBody'
+      responses:
+        '200':
+          description: Updated webhook
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookObjectResult'
+    delete:
+      tags:
+      - Webhooks
+      operationId: delete-webhook
+      summary: Delete a webhook by ID
+      parameters:
+      - schema:
+          type: string
+          description: Webhook ID
+        required: true
+        description: Webhook ID
+        name: id
+        in: path
+      responses:
+        '204':
+          description: Empty response
+  /webhooks/{id}/secret:
+    get:
+      tags:
+      - Webhooks
+      operationId: get-webhook-secret
+      summary: Get a webhook secret
+      parameters:
+      - schema:
+          type: string
+          description: Webhook ID
+        required: true
+        description: Webhook ID
+        name: id
+        in: path
+      responses:
+        '200':
+          description: The webhook secret
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookSecretResult'
+  /webhooks/{id}/logs:
+    get:
+      tags:
+      - Webhooks
+      operationId: get-webhook-logs
+      summary: Get webhook logs
+      parameters:
+      - schema:
+          type: string
+          description: Webhook ID
+        required: true
+        description: Webhook ID
+        name: id
+        in: path
+      - schema:
+          type: string
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$
+          description: Start date in 'YYYY-MM-DDTHH:mm:ss.sssZ' format
+        required: false
+        description: Start date in 'YYYY-MM-DDTHH:mm:ss.sssZ' format
+        name: startDate
+        in: query
+      - schema:
+          type: string
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$
+          description: End date in 'YYYY-MM-DDTHH:mm:ss.sssZ' format
+        required: false
+        description: End date in 'YYYY-MM-DDTHH:mm:ss.sssZ' format
+        name: endDate
+        in: query
+      - schema:
+          type: number
+          nullable: true
+          maximum: 100
+          description: Maximum number of logs to return (max 100)
+        required: false
+        description: Maximum number of logs to return (max 100)
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: Webhook logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebhookLogResult'
+components:
+  schemas:
+    WebhookSecretResult:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            secret:
+              type: string
+              description: The webhook signing secret
+          required:
+          - secret
+          description: Secret object
+      required:
+      - data
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the webhook
+        createdAt:
+          type: string
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          description: Last update timestamp
+        name:
+          type: string
+          description: Name of the webhook
+        active:
+          type: boolean
+          description: Whether the webhook is active
+        description:
+          type: string
+          description: Description of the webhook
+        url:
+          type: string
+          description: URL to send webhook events to
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+            - '*'
+            - channel.created
+            - channel.stopped
+            - channel.deleted
+            - channel.deploying
+            - channel.updated
+            - webhook.created
+            - webhook.updated
+            - webhook.deleted
+            - scheduler.created
+            - scheduler.updated
+            - scheduler.deleted
+            - scheduler.active
+            - scheduler.terminated
+            - engine.deploying
+            - engine.waiting
+            - engine.starting
+            - engine.error
+            - engine.playing
+            - engine.ingesting
+            - engine.created
+            - engine.updated
+            - engine.stopping
+            - engine.stopped
+            - engine.deleting
+            - engine.deleted
+            - engine.log.warn
+            - engine.log.error
+            - engine.log.info
+            - ingest.created
+            - ingest.updated
+            - ingest.deleted
+            - distribution.created
+            - distribution.enabled
+            - distribution.disabled
+            - distribution.updated
+            - distribution.deleted
+            - distribution.security.key.added
+            - distribution.security.key.deleted
+            - distribution.security.keys.deleted
+          description: List of subscribed events. "*" means all events.
+      required:
+      - id
+      - createdAt
+      - updatedAt
+      - name
+      - active
+      - url
+      - events
+    UpdateWebhookBody:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the webhook
+        description:
+          type: string
+          description: Description of the webhook
+        url:
+          type: string
+          format: uri
+          description: URL to send webhook events to
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+            - '*'
+            - channel.created
+            - channel.stopped
+            - channel.deleted
+            - channel.deploying
+            - channel.updated
+            - webhook.created
+            - webhook.updated
+            - webhook.deleted
+            - scheduler.created
+            - scheduler.updated
+            - scheduler.deleted
+            - scheduler.active
+            - scheduler.terminated
+            - engine.deploying
+            - engine.waiting
+            - engine.starting
+            - engine.error
+            - engine.playing
+            - engine.ingesting
+            - engine.created
+            - engine.updated
+            - engine.stopping
+            - engine.stopped
+            - engine.deleting
+            - engine.deleted
+            - engine.log.warn
+            - engine.log.error
+            - engine.log.info
+            - ingest.created
+            - ingest.updated
+            - ingest.deleted
+            - distribution.created
+            - distribution.enabled
+            - distribution.disabled
+            - distribution.updated
+            - distribution.deleted
+            - distribution.security.key.added
+            - distribution.security.key.deleted
+            - distribution.security.keys.deleted
+          description: List of events to subscribe to
+        active:
+          type: boolean
+          description: Whether the webhook is active
+      additionalProperties: false
+    PaginatedWebhookResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+          description: List of webhooks
+        pagination:
+          type: object
+          properties:
+            hasMore:
+              type: boolean
+              description: Whether more results are available
+            cursor:
+              type: string
+              description: Cursor for the next page of results
+          required:
+          - hasMore
+          - cursor
+          description: Pagination info
+      required:
+      - data
+      - pagination
+    PaginatedWebhookLogResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookLog'
+          description: List of webhook logs
+        pagination:
+          type: object
+          properties:
+            hasMore:
+              type: boolean
+              description: Whether more results are available
+            cursor:
+              type: string
+              description: Cursor for the next page of results
+          required:
+          - hasMore
+          - cursor
+          description: Pagination info
+      required:
+      - data
+      - pagination
+    CreateWebhookBody:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the webhook
+        description:
+          type: string
+          description: Description of the webhook
+        url:
+          type: string
+          format: uri
+          description: URL to send webhook events to
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+            - '*'
+            - channel.created
+            - channel.stopped
+            - channel.deleted
+            - channel.deploying
+            - channel.updated
+            - webhook.created
+            - webhook.updated
+            - webhook.deleted
+            - scheduler.created
+            - scheduler.updated
+            - scheduler.deleted
+            - scheduler.active
+            - scheduler.terminated
+            - engine.deploying
+            - engine.waiting
+            - engine.starting
+            - engine.error
+            - engine.playing
+            - engine.ingesting
+            - engine.created
+            - engine.updated
+            - engine.stopping
+            - engine.stopped
+            - engine.deleting
+            - engine.deleted
+            - engine.log.warn
+            - engine.log.error
+            - engine.log.info
+            - ingest.created
+            - ingest.updated
+            - ingest.deleted
+            - distribution.created
+            - distribution.enabled
+            - distribution.disabled
+            - distribution.updated
+            - distribution.deleted
+            - distribution.security.key.added
+            - distribution.security.key.deleted
+            - distribution.security.keys.deleted
+          minItems: 1
+          description: List of events to subscribe to
+      required:
+      - name
+      - url
+      - events
+      additionalProperties: false
+    WebhookObjectResult:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Webhook'
+          - description: Webhook object
+      required:
+      - data
+    WebhookLog:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the log entry
+        timestamp:
+          type: string
+          description: Timestamp of the log entry
+        type:
+          type: string
+          enum:
+          - '*'
+          - channel.created
+          - channel.stopped
+          - channel.deleted
+          - channel.deploying
+          - channel.updated
+          - webhook.created
+          - webhook.updated
+          - webhook.deleted
+          - scheduler.created
+          - scheduler.updated
+          - scheduler.deleted
+          - scheduler.active
+          - scheduler.terminated
+          - engine.deploying
+          - engine.waiting
+          - engine.starting
+          - engine.error
+          - engine.playing
+          - engine.ingesting
+          - engine.created
+          - engine.updated
+          - engine.stopping
+          - engine.stopped
+          - engine.deleting
+          - engine.deleted
+          - engine.log.warn
+          - engine.log.error
+          - engine.log.info
+          - ingest.created
+          - ingest.updated
+          - ingest.deleted
+          - distribution.created
+          - distribution.enabled
+          - distribution.disabled
+          - distribution.updated
+          - distribution.deleted
+          - distribution.security.key.added
+          - distribution.security.key.deleted
+          - distribution.security.keys.deleted
+          description: Event type that triggered the webhook
+        statusCode:
+          type: number
+          description: HTTP status code of the webhook delivery
+        requestData:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - '*'
+              - channel.created
+              - channel.stopped
+              - channel.deleted
+              - channel.deploying
+              - channel.updated
+              - webhook.created
+              - webhook.updated
+              - webhook.deleted
+              - scheduler.created
+              - scheduler.updated
+              - scheduler.deleted
+              - scheduler.active
+              - scheduler.terminated
+              - engine.deploying
+              - engine.waiting
+              - engine.starting
+              - engine.error
+              - engine.playing
+              - engine.ingesting
+              - engine.created
+              - engine.updated
+              - engine.stopping
+              - engine.stopped
+              - engine.deleting
+              - engine.deleted
+              - engine.log.warn
+              - engine.log.error
+              - engine.log.info
+              - ingest.created
+              - ingest.updated
+              - ingest.deleted
+              - distribution.created
+              - distribution.enabled
+              - distribution.disabled
+              - distribution.updated
+              - distribution.deleted
+              - distribution.security.key.added
+              - distribution.security.key.deleted
+              - distribution.security.keys.deleted
+              description: Event type
+            created:
+              type: number
+              description: Unix timestamp of when the event was created
+            object:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                  - channel
+                  - ingest
+                  - engine
+                  - distribution
+                  - alias
+                  - scheduler
+                  description: Type of the related object
+                id:
+                  type: string
+                  description: ID of the related object
+                parent:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - channel
+                      - ingest
+                      - engine
+                      - distribution
+                      - alias
+                      - scheduler
+                      description: Type of the parent object
+                    id:
+                      type: string
+                      description: ID of the parent object
+                  required:
+                  - type
+                  - id
+                  description: Parent object reference
+                organizationId:
+                  type: string
+                  description: Organization ID
+              required:
+              - type
+              - id
+              - organizationId
+              description: Object that triggered the event
+            data:
+              nullable: true
+              description: Additional event data
+          required:
+          - type
+          - created
+          - object
+          description: Request data sent in the webhook delivery
+      required:
+      - id
+      - timestamp
+      - type
+      - statusCode
+      - requestData
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Secret

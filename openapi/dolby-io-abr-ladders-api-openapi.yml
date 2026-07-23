@@ -1,0 +1,134 @@
+openapi: 3.0.3
+info:
+  title: Dolby OptiView Real-time Streaming ABR Ladders API
+  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
+
+    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
+
+    encoder profiles, clusters, analytics, and webhooks. All requests are
+
+    authenticated with a Bearer API Secret created in the streaming dashboard
+
+    (Settings -> Security -> API Secrets).
+
+    '
+  version: '2026.05'
+  contact:
+    name: Dolby OptiView Support
+    url: https://optiview.dolby.com/docs/millicast/
+servers:
+- url: https://api.millicast.com/api
+  description: Production REST API
+security:
+- BearerAuth: []
+tags:
+- name: ABR Ladders
+paths:
+  /abr:
+    get:
+      tags:
+      - ABR Ladders
+      operationId: get-abr-ladders
+      summary: Get all ABR ladders for your organization
+      responses:
+        '200':
+          description: List of ABR ladders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbrListResult'
+components:
+  schemas:
+    AbrListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Unique identifier of the ABR ladder
+              name:
+                type: string
+                description: Name of the ABR ladder
+              video:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bitrate:
+                      type: number
+                      description: Bitrate in bps
+                    id:
+                      type: string
+                      description: Unique identifier for this video quality
+                    label:
+                      type: string
+                      description: Label for this video quality
+                    width:
+                      type: number
+                      description: Width in pixels
+                    height:
+                      type: number
+                      description: Height in pixels
+                    frameRate:
+                      type: object
+                      properties:
+                        scale:
+                          type: number
+                          minimum: 1
+                          description: Frame rate scale
+                        value:
+                          type: number
+                          minimum: 1
+                          description: Frame rate value
+                      required:
+                      - scale
+                      - value
+                      description: Frame rate configuration
+                  required:
+                  - bitrate
+                  - id
+                  - label
+                  - width
+                  - height
+                description: List of video quality entries
+              audio:
+                type: object
+                properties:
+                  bitrate:
+                    type: number
+                    minimum: 1
+                    description: Audio bitrate in kbps
+                required:
+                - bitrate
+                description: Audio configuration
+              resources:
+                type: object
+                properties:
+                  cpuCores:
+                    type: number
+                    minimum: 1
+                    description: Number of CPU cores
+                  memoryMiB:
+                    type: number
+                    minimum: 1
+                    description: Memory in MiB
+                required:
+                - cpuCores
+                - memoryMiB
+                description: Resource allocation configuration
+            required:
+            - id
+            - name
+            - video
+          description: List of ABR ladders
+      required:
+      - data
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Secret
