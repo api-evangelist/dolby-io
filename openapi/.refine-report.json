@@ -1,0 +1,40 @@
+{
+  "provider": "dolby-io",
+  "sources": [
+    "dolby-io-abr-ladders-api-openapi.yml",
+    "dolby-io-analytics-api-openapi.yml",
+    "dolby-io-channels-api-openapi.yml",
+    "dolby-io-cluster-api-openapi.yml",
+    "dolby-io-custom-endpoint-providers-api-openapi.yml",
+    "dolby-io-custom-endpoints-api-openapi.yml",
+    "dolby-io-distributions-api-openapi.yml",
+    "dolby-io-engines-api-openapi.yml",
+    "dolby-io-ingests-api-openapi.yml",
+    "dolby-io-publishtoken-api-openapi.yml",
+    "dolby-io-regions-api-openapi.yml",
+    "dolby-io-subscribetoken-api-openapi.yml",
+    "dolby-io-webhook-api-openapi.yml",
+    "dolby-io-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "dolby-io-abr-ladders-api-openapi.yml",
+    "dolby-io-analytics-api-openapi.yml",
+    "dolby-io-channels-api-openapi.yml",
+    "dolby-io-cluster-api-openapi.yml",
+    "dolby-io-custom-endpoint-providers-api-openapi.yml",
+    "dolby-io-custom-endpoints-api-openapi.yml",
+    "dolby-io-distributions-api-openapi.yml",
+    "dolby-io-engines-api-openapi.yml",
+    "dolby-io-ingests-api-openapi.yml",
+    "dolby-io-publishtoken-api-openapi.yml",
+    "dolby-io-regions-api-openapi.yml",
+    "dolby-io-subscribetoken-api-openapi.yml",
+    "dolby-io-webhook-api-openapi.yml",
+    "dolby-io-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
