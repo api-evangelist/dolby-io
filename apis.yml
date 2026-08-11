@@ -554,6 +554,8 @@ apis:
   - type: Documentation
     url: https://optiview.dolby.com/docs/theolive/api/
 common:
+- type: Overlay
+  url: overlays/dolby-io-realtime-streaming-api-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/dolby-io-agentic-access.yml
 - type: Packages
