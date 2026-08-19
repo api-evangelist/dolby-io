@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders API",
+    "version": "2026.05"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ABR Ladders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all ABR ladders for your organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/abr"
+          },
+          "docs": "Get all ABR ladders for your organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

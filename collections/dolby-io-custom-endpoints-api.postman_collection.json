@@ -1,0 +1,542 @@
+{
+  "item": [
+    {
+      "id": "8d34d794-489f-4f87-a4ce-25316648fb19",
+      "name": "Custom Endpoints",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d19f7b7c-927d-4a57-b149-31daccd92d70",
+          "name": "Create a custom endpoint on a channel",
+          "request": {
+            "name": "Create a custom endpoint on a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "custom-endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"src\": \"<string>\",\n  \"srcType\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"cdn\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"drmConfig\": {\n    \"integration\": \"<string>\",\n    \"widevine\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"playready\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"fairplay\": {\n      \"licenseUrl\": \"<string>\",\n      \"certificateUrl\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "823af7dd-4ff4-4920-9e6b-9d388324b666",
+              "name": "Created custom endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "custom-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"src\": \"<string>\",\n  \"srcType\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"cdn\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"drmConfig\": {\n    \"integration\": \"<string>\",\n    \"widevine\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"playready\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"fairplay\": {\n      \"licenseUrl\": \"<string>\",\n      \"certificateUrl\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"organizationId\": \"string\",\n    \"channelId\": \"string\",\n    \"name\": \"string\",\n    \"src\": \"string\",\n    \"srcType\": \"hls\",\n    \"provider\": \"string\",\n    \"cdn\": \"string\",\n    \"priority\": 6028.775666564936,\n    \"drmConfig\": {\n      \"integration\": \"ezdrm\",\n      \"widevine\": {\n        \"licenseUrl\": \"string\"\n      },\n      \"playready\": {\n        \"licenseUrl\": \"string\"\n      },\n      \"fairplay\": {\n        \"licenseUrl\": \"string\",\n        \"certificateUrl\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7af148d-5b72-42a4-982f-a92d397a0a8f",
+          "name": "List all custom endpoints of a channel",
+          "request": {
+            "name": "List all custom endpoints of a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "custom-endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b8dd98d-3b10-45bc-a021-4e8493ae96ad",
+              "name": "List of custom endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "custom-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"organizationId\": \"string\",\n      \"channelId\": \"string\",\n      \"name\": \"string\",\n      \"src\": \"string\",\n      \"srcType\": \"hls\",\n      \"provider\": \"string\",\n      \"cdn\": \"string\",\n      \"priority\": 2281.1719297829027,\n      \"drmConfig\": {\n        \"integration\": \"ezdrm\",\n        \"widevine\": {\n          \"licenseUrl\": \"string\"\n        },\n        \"playready\": {\n          \"licenseUrl\": \"string\"\n        },\n        \"fairplay\": {\n          \"licenseUrl\": \"string\",\n          \"certificateUrl\": \"string\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"organizationId\": \"string\",\n      \"channelId\": \"string\",\n      \"name\": \"string\",\n      \"src\": \"string\",\n      \"srcType\": \"dash\",\n      \"provider\": \"string\",\n      \"cdn\": \"string\",\n      \"priority\": 3131.6960473483978,\n      \"drmConfig\": {\n        \"integration\": \"mediakind\",\n        \"widevine\": {\n          \"licenseUrl\": \"string\"\n        },\n        \"playready\": {\n          \"licenseUrl\": \"string\"\n        },\n        \"fairplay\": {\n          \"licenseUrl\": \"string\",\n          \"certificateUrl\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c50a398-96f7-4431-9a15-46e033745815",
+          "name": "Get a custom endpoint by ID",
+          "request": {
+            "name": "Get a custom endpoint by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "custom-endpoints",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Custom Endpoint ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c610755a-0564-4f9d-966d-cdfa935c73b9",
+              "name": "The requested custom endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom-endpoints",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Custom Endpoint ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"organizationId\": \"string\",\n    \"channelId\": \"string\",\n    \"name\": \"string\",\n    \"src\": \"string\",\n    \"srcType\": \"hls\",\n    \"provider\": \"string\",\n    \"cdn\": \"string\",\n    \"priority\": 6028.775666564936,\n    \"drmConfig\": {\n      \"integration\": \"ezdrm\",\n      \"widevine\": {\n        \"licenseUrl\": \"string\"\n      },\n      \"playready\": {\n        \"licenseUrl\": \"string\"\n      },\n      \"fairplay\": {\n        \"licenseUrl\": \"string\",\n        \"certificateUrl\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e71b07fc-de44-4b85-b5c9-467681a8f378",
+          "name": "Update a custom endpoint",
+          "request": {
+            "name": "Update a custom endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "custom-endpoints",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Custom Endpoint ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"src\": \"<string>\",\n  \"srcType\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"drmConfig\": {\n    \"integration\": \"<string>\",\n    \"widevine\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"playready\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"fairplay\": {\n      \"licenseUrl\": \"<string>\",\n      \"certificateUrl\": \"<string>\"\n    }\n  },\n  \"cdn\": \"<string>\",\n  \"priority\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f486b1e-6a40-43d7-98f0-cb6a5fb4617e",
+              "name": "Updated custom endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom-endpoints",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Custom Endpoint ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"src\": \"<string>\",\n  \"srcType\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"drmConfig\": {\n    \"integration\": \"<string>\",\n    \"widevine\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"playready\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"fairplay\": {\n      \"licenseUrl\": \"<string>\",\n      \"certificateUrl\": \"<string>\"\n    }\n  },\n  \"cdn\": \"<string>\",\n  \"priority\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"organizationId\": \"string\",\n    \"channelId\": \"string\",\n    \"name\": \"string\",\n    \"src\": \"string\",\n    \"srcType\": \"hls\",\n    \"provider\": \"string\",\n    \"cdn\": \"string\",\n    \"priority\": 6028.775666564936,\n    \"drmConfig\": {\n      \"integration\": \"ezdrm\",\n      \"widevine\": {\n        \"licenseUrl\": \"string\"\n      },\n      \"playready\": {\n        \"licenseUrl\": \"string\"\n      },\n      \"fairplay\": {\n        \"licenseUrl\": \"string\",\n        \"certificateUrl\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26c9d067-7660-471e-a5f0-c9fc74485f04",
+          "name": "Delete a custom endpoint",
+          "request": {
+            "name": "Delete a custom endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "custom-endpoints",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Custom Endpoint ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9fbcf05a-2351-4f6f-a9cd-5728d69fb664",
+              "name": "Empty response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom-endpoints",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Custom Endpoint ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.millicast.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "72b83dfc-37d3-43be-aa65-d9b39edd8535",
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders Custom Endpoints API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io\nReal-time Streaming) — publish/subscribe tokens, recordings, transcoders,\nencoder profiles, clusters, analytics, and webhooks. All requests are\nauthenticated with a Bearer API Secret created in the streaming dashboard\n(Settings -> Security -> API Secrets).\n\n\nContact Support:\n Name: Dolby OptiView Support",
+      "type": "text/plain"
+    }
+  }
+}

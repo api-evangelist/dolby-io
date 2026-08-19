@@ -1,0 +1,507 @@
+{
+  "item": [
+    {
+      "id": "4034c5b1-4004-4043-8547-60fb0cce47a2",
+      "name": "SubscribeToken",
+      "description": {
+        "content": "Create and manage subscribe (viewer) tokens.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "060c921e-c070-4c20-beb5-e578682343d4",
+          "name": "Create Subscribe Token",
+          "request": {
+            "name": "Create Subscribe Token",
+            "description": {
+              "content": "Create a viewer token bound to specific streams, with optional IP, origin, geo, or referer restrictions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscribe_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"streams\": [\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedIpAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bindIpsOnUsage\": \"<integer>\",\n  \"allowedCountries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedCountries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiresOn\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5c6fd00-09c7-44f1-9f41-2c0ff2ecdb02",
+              "name": "Subscribe token created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscribe_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"streams\": [\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedIpAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bindIpsOnUsage\": \"<integer>\",\n  \"allowedCountries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"deniedCountries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiresOn\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2067,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"1949-04-02T20:18:10.326Z\",\n  \"expiresOn\": \"1993-04-18T14:26:31.197Z\",\n  \"isActive\": false,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": true\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"allowedIpAddresses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bindIpsOnUsage\": 3983,\n  \"allowedCountries\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deniedCountries\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fdb01ec4-a409-4b07-9d30-2d52e7e9355f",
+          "name": "List Subscribe Tokens",
+          "request": {
+            "name": "List Subscribe Tokens",
+            "description": {},
+            "url": {
+              "path": [
+                "subscribe_token",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9b0cdff-11bc-4652-8333-55b0c30e03aa",
+              "name": "Subscribe tokens",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscribe_token",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5008,\n    \"label\": \"string\",\n    \"token\": \"string\",\n    \"addedOn\": \"1957-05-13T22:45:09.282Z\",\n    \"expiresOn\": \"1971-11-14T03:59:09.510Z\",\n    \"isActive\": true,\n    \"streams\": [\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": false\n      },\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": false\n      }\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"allowedIpAddresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bindIpsOnUsage\": 6086,\n    \"allowedCountries\": [\n      \"string\",\n      \"string\"\n    ],\n    \"deniedCountries\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": 5851,\n    \"label\": \"string\",\n    \"token\": \"string\",\n    \"addedOn\": \"2025-02-12T15:07:24.339Z\",\n    \"expiresOn\": \"1951-05-05T07:09:32.776Z\",\n    \"isActive\": false,\n    \"streams\": [\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": true\n      },\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": true\n      }\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"allowedIpAddresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bindIpsOnUsage\": 4087,\n    \"allowedCountries\": [\n      \"string\",\n      \"string\"\n    ],\n    \"deniedCountries\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a6fbb7a-dca3-4ea6-9e7c-834666e76e20",
+          "name": "Get Subscribe Token",
+          "request": {
+            "name": "Get Subscribe Token",
+            "description": {},
+            "url": {
+              "path": [
+                "subscribe_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22b09e35-65f6-474a-b6d0-6e76cf0425ac",
+              "name": "Subscribe token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscribe_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8781,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"1994-11-12T23:36:19.302Z\",\n  \"expiresOn\": \"1996-06-04T06:31:02.256Z\",\n  \"isActive\": false,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"allowedIpAddresses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bindIpsOnUsage\": 9988,\n  \"allowedCountries\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deniedCountries\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc457842-8016-4dea-9995-5e26c477333b",
+          "name": "Update Subscribe Token",
+          "request": {
+            "name": "Update Subscribe Token",
+            "description": {},
+            "url": {
+              "path": [
+                "subscribe_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedIpAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0945954c-7aaf-4361-884e-b534020276b8",
+              "name": "Subscribe token updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscribe_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedIpAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8781,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"1994-11-12T23:36:19.302Z\",\n  \"expiresOn\": \"1996-06-04T06:31:02.256Z\",\n  \"isActive\": false,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"allowedIpAddresses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bindIpsOnUsage\": 9988,\n  \"allowedCountries\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deniedCountries\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c22877d-9d02-47d1-ad6f-29ecb8d3d098",
+          "name": "Delete Subscribe Token",
+          "request": {
+            "name": "Delete Subscribe Token",
+            "description": {},
+            "url": {
+              "path": [
+                "subscribe_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f32d51f-2add-4b62-839c-1a0f6d8843d9",
+              "name": "Subscribe token deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscribe_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.millicast.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "76feaf0d-3843-4227-9419-9565dd982262",
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders SubscribeToken API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io\nReal-time Streaming) — publish/subscribe tokens, recordings, transcoders,\nencoder profiles, clusters, analytics, and webhooks. All requests are\nauthenticated with a Bearer API Secret created in the streaming dashboard\n(Settings -> Security -> API Secrets).\n\n\nContact Support:\n Name: Dolby OptiView Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,3449 @@
+{
+  "item": [
+    {
+      "id": "055bb9bb-e805-4fbc-8116-db0e79d01e0d",
+      "name": "Channels",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7894333-d6df-4dd7-8c67-716abf29448b",
+          "name": "Get all channels",
+          "request": {
+            "name": "Get all channels",
+            "description": {},
+            "url": {
+              "path": [
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalId",
+                  "value": "<string>",
+                  "description": "Filter by external ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "Maximum number of channels to return (max 100)"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by channel name"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search channels based on ID or name"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Comma-separated list of statuses to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Filter by channel ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3cee43a-1bb1-4ff1-a999-14578a004762",
+              "name": "List of channels",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"stopping\",\n      \"timeout\": 8675.566007326055,\n      \"perpetual\": false,\n      \"organizationId\": \"string\",\n      \"externalId\": \"string\",\n      \"ads\": {\n        \"enabled\": true,\n        \"settings\": {\n          \"assetKey\": \"string\",\n          \"layout\": \"SINGLE\",\n          \"enableBumperAds\": true,\n          \"podDuration\": 4744.616919048774,\n          \"customAdTagParameters\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        }\n      },\n      \"dvr\": {\n        \"enabled\": false,\n        \"windowInSeconds\": 67930.36213793239\n      },\n      \"nielsen\": {\n        \"enabled\": false\n      },\n      \"instreamMetadata\": {\n        \"enabled\": false,\n        \"uuids\": [\n          \"14d71f6e-496c-17ef-fed1-c07dcb10298e\",\n          \"a449a9d1-6513-e589-b558-fabcad1739f9\"\n        ]\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"deleting\",\n      \"timeout\": 9969.811294472778,\n      \"perpetual\": true,\n      \"organizationId\": \"string\",\n      \"externalId\": \"string\",\n      \"ads\": {\n        \"enabled\": false,\n        \"settings\": {\n          \"assetKey\": \"string\",\n          \"layout\": \"DOUBLE\",\n          \"enableBumperAds\": false,\n          \"podDuration\": 1380.1136999705677,\n          \"customAdTagParameters\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        }\n      },\n      \"dvr\": {\n        \"enabled\": true,\n        \"windowInSeconds\": 64074.70454368101\n      },\n      \"nielsen\": {\n        \"enabled\": false\n      },\n      \"instreamMetadata\": {\n        \"enabled\": true,\n        \"uuids\": [\n          \"4e3916e5-cef5-4e97-3847-4957ed2fe7a1\",\n          \"802757a7-8303-bf44-d27b-9985645c964b\"\n        ]\n      }\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": false,\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea581181-7541-43e7-8fbe-25ffd81cb4d3",
+          "name": "Create a new channel",
+          "request": {
+            "name": "Create a new channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"timeout\": 3600,\n  \"ads\": {\n    \"enabled\": \"<boolean>\",\n    \"settings\": {\n      \"assetKey\": \"<string>\",\n      \"layout\": \"<string>\",\n      \"enableBumperAds\": \"<boolean>\",\n      \"podDuration\": \"<number>\",\n      \"customAdTagParameters\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  },\n  \"dvr\": {\n    \"enabled\": \"<boolean>\",\n    \"windowInSeconds\": \"<number>\"\n  },\n  \"nielsen\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"instreamMetadata\": {\n    \"enabled\": \"<boolean>\",\n    \"uuids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"ingests\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"region\": \"<string>\",\n      \"captions\": [\n        {\n          \"channel\": \"<number>\",\n          \"language\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"channel\": \"<number>\",\n          \"language\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ],\n      \"tracks\": {\n        \"audio\": [\n          {\n            \"language\": \"<string>\",\n            \"label\": \"<string>\",\n            \"pid\": \"<number>\"\n          },\n          {\n            \"language\": \"<string>\",\n            \"label\": \"<string>\",\n            \"pid\": \"<number>\"\n          }\n        ]\n      },\n      \"engines\": [\n        {\n          \"name\": \"<string>\",\n          \"region\": \"<string>\",\n          \"quality\": {\n            \"abrLadderId\": \"<string>\"\n          },\n          \"priority\": \"<number>\",\n          \"drm\": \"<boolean>\",\n          \"daiAssetKey\": \"<string>\",\n          \"overlays\": [\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            },\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            }\n          ],\n          \"outputs\": {\n            \"hesp\": true,\n            \"hls\": true,\n            \"hlsMpegTs\": false\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"region\": \"<string>\",\n          \"quality\": {\n            \"abrLadderId\": \"<string>\"\n          },\n          \"priority\": \"<number>\",\n          \"drm\": \"<boolean>\",\n          \"daiAssetKey\": \"<string>\",\n          \"overlays\": [\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            },\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            }\n          ],\n          \"outputs\": {\n            \"hesp\": true,\n            \"hls\": true,\n            \"hlsMpegTs\": false\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"region\": \"<string>\",\n      \"captions\": [\n        {\n          \"channel\": \"<number>\",\n          \"language\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"channel\": \"<number>\",\n          \"language\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ],\n      \"tracks\": {\n        \"audio\": [\n          {\n            \"language\": \"<string>\",\n            \"label\": \"<string>\",\n            \"pid\": \"<number>\"\n          },\n          {\n            \"language\": \"<string>\",\n            \"label\": \"<string>\",\n            \"pid\": \"<number>\"\n          }\n        ]\n      },\n      \"engines\": [\n        {\n          \"name\": \"<string>\",\n          \"region\": \"<string>\",\n          \"quality\": {\n            \"abrLadderId\": \"<string>\"\n          },\n          \"priority\": \"<number>\",\n          \"drm\": \"<boolean>\",\n          \"daiAssetKey\": \"<string>\",\n          \"overlays\": [\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            },\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            }\n          ],\n          \"outputs\": {\n            \"hesp\": true,\n            \"hls\": true,\n            \"hlsMpegTs\": false\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"region\": \"<string>\",\n          \"quality\": {\n            \"abrLadderId\": \"<string>\"\n          },\n          \"priority\": \"<number>\",\n          \"drm\": \"<boolean>\",\n          \"daiAssetKey\": \"<string>\",\n          \"overlays\": [\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            },\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            }\n          ],\n          \"outputs\": {\n            \"hesp\": true,\n            \"hls\": true,\n            \"hlsMpegTs\": false\n          }\n        }\n      ]\n    }\n  ],\n  \"distributions\": [\n    {\n      \"name\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"targetLatency\": \"<number>\",\n      \"security\": {\n        \"geoBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"mode\": \"<string>\",\n          \"countries\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"ipBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"mode\": \"<string>\",\n          \"cidrs\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"refererBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"allowedDomains\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowNativeApps\": \"<boolean>\"\n        },\n        \"keys\": [\n          {\n            \"key\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ]\n      },\n      \"webRtc\": {\n        \"priority\": \"<number>\",\n        \"src\": {\n          \"name\": \"<string>\",\n          \"accountId\": \"<string>\",\n          \"apiUrl\": \"<string>\"\n        }\n      },\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"maxBitrate\": \"<number>\",\n      \"dvr\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"overrides\": [\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            },\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            }\n          ],\n          \"deviceType\": \"<string>\",\n          \"sdkType\": \"<string>\",\n          \"osName\": \"<string>\",\n          \"profileId\": \"<string>\"\n        },\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            },\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            }\n          ],\n          \"deviceType\": \"<string>\",\n          \"sdkType\": \"<string>\",\n          \"osName\": \"<string>\",\n          \"profileId\": \"<string>\"\n        }\n      ],\n      \"customEndpoints\": [\n        {\n          \"customEndpointId\": \"<string>\",\n          \"weight\": 100\n        },\n        {\n          \"customEndpointId\": \"<string>\",\n          \"weight\": 100\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"targetLatency\": \"<number>\",\n      \"security\": {\n        \"geoBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"mode\": \"<string>\",\n          \"countries\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"ipBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"mode\": \"<string>\",\n          \"cidrs\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"refererBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"allowedDomains\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowNativeApps\": \"<boolean>\"\n        },\n        \"keys\": [\n          {\n            \"key\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ]\n      },\n      \"webRtc\": {\n        \"priority\": \"<number>\",\n        \"src\": {\n          \"name\": \"<string>\",\n          \"accountId\": \"<string>\",\n          \"apiUrl\": \"<string>\"\n        }\n      },\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"maxBitrate\": \"<number>\",\n      \"dvr\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"overrides\": [\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            },\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            }\n          ],\n          \"deviceType\": \"<string>\",\n          \"sdkType\": \"<string>\",\n          \"osName\": \"<string>\",\n          \"profileId\": \"<string>\"\n        },\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            },\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            }\n          ],\n          \"deviceType\": \"<string>\",\n          \"sdkType\": \"<string>\",\n          \"osName\": \"<string>\",\n          \"profileId\": \"<string>\"\n        }\n      ],\n      \"customEndpoints\": [\n        {\n          \"customEndpointId\": \"<string>\",\n          \"weight\": 100\n        },\n        {\n          \"customEndpointId\": \"<string>\",\n          \"weight\": 100\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8037c39c-db62-4ea1-867c-492170884df0",
+              "name": "Channel created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"timeout\": 3600,\n  \"ads\": {\n    \"enabled\": \"<boolean>\",\n    \"settings\": {\n      \"assetKey\": \"<string>\",\n      \"layout\": \"<string>\",\n      \"enableBumperAds\": \"<boolean>\",\n      \"podDuration\": \"<number>\",\n      \"customAdTagParameters\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  },\n  \"dvr\": {\n    \"enabled\": \"<boolean>\",\n    \"windowInSeconds\": \"<number>\"\n  },\n  \"nielsen\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"instreamMetadata\": {\n    \"enabled\": \"<boolean>\",\n    \"uuids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  },\n  \"ingests\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"region\": \"<string>\",\n      \"captions\": [\n        {\n          \"channel\": \"<number>\",\n          \"language\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"channel\": \"<number>\",\n          \"language\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ],\n      \"tracks\": {\n        \"audio\": [\n          {\n            \"language\": \"<string>\",\n            \"label\": \"<string>\",\n            \"pid\": \"<number>\"\n          },\n          {\n            \"language\": \"<string>\",\n            \"label\": \"<string>\",\n            \"pid\": \"<number>\"\n          }\n        ]\n      },\n      \"engines\": [\n        {\n          \"name\": \"<string>\",\n          \"region\": \"<string>\",\n          \"quality\": {\n            \"abrLadderId\": \"<string>\"\n          },\n          \"priority\": \"<number>\",\n          \"drm\": \"<boolean>\",\n          \"daiAssetKey\": \"<string>\",\n          \"overlays\": [\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            },\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            }\n          ],\n          \"outputs\": {\n            \"hesp\": true,\n            \"hls\": true,\n            \"hlsMpegTs\": false\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"region\": \"<string>\",\n          \"quality\": {\n            \"abrLadderId\": \"<string>\"\n          },\n          \"priority\": \"<number>\",\n          \"drm\": \"<boolean>\",\n          \"daiAssetKey\": \"<string>\",\n          \"overlays\": [\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            },\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            }\n          ],\n          \"outputs\": {\n            \"hesp\": true,\n            \"hls\": true,\n            \"hlsMpegTs\": false\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"url\": \"<string>\",\n      \"region\": \"<string>\",\n      \"captions\": [\n        {\n          \"channel\": \"<number>\",\n          \"language\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"channel\": \"<number>\",\n          \"language\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ],\n      \"tracks\": {\n        \"audio\": [\n          {\n            \"language\": \"<string>\",\n            \"label\": \"<string>\",\n            \"pid\": \"<number>\"\n          },\n          {\n            \"language\": \"<string>\",\n            \"label\": \"<string>\",\n            \"pid\": \"<number>\"\n          }\n        ]\n      },\n      \"engines\": [\n        {\n          \"name\": \"<string>\",\n          \"region\": \"<string>\",\n          \"quality\": {\n            \"abrLadderId\": \"<string>\"\n          },\n          \"priority\": \"<number>\",\n          \"drm\": \"<boolean>\",\n          \"daiAssetKey\": \"<string>\",\n          \"overlays\": [\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            },\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            }\n          ],\n          \"outputs\": {\n            \"hesp\": true,\n            \"hls\": true,\n            \"hlsMpegTs\": false\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"region\": \"<string>\",\n          \"quality\": {\n            \"abrLadderId\": \"<string>\"\n          },\n          \"priority\": \"<number>\",\n          \"drm\": \"<boolean>\",\n          \"daiAssetKey\": \"<string>\",\n          \"overlays\": [\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            },\n            {\n              \"url\": \"<string>\",\n              \"position\": {\n                \"top\": \"<integer>\",\n                \"bottom\": \"<integer>\",\n                \"left\": \"<integer>\",\n                \"right\": \"<integer>\"\n              },\n              \"size\": {\n                \"width\": \"<integer>\",\n                \"height\": \"<integer>\"\n              },\n              \"opacity\": \"<number>\"\n            }\n          ],\n          \"outputs\": {\n            \"hesp\": true,\n            \"hls\": true,\n            \"hlsMpegTs\": false\n          }\n        }\n      ]\n    }\n  ],\n  \"distributions\": [\n    {\n      \"name\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"targetLatency\": \"<number>\",\n      \"security\": {\n        \"geoBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"mode\": \"<string>\",\n          \"countries\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"ipBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"mode\": \"<string>\",\n          \"cidrs\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"refererBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"allowedDomains\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowNativeApps\": \"<boolean>\"\n        },\n        \"keys\": [\n          {\n            \"key\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ]\n      },\n      \"webRtc\": {\n        \"priority\": \"<number>\",\n        \"src\": {\n          \"name\": \"<string>\",\n          \"accountId\": \"<string>\",\n          \"apiUrl\": \"<string>\"\n        }\n      },\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"maxBitrate\": \"<number>\",\n      \"dvr\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"overrides\": [\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            },\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            }\n          ],\n          \"deviceType\": \"<string>\",\n          \"sdkType\": \"<string>\",\n          \"osName\": \"<string>\",\n          \"profileId\": \"<string>\"\n        },\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            },\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            }\n          ],\n          \"deviceType\": \"<string>\",\n          \"sdkType\": \"<string>\",\n          \"osName\": \"<string>\",\n          \"profileId\": \"<string>\"\n        }\n      ],\n      \"customEndpoints\": [\n        {\n          \"customEndpointId\": \"<string>\",\n          \"weight\": 100\n        },\n        {\n          \"customEndpointId\": \"<string>\",\n          \"weight\": 100\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"targetLatency\": \"<number>\",\n      \"security\": {\n        \"geoBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"mode\": \"<string>\",\n          \"countries\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"ipBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"mode\": \"<string>\",\n          \"cidrs\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"refererBlocking\": {\n          \"enabled\": \"<boolean>\",\n          \"allowedDomains\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowNativeApps\": \"<boolean>\"\n        },\n        \"keys\": [\n          {\n            \"key\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"key\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ]\n      },\n      \"webRtc\": {\n        \"priority\": \"<number>\",\n        \"src\": {\n          \"name\": \"<string>\",\n          \"accountId\": \"<string>\",\n          \"apiUrl\": \"<string>\"\n        }\n      },\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"maxBitrate\": \"<number>\",\n      \"dvr\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"overrides\": [\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            },\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            }\n          ],\n          \"deviceType\": \"<string>\",\n          \"sdkType\": \"<string>\",\n          \"osName\": \"<string>\",\n          \"profileId\": \"<string>\"\n        },\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            },\n            {\n              \"distributionId\": \"<string>\",\n              \"weight\": \"<number>\"\n            }\n          ],\n          \"deviceType\": \"<string>\",\n          \"sdkType\": \"<string>\",\n          \"osName\": \"<string>\",\n          \"profileId\": \"<string>\"\n        }\n      ],\n      \"customEndpoints\": [\n        {\n          \"customEndpointId\": \"<string>\",\n          \"weight\": 100\n        },\n        {\n          \"customEndpointId\": \"<string>\",\n          \"weight\": 100\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"createdAt\": \"string\",\n    \"distributions\": [\n      {\n        \"id\": \"string\",\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\",\n        \"name\": \"string\",\n        \"enabled\": false,\n        \"security\": {\n          \"geoBlocking\": {\n            \"enabled\": false,\n            \"mode\": \"allow\",\n            \"countries\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"ipBlocking\": {\n            \"enabled\": true,\n            \"mode\": \"deny\",\n            \"cidrs\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"keys\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"refererBlocking\": {\n            \"enabled\": false,\n            \"allowedDomains\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allowNativeApps\": true\n          }\n        },\n        \"endpoints\": {\n          \"engineIds\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dvr\": {\n          \"enabled\": false\n        },\n        \"externalId\": \"string\",\n        \"targetLatency\": 1250.0702440716204,\n        \"webRtc\": {\n          \"priority\": 5841.809772062283,\n          \"src\": {\n            \"name\": \"string\",\n            \"accountId\": \"string\",\n            \"apiUrl\": \"string\"\n          }\n        },\n        \"maxBitrate\": 169.64940174258092,\n        \"outputs\": {\n          \"hesp\": true,\n          \"hls\": true,\n          \"hlsMpegTs\": false\n        },\n        \"overrides\": [\n          {\n            \"targets\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"deviceType\": \"desktop\",\n            \"sdkType\": null,\n            \"osName\": \"apple\",\n            \"profileId\": \"string\"\n          },\n          {\n            \"targets\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"deviceType\": \"tv\",\n            \"sdkType\": null,\n            \"osName\": \"other\",\n            \"profileId\": \"string\"\n          }\n        ],\n        \"customEndpoints\": [\n          {\n            \"customEndpointId\": \"string\",\n            \"weight\": 2335.0451561161435\n          },\n          {\n            \"customEndpointId\": \"string\",\n            \"weight\": 5092.532178648412\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\",\n        \"name\": \"string\",\n        \"enabled\": true,\n        \"security\": {\n          \"geoBlocking\": {\n            \"enabled\": false,\n            \"mode\": \"deny\",\n            \"countries\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"ipBlocking\": {\n            \"enabled\": false,\n            \"mode\": \"deny\",\n            \"cidrs\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"keys\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"refererBlocking\": {\n            \"enabled\": false,\n            \"allowedDomains\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allowNativeApps\": false\n          }\n        },\n        \"endpoints\": {\n          \"engineIds\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dvr\": {\n          \"enabled\": true\n        },\n        \"externalId\": \"string\",\n        \"targetLatency\": 6465.344969270166,\n        \"webRtc\": {\n          \"priority\": 2623.22591647251,\n          \"src\": {\n            \"name\": \"string\",\n            \"accountId\": \"string\",\n            \"apiUrl\": \"string\"\n          }\n        },\n        \"maxBitrate\": 9289.307768354425,\n        \"outputs\": {\n          \"hesp\": true,\n          \"hls\": true,\n          \"hlsMpegTs\": false\n        },\n        \"overrides\": [\n          {\n            \"targets\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"deviceType\": \"tv\",\n            \"sdkType\": null,\n            \"osName\": \"apple\",\n            \"profileId\": \"string\"\n          },\n          {\n            \"targets\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"deviceType\": null,\n            \"sdkType\": \"web\",\n            \"osName\": \"apple\",\n            \"profileId\": \"string\"\n          }\n        ],\n        \"customEndpoints\": [\n          {\n            \"customEndpointId\": \"string\",\n            \"weight\": 7435.4030363841\n          },\n          {\n            \"customEndpointId\": \"string\",\n            \"weight\": 6282.770822694473\n          }\n        ]\n      }\n    ],\n    \"engines\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\",\n        \"quality\": {\n          \"abrLadderId\": \"string\"\n        },\n        \"overlays\": [\n          {\n            \"url\": \"string\",\n            \"position\": {\n              \"top\": 241,\n              \"bottom\": 9400,\n              \"left\": 4369,\n              \"right\": 207\n            },\n            \"size\": {\n              \"width\": 2624,\n              \"height\": 8858\n            },\n            \"opacity\": 0.9119783958156948\n          },\n          {\n            \"url\": \"string\",\n            \"position\": {\n              \"top\": 1068,\n              \"bottom\": 4963,\n              \"left\": 7368,\n              \"right\": 4538\n            },\n            \"size\": {\n              \"width\": 2106,\n              \"height\": 9682\n            },\n            \"opacity\": 0.47365401992943035\n          }\n        ],\n        \"drm\": true,\n        \"priority\": 5921.431793121254,\n        \"status\": \"waiting\",\n        \"outputs\": {\n          \"hesp\": true,\n          \"hls\": true,\n          \"hlsMpegTs\": false\n        },\n        \"daiAssetKey\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\",\n        \"quality\": {\n          \"abrLadderId\": \"string\"\n        },\n        \"overlays\": [\n          {\n            \"url\": \"string\",\n            \"position\": {\n              \"top\": 8143,\n              \"bottom\": 3053,\n              \"left\": 7717,\n              \"right\": 9855\n            },\n            \"size\": {\n              \"width\": 8418,\n              \"height\": 4761\n            },\n            \"opacity\": 0.859734032415225\n          },\n          {\n            \"url\": \"string\",\n            \"position\": {\n              \"top\": 7724,\n              \"bottom\": 1377,\n              \"left\": 5817,\n              \"right\": 4368\n            },\n            \"size\": {\n              \"width\": 8334,\n              \"height\": 7787\n            },\n            \"opacity\": 0.12073923676619103\n          }\n        ],\n        \"drm\": true,\n        \"priority\": 631.1510796394438,\n        \"status\": \"starting\",\n        \"outputs\": {\n          \"hesp\": true,\n          \"hls\": true,\n          \"hlsMpegTs\": false\n        },\n        \"daiAssetKey\": \"string\"\n      }\n    ],\n    \"id\": \"string\",\n    \"ingests\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"createdAt\": \"string\",\n        \"type\": \"sdi-pull\",\n        \"url\": \"string\",\n        \"streamKey\": \"string\",\n        \"tracks\": {\n          \"audio\": [\n            {\n              \"language\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"language\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"captions\": [\n          {\n            \"channel\": 9023.798566148134,\n            \"language\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"channel\": 4282.9628688166,\n            \"language\": \"string\",\n            \"label\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"createdAt\": \"string\",\n        \"type\": \"srt-push\",\n        \"url\": \"string\",\n        \"streamKey\": \"string\",\n        \"tracks\": {\n          \"audio\": [\n            {\n              \"language\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"language\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"captions\": [\n          {\n            \"channel\": 7440.893576759243,\n            \"language\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"channel\": 3698.7148691278658,\n            \"language\": \"string\",\n            \"label\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"name\": \"string\",\n    \"organizationId\": \"string\",\n    \"perpetual\": true,\n    \"status\": \"stopping\",\n    \"timeout\": 1508.615305260569,\n    \"externalId\": \"string\",\n    \"ads\": {\n      \"enabled\": false,\n      \"settings\": {\n        \"assetKey\": \"string\",\n        \"layout\": \"DOUBLE\",\n        \"enableBumperAds\": true,\n        \"podDuration\": 7436.914989029435,\n        \"customAdTagParameters\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      }\n    },\n    \"dvr\": {\n      \"enabled\": true,\n      \"windowInSeconds\": 42318.85921972041\n    },\n    \"nielsen\": {\n      \"enabled\": true\n    },\n    \"instreamMetadata\": {\n      \"enabled\": false,\n      \"uuids\": [\n        \"63fbbc87-281a-4d83-cbda-670ec01230ef\",\n        \"1dc99d1a-382b-ecd5-83a4-0c11c7e50cab\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb9bc506-4f6a-4a4d-9a01-a9524ca70b6f",
+          "name": "Get a channel by ID",
+          "request": {
+            "name": "Get a channel by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Comma-separated list of related resources to include. Valid values: ingests, distributions, engines"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "082d3e9f-e76f-40eb-a246-6a02705e95ed",
+              "name": "The requested channel",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"createdAt\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"waiting\",\n    \"timeout\": 582.884218134273,\n    \"perpetual\": false,\n    \"organizationId\": \"string\",\n    \"externalId\": \"string\",\n    \"ads\": {\n      \"enabled\": false,\n      \"settings\": {\n        \"assetKey\": \"string\",\n        \"layout\": \"DOUBLE\",\n        \"enableBumperAds\": false,\n        \"podDuration\": 9548.411874150408,\n        \"customAdTagParameters\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\",\n          \"key_4\": \"string\"\n        }\n      }\n    },\n    \"dvr\": {\n      \"enabled\": false,\n      \"windowInSeconds\": 40562.13515507067\n    },\n    \"nielsen\": {\n      \"enabled\": true\n    },\n    \"instreamMetadata\": {\n      \"enabled\": false,\n      \"uuids\": [\n        \"494f81c8-0cb4-acc6-e1c2-e12ab630a022\",\n        \"f6e76603-995d-8faf-0864-6076906637f7\"\n      ]\n    }\n  },\n  \"ingests\": {\n    \"data\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"createdAt\": \"string\",\n        \"type\": \"srt-push\",\n        \"url\": \"string\",\n        \"streamKey\": \"string\",\n        \"tracks\": {\n          \"audio\": [\n            {\n              \"language\": \"string\",\n              \"label\": \"string\",\n              \"pid\": 196.20668232677497\n            },\n            {\n              \"language\": \"string\",\n              \"label\": \"string\",\n              \"pid\": 1197.7842174138032\n            }\n          ]\n        },\n        \"captions\": [\n          {\n            \"channel\": 8446.211795846271,\n            \"language\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"channel\": 6106.445778758951,\n            \"language\": \"string\",\n            \"label\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"createdAt\": \"string\",\n        \"type\": \"srt-push\",\n        \"url\": \"string\",\n        \"streamKey\": \"string\",\n        \"tracks\": {\n          \"audio\": [\n            {\n              \"language\": \"string\",\n              \"label\": \"string\",\n              \"pid\": 5218.666592883576\n            },\n            {\n              \"language\": \"string\",\n              \"label\": \"string\",\n              \"pid\": 5773.485590990877\n            }\n          ]\n        },\n        \"captions\": [\n          {\n            \"channel\": 9670.735770384852,\n            \"language\": \"string\",\n            \"label\": \"string\"\n          },\n          {\n            \"channel\": 3290.864841917246,\n            \"language\": \"string\",\n            \"label\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"hasMore\": false,\n    \"link\": \"string\",\n    \"count\": 9254.220271808328\n  },\n  \"engines\": {\n    \"data\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\",\n        \"quality\": {\n          \"abrLadderId\": \"string\"\n        },\n        \"overlays\": [\n          {\n            \"url\": \"string\",\n            \"position\": {\n              \"top\": 7714,\n              \"bottom\": 7778,\n              \"left\": 7669,\n              \"right\": 6557\n            },\n            \"size\": {\n              \"width\": 461,\n              \"height\": 6096\n            },\n            \"opacity\": 0.33092244437043483\n          },\n          {\n            \"url\": \"string\",\n            \"position\": {\n              \"top\": 1702,\n              \"bottom\": 145,\n              \"left\": 1752,\n              \"right\": 3394\n            },\n            \"size\": {\n              \"width\": 4157,\n              \"height\": 5168\n            },\n            \"opacity\": 0.9608603729434615\n          }\n        ],\n        \"drm\": true,\n        \"priority\": 7145.501521798527,\n        \"status\": \"deleted\",\n        \"outputs\": {\n          \"hesp\": true,\n          \"hls\": true,\n          \"hlsMpegTs\": false\n        },\n        \"daiAssetKey\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\",\n        \"quality\": {\n          \"abrLadderId\": \"string\"\n        },\n        \"overlays\": [\n          {\n            \"url\": \"string\",\n            \"position\": {\n              \"top\": 4281,\n              \"bottom\": 3544,\n              \"left\": 7225,\n              \"right\": 4926\n            },\n            \"size\": {\n              \"width\": 6290,\n              \"height\": 4799\n            },\n            \"opacity\": 0.1531161648135856\n          },\n          {\n            \"url\": \"string\",\n            \"position\": {\n              \"top\": 7417,\n              \"bottom\": 1114,\n              \"left\": 7217,\n              \"right\": 2587\n            },\n            \"size\": {\n              \"width\": 6961,\n              \"height\": 8912\n            },\n            \"opacity\": 0.5858192655820295\n          }\n        ],\n        \"drm\": false,\n        \"priority\": 7108.36553215198,\n        \"status\": \"error\",\n        \"outputs\": {\n          \"hesp\": true,\n          \"hls\": true,\n          \"hlsMpegTs\": false\n        },\n        \"daiAssetKey\": \"string\"\n      }\n    ],\n    \"hasMore\": true,\n    \"link\": \"string\",\n    \"count\": 5369.058031324774\n  },\n  \"distributions\": {\n    \"data\": [\n      {\n        \"id\": \"string\",\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\",\n        \"name\": \"string\",\n        \"enabled\": false,\n        \"security\": {\n          \"geoBlocking\": {\n            \"enabled\": true,\n            \"mode\": \"deny\",\n            \"countries\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"ipBlocking\": {\n            \"enabled\": false,\n            \"mode\": \"allow\",\n            \"cidrs\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"keys\": [\n            {\n              \"id\": \"string\",\n              \"name\": \"string\"\n            },\n            {\n              \"id\": \"string\",\n              \"name\": \"string\"\n            }\n          ],\n          \"refererBlocking\": {\n            \"enabled\": false,\n            \"allowedDomains\": [\n              \"string\",\n              \"string\"\n            ],\n            \"allowNativeApps\": false\n          }\n        },\n        \"endpoints\": {\n          \"engineIds\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dvr\": {\n          \"enabled\": false\n        },\n        \"externalId\": \"string\",\n        \"targetLatency\": 8035.346687313158,\n        \"webRtc\": {\n          \"priority\": 841.7914269450999,\n          \"src\": {\n            \"name\": \"string\",\n            \"accountId\": \"string\",\n            \"apiUrl\": \"string\"\n          }\n        },\n        \"maxBitrate\": 6213.381033222053,\n        \"outputs\": {\n          \"hesp\": true,\n          \"hls\": true,\n          \"hlsMpegTs\": false\n        },\n        \"overrides\": [\n          {\n            \"targets\": [\n              {\n                \"distributionId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"distributionId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"deviceType\": \"desktop\",\n            \"sdkType\": null,\n            \"osName\": \"windows\",\n            \"profileId\": \"string\"\n          },\n          {\n            \"targets\": [\n              {\n                \"distributionId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"distributionId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"deviceType\": \"desktop\",\n            \"sdkType\": \"web\",\n            \"osName\": \"apple\",\n            \"profileId\": \"string\"\n          }\n        ],\n        \"customEndpoints\": [\n          {\n            \"customEndpointId\": \"string\",\n            \"weight\": 8240.362464560883\n          },\n          {\n            \"customEndpointId\": \"string\",\n            \"weight\": 468.98230818556266\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\",\n        \"name\": \"string\",\n        \"enabled\": true,\n        \"security\": {\n          \"geoBlocking\": {\n            \"enabled\": false,\n            \"mode\": \"deny\",\n            \"countries\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"ipBlocking\": {\n            \"enabled\": false,\n            \"mode\": \"deny\",\n            \"cidrs\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"keys\": [\n            {\n              \"id\": \"string\",\n              \"name\": \"string\"\n            },\n            {\n              \"id\": \"string\",\n              \"name\": \"string\"\n            }\n          ],\n          \"refererBlocking\": {\n            \"enabled\": false,\n            \"allowedDomains\": [\n              \"string\",\n              \"string\"\n            ],\n            \"allowNativeApps\": true\n          }\n        },\n        \"endpoints\": {\n          \"engineIds\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"dvr\": {\n          \"enabled\": true\n        },\n        \"externalId\": \"string\",\n        \"targetLatency\": 2164.266920511163,\n        \"webRtc\": {\n          \"priority\": 2728.7133882467574,\n          \"src\": {\n            \"name\": \"string\",\n            \"accountId\": \"string\",\n            \"apiUrl\": \"string\"\n          }\n        },\n        \"maxBitrate\": 1023.7371799362005,\n        \"outputs\": {\n          \"hesp\": true,\n          \"hls\": true,\n          \"hlsMpegTs\": false\n        },\n        \"overrides\": [\n          {\n            \"targets\": [\n              {\n                \"distributionId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"distributionId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"deviceType\": \"tv\",\n            \"sdkType\": null,\n            \"osName\": \"windows\",\n            \"profileId\": \"string\"\n          },\n          {\n            \"targets\": [\n              {\n                \"distributionId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"distributionId\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"weight\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"deviceType\": \"other\",\n            \"sdkType\": null,\n            \"osName\": \"other\",\n            \"profileId\": \"string\"\n          }\n        ],\n        \"customEndpoints\": [\n          {\n            \"customEndpointId\": \"string\",\n            \"weight\": 3655.302336604187\n          },\n          {\n            \"customEndpointId\": \"string\",\n            \"weight\": 3282.2502658942444\n          }\n        ]\n      }\n    ],\n    \"hasMore\": true,\n    \"link\": \"string\",\n    \"count\": 3838.1684032042585\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b56350e5-e30d-42c4-b904-d5a29e5f6d27",
+          "name": "Update a channel by ID",
+          "request": {
+            "name": "Update a channel by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"timeout\": \"<number>\",\n  \"ads\": {\n    \"enabled\": \"<boolean>\",\n    \"settings\": {\n      \"assetKey\": \"<string>\",\n      \"layout\": \"<string>\",\n      \"enableBumperAds\": \"<boolean>\",\n      \"podDuration\": \"<number>\",\n      \"customAdTagParameters\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  },\n  \"dvr\": {\n    \"enabled\": \"<boolean>\",\n    \"windowInSeconds\": \"<number>\"\n  },\n  \"nielsen\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"instreamMetadata\": {\n    \"enabled\": \"<boolean>\",\n    \"uuids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc558223-4919-4634-a421-98fb835c9ba6",
+              "name": "Updated channel",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"timeout\": \"<number>\",\n  \"ads\": {\n    \"enabled\": \"<boolean>\",\n    \"settings\": {\n      \"assetKey\": \"<string>\",\n      \"layout\": \"<string>\",\n      \"enableBumperAds\": \"<boolean>\",\n      \"podDuration\": \"<number>\",\n      \"customAdTagParameters\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  },\n  \"dvr\": {\n    \"enabled\": \"<boolean>\",\n    \"windowInSeconds\": \"<number>\"\n  },\n  \"nielsen\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"instreamMetadata\": {\n    \"enabled\": \"<boolean>\",\n    \"uuids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"createdAt\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"deleted\",\n    \"timeout\": 1633.72175247265,\n    \"perpetual\": true,\n    \"organizationId\": \"string\",\n    \"externalId\": \"string\",\n    \"ads\": {\n      \"enabled\": false,\n      \"settings\": {\n        \"assetKey\": \"string\",\n        \"layout\": \"SINGLE\",\n        \"enableBumperAds\": false,\n        \"podDuration\": 3215.897483089085,\n        \"customAdTagParameters\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      }\n    },\n    \"dvr\": {\n      \"enabled\": false,\n      \"windowInSeconds\": 45819.30727501076\n    },\n    \"nielsen\": {\n      \"enabled\": true\n    },\n    \"instreamMetadata\": {\n      \"enabled\": false,\n      \"uuids\": [\n        \"687b15bb-6503-852e-5e2b-ef487eab0b44\",\n        \"5f6037cf-6f9e-a7cc-2049-71a9ee0a4ffd\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abe01ed7-6174-4cbb-9a83-940057d73cb0",
+          "name": "Delete a channel by ID",
+          "request": {
+            "name": "Delete a channel by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "556191a9-76af-4e3c-992c-ba54544918d1",
+              "name": "Empty response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fe32b31-53b7-4616-837b-002a547c7bd2",
+          "name": "Start a channel (will start all connected engines)",
+          "request": {
+            "name": "Start a channel (will start all connected engines)",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d839333d-da31-4e7e-b05e-7d68b7a68260",
+              "name": "Channel started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38f3f43f-5f9c-49fb-877b-8dacb514e266",
+          "name": "Stop a channel (will stop all connected engines)",
+          "request": {
+            "name": "Stop a channel (will stop all connected engines)",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da727bf4-caee-4993-a7fd-ca4de37e040c",
+              "name": "Channel stopped",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cceaa4c0-e585-42a8-82a2-b005afac0220",
+          "name": "Get ingests of a channel",
+          "request": {
+            "name": "Get ingests of a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "ingests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "Maximum number of items to return (max 100)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e887de0c-0fff-40ae-a5ce-f15c1f4d4654",
+              "name": "List of ingests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "ingests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"type\": \"srt-push\",\n      \"url\": \"string\",\n      \"streamKey\": \"string\",\n      \"tracks\": {\n        \"audio\": [\n          {\n            \"language\": \"string\",\n            \"label\": \"string\",\n            \"pid\": 3941.0966748032306\n          },\n          {\n            \"language\": \"string\",\n            \"label\": \"string\",\n            \"pid\": 582.3588987437323\n          }\n        ]\n      },\n      \"captions\": [\n        {\n          \"channel\": 8373.01596138939,\n          \"language\": \"string\",\n          \"label\": \"string\"\n        },\n        {\n          \"channel\": 4781.320083814913,\n          \"language\": \"string\",\n          \"label\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"type\": \"srt-push\",\n      \"url\": \"string\",\n      \"streamKey\": \"string\",\n      \"tracks\": {\n        \"audio\": [\n          {\n            \"language\": \"string\",\n            \"label\": \"string\",\n            \"pid\": 8957.858832051037\n          },\n          {\n            \"language\": \"string\",\n            \"label\": \"string\",\n            \"pid\": 259.6878645461409\n          }\n        ]\n      },\n      \"captions\": [\n        {\n          \"channel\": 2752.941776400273,\n          \"language\": \"string\",\n          \"label\": \"string\"\n        },\n        {\n          \"channel\": 8858.366360476957,\n          \"language\": \"string\",\n          \"label\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": true,\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1904ee9-ed11-4a9b-a37f-76a5f2f16e81",
+          "name": "Create an ingest for a channel",
+          "request": {
+            "name": "Create an ingest for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "ingests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<string>\",\n  \"region\": \"<string>\",\n  \"captions\": [\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"tracks\": {\n    \"audio\": [\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      },\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "feff8d9f-2717-4f76-a761-e2fb67082132",
+              "name": "Ingest created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "ingests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<string>\",\n  \"region\": \"<string>\",\n  \"captions\": [\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"tracks\": {\n    \"audio\": [\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      },\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"string\",\n    \"type\": \"sdi-pull\",\n    \"url\": \"string\",\n    \"streamKey\": \"string\",\n    \"tracks\": {\n      \"audio\": [\n        {\n          \"language\": \"string\",\n          \"label\": \"string\",\n          \"pid\": 2073.1230439847945\n        },\n        {\n          \"language\": \"string\",\n          \"label\": \"string\",\n          \"pid\": 7032.0977048880495\n        }\n      ]\n    },\n    \"captions\": [\n      {\n        \"channel\": 5142.588784124231,\n        \"language\": \"string\",\n        \"label\": \"string\"\n      },\n      {\n        \"channel\": 9809.771766667054,\n        \"language\": \"string\",\n        \"label\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19ad8d47-2bd1-48d7-80f3-b18c88667b2e",
+          "name": "Get engines of a channel",
+          "request": {
+            "name": "Get engines of a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "engines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "Maximum number of items to return (max 100)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a075602-3120-4ce4-b789-079c5724349e",
+              "name": "List of engines",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "engines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"quality\": {\n        \"abrLadderId\": \"string\"\n      },\n      \"overlays\": [\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 4199,\n            \"bottom\": 5665,\n            \"left\": 9956,\n            \"right\": 1554\n          },\n          \"size\": {\n            \"width\": 6208,\n            \"height\": 4168\n          },\n          \"opacity\": 0.8619964576525698\n        },\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 7174,\n            \"bottom\": 2440,\n            \"left\": 8118,\n            \"right\": 4110\n          },\n          \"size\": {\n            \"width\": 4642,\n            \"height\": 7358\n          },\n          \"opacity\": 0.6722353405940013\n        }\n      ],\n      \"drm\": true,\n      \"priority\": 1299.992143440085,\n      \"status\": \"stopped\",\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"daiAssetKey\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"quality\": {\n        \"abrLadderId\": \"string\"\n      },\n      \"overlays\": [\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 5201,\n            \"bottom\": 5917,\n            \"left\": 6900,\n            \"right\": 2661\n          },\n          \"size\": {\n            \"width\": 8575,\n            \"height\": 8105\n          },\n          \"opacity\": 0.33314653607947786\n        },\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 840,\n            \"bottom\": 7921,\n            \"left\": 9051,\n            \"right\": 5669\n          },\n          \"size\": {\n            \"width\": 9592,\n            \"height\": 9386\n          },\n          \"opacity\": 0.8239765118900534\n        }\n      ],\n      \"drm\": false,\n      \"priority\": 4401.114451707723,\n      \"status\": \"waiting\",\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"daiAssetKey\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": false,\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9bc122e-6361-467c-a229-bc4c42787229",
+          "name": "Create an engine for a channel",
+          "request": {
+            "name": "Create an engine for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "engines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"region\": \"<string>\",\n  \"quality\": {\n    \"abrLadderId\": \"<string>\"\n  },\n  \"ingestId\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"drm\": \"<boolean>\",\n  \"daiAssetKey\": \"<string>\",\n  \"overlays\": [\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    }\n  ],\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f8b78aea-79c4-4562-99ba-811d85e7365b",
+              "name": "Engine created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "engines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"region\": \"<string>\",\n  \"quality\": {\n    \"abrLadderId\": \"<string>\"\n  },\n  \"ingestId\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"drm\": \"<boolean>\",\n  \"daiAssetKey\": \"<string>\",\n  \"overlays\": [\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    }\n  ],\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"quality\": {\n      \"abrLadderId\": \"string\"\n    },\n    \"overlays\": [\n      {\n        \"url\": \"string\",\n        \"position\": {\n          \"top\": 4304,\n          \"bottom\": 243,\n          \"left\": 9446,\n          \"right\": 2965\n        },\n        \"size\": {\n          \"width\": 5955,\n          \"height\": 9264\n        },\n        \"opacity\": 0.08225284841615543\n      },\n      {\n        \"url\": \"string\",\n        \"position\": {\n          \"top\": 8885,\n          \"bottom\": 6070,\n          \"left\": 3967,\n          \"right\": 8804\n        },\n        \"size\": {\n          \"width\": 7751,\n          \"height\": 5188\n        },\n        \"opacity\": 0.10305071313462855\n      }\n    ],\n    \"drm\": true,\n    \"priority\": 3836.589861996762,\n    \"status\": \"deleting\",\n    \"outputs\": {\n      \"hesp\": true,\n      \"hls\": true,\n      \"hlsMpegTs\": false\n    },\n    \"daiAssetKey\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a912c16e-763c-463b-9363-3571ae813b34",
+          "name": "Get distributions of a channel",
+          "request": {
+            "name": "Get distributions of a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "distributions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "Maximum number of items to return (max 100)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13bd9682-9de0-4f8c-8dd6-0efa60daf25c",
+              "name": "List of distributions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "distributions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"name\": \"string\",\n      \"enabled\": true,\n      \"security\": {\n        \"geoBlocking\": {\n          \"enabled\": true,\n          \"mode\": \"deny\",\n          \"countries\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"ipBlocking\": {\n          \"enabled\": true,\n          \"mode\": \"allow\",\n          \"cidrs\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"keys\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"refererBlocking\": {\n          \"enabled\": false,\n          \"allowedDomains\": [\n            \"string\",\n            \"string\"\n          ],\n          \"allowNativeApps\": true\n        }\n      },\n      \"endpoints\": {\n        \"engineIds\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"dvr\": {\n        \"enabled\": false\n      },\n      \"externalId\": \"string\",\n      \"targetLatency\": 9761.172925304216,\n      \"webRtc\": {\n        \"priority\": 1666.370686984563,\n        \"src\": {\n          \"name\": \"string\",\n          \"accountId\": \"string\",\n          \"apiUrl\": \"string\"\n        }\n      },\n      \"maxBitrate\": 9372.933722040432,\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"overrides\": [\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 88.0856868821826\n            },\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 92.72600244757298\n            }\n          ],\n          \"deviceType\": \"tv\",\n          \"sdkType\": \"native\",\n          \"osName\": \"apple\",\n          \"profileId\": \"string\"\n        },\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 39.0503370442835\n            },\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 85.00340052169807\n            }\n          ],\n          \"deviceType\": \"other\",\n          \"sdkType\": \"web\",\n          \"osName\": null,\n          \"profileId\": \"string\"\n        }\n      ],\n      \"customEndpoints\": [\n        {\n          \"customEndpointId\": \"string\",\n          \"weight\": 9568.888582682632\n        },\n        {\n          \"customEndpointId\": \"string\",\n          \"weight\": 9242.713266856583\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"name\": \"string\",\n      \"enabled\": false,\n      \"security\": {\n        \"geoBlocking\": {\n          \"enabled\": false,\n          \"mode\": \"deny\",\n          \"countries\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"ipBlocking\": {\n          \"enabled\": true,\n          \"mode\": \"deny\",\n          \"cidrs\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"keys\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"refererBlocking\": {\n          \"enabled\": false,\n          \"allowedDomains\": [\n            \"string\",\n            \"string\"\n          ],\n          \"allowNativeApps\": false\n        }\n      },\n      \"endpoints\": {\n        \"engineIds\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"dvr\": {\n        \"enabled\": true\n      },\n      \"externalId\": \"string\",\n      \"targetLatency\": 84.78689093294744,\n      \"webRtc\": {\n        \"priority\": 8501.21932183516,\n        \"src\": {\n          \"name\": \"string\",\n          \"accountId\": \"string\",\n          \"apiUrl\": \"string\"\n        }\n      },\n      \"maxBitrate\": 1295.7660472617283,\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"overrides\": [\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 61.207105625606\n            },\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 63.96288905637767\n            }\n          ],\n          \"deviceType\": \"mobile\",\n          \"sdkType\": null,\n          \"osName\": \"apple\",\n          \"profileId\": \"string\"\n        },\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 44.541556838720695\n            },\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 27.639849675467374\n            }\n          ],\n          \"deviceType\": null,\n          \"sdkType\": \"native\",\n          \"osName\": \"apple\",\n          \"profileId\": \"string\"\n        }\n      ],\n      \"customEndpoints\": [\n        {\n          \"customEndpointId\": \"string\",\n          \"weight\": 493.60645853915196\n        },\n        {\n          \"customEndpointId\": \"string\",\n          \"weight\": 3483.7581665166417\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": true,\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93d0deec-7025-4162-8510-9b510a189d9b",
+          "name": "Create a distribution for a channel",
+          "request": {
+            "name": "Create a distribution for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "distributions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"targetLatency\": \"<number>\",\n  \"security\": {\n    \"geoBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"ipBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"cidrs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"refererBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"allowedDomains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowNativeApps\": \"<boolean>\"\n    },\n    \"keys\": [\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"endpoints\": {\n    \"engineIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"webRtc\": {\n    \"priority\": \"<number>\",\n    \"src\": {\n      \"name\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"apiUrl\": \"<string>\"\n    }\n  },\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  },\n  \"maxBitrate\": \"<number>\",\n  \"dvr\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"overrides\": [\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    },\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    }\n  ],\n  \"customEndpoints\": [\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    },\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2dde5666-2050-4fa7-9016-6266cde9fbbe",
+              "name": "Distribution created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "distributions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"targetLatency\": \"<number>\",\n  \"security\": {\n    \"geoBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"ipBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"cidrs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"refererBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"allowedDomains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowNativeApps\": \"<boolean>\"\n    },\n    \"keys\": [\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"endpoints\": {\n    \"engineIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"webRtc\": {\n    \"priority\": \"<number>\",\n    \"src\": {\n      \"name\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"apiUrl\": \"<string>\"\n    }\n  },\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  },\n  \"maxBitrate\": \"<number>\",\n  \"dvr\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"overrides\": [\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    },\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    }\n  ],\n  \"customEndpoints\": [\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    },\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"name\": \"string\",\n    \"enabled\": true,\n    \"security\": {\n      \"geoBlocking\": {\n        \"enabled\": false,\n        \"mode\": \"deny\",\n        \"countries\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"ipBlocking\": {\n        \"enabled\": true,\n        \"mode\": \"allow\",\n        \"cidrs\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"keys\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"refererBlocking\": {\n        \"enabled\": false,\n        \"allowedDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"allowNativeApps\": false\n      }\n    },\n    \"endpoints\": {\n      \"engineIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"dvr\": {\n      \"enabled\": true\n    },\n    \"externalId\": \"string\",\n    \"targetLatency\": 7705.09879389227,\n    \"webRtc\": {\n      \"priority\": 3643.5391857251498,\n      \"src\": {\n        \"name\": \"string\",\n        \"accountId\": \"string\",\n        \"apiUrl\": \"string\"\n      }\n    },\n    \"maxBitrate\": 9876.87238565759,\n    \"outputs\": {\n      \"hesp\": true,\n      \"hls\": true,\n      \"hlsMpegTs\": false\n    },\n    \"overrides\": [\n      {\n        \"targets\": [\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 65.22323950715842\n          },\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 25.497664214424866\n          }\n        ],\n        \"deviceType\": \"mobile\",\n        \"sdkType\": null,\n        \"osName\": \"android\",\n        \"profileId\": \"string\"\n      },\n      {\n        \"targets\": [\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 73.99487937059997\n          },\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 42.597931077397966\n          }\n        ],\n        \"deviceType\": \"mobile\",\n        \"sdkType\": \"web\",\n        \"osName\": \"roku\",\n        \"profileId\": \"string\"\n      }\n    ],\n    \"customEndpoints\": [\n      {\n        \"customEndpointId\": \"string\",\n        \"weight\": 8521.923136794041\n      },\n      {\n        \"customEndpointId\": \"string\",\n        \"weight\": 1198.0263001192227\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2700f51-022f-45ba-881f-324945adf2fe",
+          "name": "Send instream metadata for a channel",
+          "request": {
+            "name": "Send instream metadata for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "instream-metadata",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Instream metadata UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<binary>"
+            }
+          },
+          "response": [
+            {
+              "id": "c9e4fcab-773b-4a15-ad42-65cd01f21191",
+              "name": "Instream metadata accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "instream-metadata",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Instream metadata UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca544de9-9bc7-4012-a8d7-816e67dd8cf5",
+          "name": "Get engine runs of a channel",
+          "request": {
+            "name": "Get engine runs of a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "Maximum number of runs to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "Filter runs starting after this timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "Filter runs ending before this timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "engineIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of engine IDs to filter by"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d536cbec-f814-4644-97c2-2e2c3309188e",
+              "name": "List of engine runs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "engineIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"engineId\": \"string\",\n      \"start\": \"string\",\n      \"config\": {\n        \"ingest\": {\n          \"type\": \"string\",\n          \"url\": \"string\"\n        },\n        \"abrLadderId\": \"string\",\n        \"drm\": true\n      },\n      \"startType\": \"string\",\n      \"startId\": \"string\",\n      \"end\": \"string\",\n      \"stopType\": \"string\",\n      \"stopId\": \"string\"\n    },\n    {\n      \"engineId\": \"string\",\n      \"start\": \"string\",\n      \"config\": {\n        \"ingest\": {\n          \"type\": \"string\",\n          \"url\": \"string\"\n        },\n        \"abrLadderId\": \"string\",\n        \"drm\": false\n      },\n      \"startType\": \"string\",\n      \"startId\": \"string\",\n      \"end\": \"string\",\n      \"stopType\": \"string\",\n      \"stopId\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": true,\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48152129-24a1-496b-adbe-3b833f52b09f",
+          "name": "Get transcoding minutes analytics for a channel",
+          "request": {
+            "name": "Get transcoding minutes analytics for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "analytics",
+                "transcoding-minutes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupBy",
+                  "value": "<string>",
+                  "description": "Group results by engine or channel"
+                },
+                {
+                  "disabled": false,
+                  "key": "resolution",
+                  "value": "<string>",
+                  "description": "(Required) Time resolution for the analytics data"
+                },
+                {
+                  "disabled": false,
+                  "key": "engineIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of engine IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9d215e5-e97c-4b8f-95c1-71dd71eb49f3",
+              "name": "Transcoding minutes analytics data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "analytics",
+                    "transcoding-minutes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolution",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "engineIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"timestamp\": \"string\",\n      \"records\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 5677.70238861612\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 1187.6664363311606\n        }\n      ]\n    },\n    {\n      \"timestamp\": \"string\",\n      \"records\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 517.9917445955806\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 9643.072193498718\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6a4d198-026b-4f18-91e0-a8b971fd3eeb",
+          "name": "Get viewing minutes analytics for a channel",
+          "request": {
+            "name": "Get viewing minutes analytics for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "analytics",
+                "viewing-minutes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupBy",
+                  "value": "<string>",
+                  "description": "Group results by channel, distribution, or streaming format"
+                },
+                {
+                  "disabled": false,
+                  "key": "resolution",
+                  "value": "<string>",
+                  "description": "(Required) Time resolution for the analytics data"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a84f663-a77e-4878-825f-8ce3780cbde4",
+              "name": "Viewing minutes analytics data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "analytics",
+                    "viewing-minutes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolution",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"timestamp\": \"string\",\n      \"records\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 6136.176111350853\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 463.67703712040577\n        }\n      ]\n    },\n    {\n      \"timestamp\": \"string\",\n      \"records\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 1654.3534545476734\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 4203.8033493076455\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13b16005-0b7b-4a73-86c8-2ab2c89b566e",
+          "name": "Get bytes transferred analytics for a channel",
+          "request": {
+            "name": "Get bytes transferred analytics for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "analytics",
+                "bytes-transferred"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupBy",
+                  "value": "<string>",
+                  "description": "Group results by channel, distribution, or streaming format"
+                },
+                {
+                  "disabled": false,
+                  "key": "resolution",
+                  "value": "<string>",
+                  "description": "(Required) Time resolution for the analytics data"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7dc7682c-7173-4c02-ad60-4986251071bf",
+              "name": "Bytes transferred analytics data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "analytics",
+                    "bytes-transferred"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolution",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"timestamp\": \"string\",\n      \"records\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 6136.176111350853\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 463.67703712040577\n        }\n      ]\n    },\n    {\n      \"timestamp\": \"string\",\n      \"records\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 1654.3534545476734\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 4203.8033493076455\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45907a93-4e76-4e5d-adb0-8a5169c6a024",
+          "name": "Get viewing minutes grouped by browser for a channel",
+          "request": {
+            "name": "Get viewing minutes grouped by browser for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "analytics",
+                "viewing-minutes",
+                "browsers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1a84517-53dc-4a0b-817e-1948e66c1521",
+              "name": "Viewing minutes by browser",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "analytics",
+                    "viewing-minutes",
+                    "browsers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"browserName\": \"string\",\n      \"hardwareType\": \"string\",\n      \"amount\": 1882.902716646071\n    },\n    {\n      \"browserName\": \"string\",\n      \"hardwareType\": \"string\",\n      \"amount\": 7595.837414018755\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d726246-aaca-4a07-91f1-9cfbc3beb7e1",
+          "name": "Get viewing minutes grouped by country for a channel",
+          "request": {
+            "name": "Get viewing minutes grouped by country for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "analytics",
+                "viewing-minutes",
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5bc7e474-3a36-4452-adbc-826df09c8421",
+              "name": "Viewing minutes by country",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "analytics",
+                    "viewing-minutes",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"countryCode\": \"string\",\n      \"amount\": 7954.303733464309\n    },\n    {\n      \"countryCode\": \"string\",\n      \"amount\": 1449.955104574452\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ae2e395-58df-4095-9444-6fad5cee15fa",
+          "name": "Get bytes transferred grouped by browser for a channel",
+          "request": {
+            "name": "Get bytes transferred grouped by browser for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "analytics",
+                "bytes-transferred",
+                "browsers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6734977b-54c1-448b-8272-53d5100ca632",
+              "name": "Bytes transferred by browser",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "analytics",
+                    "bytes-transferred",
+                    "browsers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"browserName\": \"string\",\n      \"hardwareType\": \"string\",\n      \"amount\": 8597.886943804953\n    },\n    {\n      \"browserName\": \"string\",\n      \"hardwareType\": \"string\",\n      \"amount\": 277.8616917629062\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4c0923c-f6ca-4258-9000-99de743cb877",
+          "name": "Get bytes transferred grouped by country for a channel",
+          "request": {
+            "name": "Get bytes transferred grouped by country for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "analytics",
+                "bytes-transferred",
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "188b7a66-c678-43d6-926b-c2bbabffb4b8",
+              "name": "Bytes transferred by country",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "analytics",
+                    "bytes-transferred",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"countryCode\": \"string\",\n      \"amount\": 346.06382273784544\n    },\n    {\n      \"countryCode\": \"string\",\n      \"amount\": 5253.045769280943\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "866fea1d-4991-4bd1-8c58-1fd6ff6628b9",
+          "name": "Get country insights for a channel",
+          "request": {
+            "name": "Get country insights for a channel",
+            "description": {
+              "content": "Data is only available for the last 30 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "analytics",
+                "insights",
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>",
+                  "description": "(Required) Time period for the insights"
+                },
+                {
+                  "disabled": false,
+                  "key": "channelIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of channel IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "475413be-7450-41d0-8d08-a1843b86b62c",
+              "name": "Country insights data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "analytics",
+                    "insights",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"city\": \"string\",\n      \"countryCode\": \"string\",\n      \"geoLocation\": \"string\",\n      \"amount\": 2502.744837460484\n    },\n    {\n      \"city\": \"string\",\n      \"countryCode\": \"string\",\n      \"geoLocation\": \"string\",\n      \"amount\": 577.3599330183588\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8973fa32-e46d-47e5-a0fe-741d05fe0531",
+          "name": "Get browser and OS insights for a channel",
+          "request": {
+            "name": "Get browser and OS insights for a channel",
+            "description": {
+              "content": "Data is only available for the last 30 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "analytics",
+                "insights",
+                "browsers-os"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>",
+                  "description": "(Required) Time period for the insights"
+                },
+                {
+                  "disabled": false,
+                  "key": "channelIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of channel IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c247c7ea-5706-4a41-88cf-dbb82eef21e1",
+              "name": "Browser/OS insights data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "analytics",
+                    "insights",
+                    "browsers-os"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"browserName\": \"string\",\n      \"browserVersion\": \"string\",\n      \"osName\": \"string\",\n      \"osVersion\": \"string\",\n      \"amount\": 5016.226442340656\n    },\n    {\n      \"browserName\": \"string\",\n      \"browserVersion\": \"string\",\n      \"osName\": \"string\",\n      \"osVersion\": \"string\",\n      \"amount\": 8551.475575999859\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d435eef-034b-4da8-889b-10a640351de3",
+          "name": "Get viewer count insights for a channel",
+          "request": {
+            "name": "Get viewer count insights for a channel",
+            "description": {
+              "content": "Data is only available for the last 30 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "analytics",
+                "insights",
+                "viewers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>",
+                  "description": "(Required) Time period for the insights"
+                },
+                {
+                  "disabled": false,
+                  "key": "channelIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of channel IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0910d2e-4cc0-4598-a7b3-2c103c0d541e",
+              "name": "Viewer count insights data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "analytics",
+                    "insights",
+                    "viewers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"timestamp\": \"string\",\n      \"amount\": 2070.3579311334274\n    },\n    {\n      \"timestamp\": \"string\",\n      \"amount\": 9085.43207403306\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12c3fbe6-ee19-478e-b952-1f9abf7b9ba9",
+          "name": "Create a custom endpoint on a channel",
+          "request": {
+            "name": "Create a custom endpoint on a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "custom-endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"src\": \"<string>\",\n  \"srcType\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"cdn\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"drmConfig\": {\n    \"integration\": \"<string>\",\n    \"widevine\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"playready\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"fairplay\": {\n      \"licenseUrl\": \"<string>\",\n      \"certificateUrl\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "53be5781-05cc-4b69-bb68-d64ad1a0495f",
+              "name": "Created custom endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "custom-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"src\": \"<string>\",\n  \"srcType\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"cdn\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"drmConfig\": {\n    \"integration\": \"<string>\",\n    \"widevine\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"playready\": {\n      \"licenseUrl\": \"<string>\"\n    },\n    \"fairplay\": {\n      \"licenseUrl\": \"<string>\",\n      \"certificateUrl\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"organizationId\": \"string\",\n    \"channelId\": \"string\",\n    \"name\": \"string\",\n    \"src\": \"string\",\n    \"srcType\": \"hesp\",\n    \"provider\": \"string\",\n    \"cdn\": \"string\",\n    \"priority\": 5612.411939097339,\n    \"drmConfig\": {\n      \"integration\": \"mediakind\",\n      \"widevine\": {\n        \"licenseUrl\": \"string\"\n      },\n      \"playready\": {\n        \"licenseUrl\": \"string\"\n      },\n      \"fairplay\": {\n        \"licenseUrl\": \"string\",\n        \"certificateUrl\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9e9f196-a8f2-4eea-8749-095f625ec67a",
+          "name": "List all custom endpoints of a channel",
+          "request": {
+            "name": "List all custom endpoints of a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "custom-endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0094c3f3-2e83-4bd3-84b8-0b2589901ba9",
+              "name": "List of custom endpoints",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "custom-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"organizationId\": \"string\",\n      \"channelId\": \"string\",\n      \"name\": \"string\",\n      \"src\": \"string\",\n      \"srcType\": \"dash\",\n      \"provider\": \"string\",\n      \"cdn\": \"string\",\n      \"priority\": 9197.455544450377,\n      \"drmConfig\": {\n        \"integration\": \"mediakind\",\n        \"widevine\": {\n          \"licenseUrl\": \"string\"\n        },\n        \"playready\": {\n          \"licenseUrl\": \"string\"\n        },\n        \"fairplay\": {\n          \"licenseUrl\": \"string\",\n          \"certificateUrl\": \"string\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"organizationId\": \"string\",\n      \"channelId\": \"string\",\n      \"name\": \"string\",\n      \"src\": \"string\",\n      \"srcType\": \"hls\",\n      \"provider\": \"string\",\n      \"cdn\": \"string\",\n      \"priority\": 8556.54153841951,\n      \"drmConfig\": {\n        \"integration\": \"ezdrm\",\n        \"widevine\": {\n          \"licenseUrl\": \"string\"\n        },\n        \"playready\": {\n          \"licenseUrl\": \"string\"\n        },\n        \"fairplay\": {\n          \"licenseUrl\": \"string\",\n          \"certificateUrl\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.millicast.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "51c03615-5217-4695-a69b-dcf52511f889",
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders Channels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io\nReal-time Streaming) — publish/subscribe tokens, recordings, transcoders,\nencoder profiles, clusters, analytics, and webhooks. All requests are\nauthenticated with a Bearer API Secret created in the streaming dashboard\n(Settings -> Security -> API Secrets).\n\n\nContact Support:\n Name: Dolby OptiView Support",
+      "type": "text/plain"
+    }
+  }
+}

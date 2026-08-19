@@ -1,0 +1,924 @@
+{
+  "item": [
+    {
+      "id": "b59c59d4-93be-47bd-8340-9026874f5472",
+      "name": "Engines",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aeef266c-9b21-4065-922c-4b46a952eea4",
+          "name": "Get engines of a channel",
+          "request": {
+            "name": "Get engines of a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "engines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "Maximum number of items to return (max 100)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea10a0a4-32f5-464c-a2ac-72b56803eed7",
+              "name": "List of engines",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "engines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"quality\": {\n        \"abrLadderId\": \"string\"\n      },\n      \"overlays\": [\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 2278,\n            \"bottom\": 5363,\n            \"left\": 1166,\n            \"right\": 2065\n          },\n          \"size\": {\n            \"width\": 1055,\n            \"height\": 6078\n          },\n          \"opacity\": 0.7525976504655112\n        },\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 4687,\n            \"bottom\": 4715,\n            \"left\": 4176,\n            \"right\": 9926\n          },\n          \"size\": {\n            \"width\": 3863,\n            \"height\": 2453\n          },\n          \"opacity\": 0.7797364637570623\n        }\n      ],\n      \"drm\": true,\n      \"priority\": 395.3074534442047,\n      \"status\": \"waiting\",\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"daiAssetKey\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"quality\": {\n        \"abrLadderId\": \"string\"\n      },\n      \"overlays\": [\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 9549,\n            \"bottom\": 7008,\n            \"left\": 6563,\n            \"right\": 81\n          },\n          \"size\": {\n            \"width\": 7256,\n            \"height\": 7529\n          },\n          \"opacity\": 0.23388898759629784\n        },\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 9184,\n            \"bottom\": 4164,\n            \"left\": 2973,\n            \"right\": 2411\n          },\n          \"size\": {\n            \"width\": 5374,\n            \"height\": 9734\n          },\n          \"opacity\": 0.2367329437028053\n        }\n      ],\n      \"drm\": false,\n      \"priority\": 3161.2113133619237,\n      \"status\": \"deleted\",\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"daiAssetKey\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": true,\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6743d6d-2bda-4816-b2f3-a0652e3e4bea",
+          "name": "Create an engine for a channel",
+          "request": {
+            "name": "Create an engine for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "engines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"region\": \"<string>\",\n  \"quality\": {\n    \"abrLadderId\": \"<string>\"\n  },\n  \"ingestId\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"drm\": \"<boolean>\",\n  \"daiAssetKey\": \"<string>\",\n  \"overlays\": [\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    }\n  ],\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1ab8b264-c393-4af2-8982-6296ffde26b0",
+              "name": "Engine created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "engines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"region\": \"<string>\",\n  \"quality\": {\n    \"abrLadderId\": \"<string>\"\n  },\n  \"ingestId\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"drm\": \"<boolean>\",\n  \"daiAssetKey\": \"<string>\",\n  \"overlays\": [\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    }\n  ],\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"quality\": {\n      \"abrLadderId\": \"string\"\n    },\n    \"overlays\": [\n      {\n        \"url\": \"string\",\n        \"position\": {\n          \"top\": 5446,\n          \"bottom\": 4218,\n          \"left\": 1168,\n          \"right\": 1737\n        },\n        \"size\": {\n          \"width\": 6106,\n          \"height\": 2426\n        },\n        \"opacity\": 0.01060251218632946\n      },\n      {\n        \"url\": \"string\",\n        \"position\": {\n          \"top\": 1534,\n          \"bottom\": 7340,\n          \"left\": 8346,\n          \"right\": 699\n        },\n        \"size\": {\n          \"width\": 2914,\n          \"height\": 8203\n        },\n        \"opacity\": 0.5166142679201221\n      }\n    ],\n    \"drm\": true,\n    \"priority\": 9678.745634760406,\n    \"status\": \"deleted\",\n    \"outputs\": {\n      \"hesp\": true,\n      \"hls\": true,\n      \"hlsMpegTs\": false\n    },\n    \"daiAssetKey\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44342cbd-cbf5-4971-b143-288b34b06d77",
+          "name": "Get an engine by ID",
+          "request": {
+            "name": "Get an engine by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "engines",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Engine ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1cdc5b2-4d02-4325-a774-1cc5f97bd92b",
+              "name": "The requested engine",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engines",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Engine ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"quality\": {\n      \"abrLadderId\": \"string\"\n    },\n    \"overlays\": [\n      {\n        \"url\": \"string\",\n        \"position\": {\n          \"top\": 7467,\n          \"bottom\": 8460,\n          \"left\": 2341,\n          \"right\": 7710\n        },\n        \"size\": {\n          \"width\": 4717,\n          \"height\": 8086\n        },\n        \"opacity\": 0.21776077881938982\n      },\n      {\n        \"url\": \"string\",\n        \"position\": {\n          \"top\": 1819,\n          \"bottom\": 4696,\n          \"left\": 919,\n          \"right\": 3981\n        },\n        \"size\": {\n          \"width\": 6091,\n          \"height\": 4865\n        },\n        \"opacity\": 0.7960420947757801\n      }\n    ],\n    \"drm\": false,\n    \"priority\": 3005.266689439039,\n    \"status\": \"deleted\",\n    \"outputs\": {\n      \"hesp\": true,\n      \"hls\": true,\n      \"hlsMpegTs\": false\n    },\n    \"daiAssetKey\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84d99bbd-8860-435b-9478-4a1384820e60",
+          "name": "Update an engine by ID",
+          "request": {
+            "name": "Update an engine by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "engines",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Engine ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ingestId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"region\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"drm\": \"<boolean>\",\n  \"quality\": {\n    \"abrLadderId\": \"<string>\"\n  },\n  \"daiAssetKey\": \"<string>\",\n  \"overlays\": [\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    }\n  ],\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "72cd8370-8567-4fe8-9e8b-bc9ffebf29ef",
+              "name": "Updated engine",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engines",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Engine ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ingestId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"region\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"drm\": \"<boolean>\",\n  \"quality\": {\n    \"abrLadderId\": \"<string>\"\n  },\n  \"daiAssetKey\": \"<string>\",\n  \"overlays\": [\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    }\n  ],\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"quality\": {\n      \"abrLadderId\": \"string\"\n    },\n    \"overlays\": [\n      {\n        \"url\": \"string\",\n        \"position\": {\n          \"top\": 7467,\n          \"bottom\": 8460,\n          \"left\": 2341,\n          \"right\": 7710\n        },\n        \"size\": {\n          \"width\": 4717,\n          \"height\": 8086\n        },\n        \"opacity\": 0.21776077881938982\n      },\n      {\n        \"url\": \"string\",\n        \"position\": {\n          \"top\": 1819,\n          \"bottom\": 4696,\n          \"left\": 919,\n          \"right\": 3981\n        },\n        \"size\": {\n          \"width\": 6091,\n          \"height\": 4865\n        },\n        \"opacity\": 0.7960420947757801\n      }\n    ],\n    \"drm\": false,\n    \"priority\": 3005.266689439039,\n    \"status\": \"deleted\",\n    \"outputs\": {\n      \"hesp\": true,\n      \"hls\": true,\n      \"hlsMpegTs\": false\n    },\n    \"daiAssetKey\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20cfee88-62da-4604-9718-604be9f35262",
+          "name": "Delete an engine by ID",
+          "request": {
+            "name": "Delete an engine by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "engines",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Engine ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f25c540-11b7-425f-8144-f7cdf1be71b8",
+              "name": "Empty response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engines",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Engine ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a469ce16-631d-4148-bbff-299a4d9ff98d",
+          "name": "Start an engine",
+          "request": {
+            "name": "Start an engine",
+            "description": {},
+            "url": {
+              "path": [
+                "engines",
+                ":id",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Engine ID"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d076260-ff62-45a9-8be5-dcb509a67a7b",
+              "name": "Engine started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engines",
+                    ":id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Engine ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71b2aec7-5a41-4355-905f-2c8c7a91eea2",
+          "name": "Stop an engine",
+          "request": {
+            "name": "Stop an engine",
+            "description": {},
+            "url": {
+              "path": [
+                "engines",
+                ":id",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Engine ID"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "941aba5a-0f1e-454c-849f-4c44ac975c25",
+              "name": "Engine stopped",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engines",
+                    ":id",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Engine ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b45ccaf4-290b-4bf4-b5c4-fd118b969658",
+          "name": "Get the last run of an engine",
+          "request": {
+            "name": "Get the last run of an engine",
+            "description": {},
+            "url": {
+              "path": [
+                "engines",
+                ":id",
+                "last-run"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Engine ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "640ea42d-3290-4d6e-917e-9e7b7c50d129",
+              "name": "Last engine run",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engines",
+                    ":id",
+                    "last-run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Engine ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"engineId\": \"string\",\n    \"start\": \"string\",\n    \"config\": {\n      \"ingest\": {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"abrLadderId\": \"string\",\n      \"drm\": true\n    },\n    \"startType\": \"string\",\n    \"startId\": \"string\",\n    \"end\": \"string\",\n    \"stopType\": \"string\",\n    \"stopId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e76eb1d8-a750-4dda-902d-608735b6bd54",
+          "name": "Get runs of an engine",
+          "request": {
+            "name": "Get runs of an engine",
+            "description": {},
+            "url": {
+              "path": [
+                "engines",
+                ":id",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Engine ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "109d4837-cdf0-4e2a-a60a-67e6a3bb5000",
+              "name": "List of engine runs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "engines",
+                    ":id",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Engine ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"engineId\": \"string\",\n      \"start\": \"string\",\n      \"config\": {\n        \"ingest\": {\n          \"type\": \"string\",\n          \"url\": \"string\"\n        },\n        \"abrLadderId\": \"string\",\n        \"drm\": false\n      },\n      \"startType\": \"string\",\n      \"startId\": \"string\",\n      \"end\": \"string\",\n      \"stopType\": \"string\",\n      \"stopId\": \"string\"\n    },\n    {\n      \"engineId\": \"string\",\n      \"start\": \"string\",\n      \"config\": {\n        \"ingest\": {\n          \"type\": \"string\",\n          \"url\": \"string\"\n        },\n        \"abrLadderId\": \"string\",\n        \"drm\": true\n      },\n      \"startType\": \"string\",\n      \"startId\": \"string\",\n      \"end\": \"string\",\n      \"stopType\": \"string\",\n      \"stopId\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": false,\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.millicast.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4add635a-65c1-41e8-9719-65fabaa6c091",
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders Engines API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io\nReal-time Streaming) — publish/subscribe tokens, recordings, transcoders,\nencoder profiles, clusters, analytics, and webhooks. All requests are\nauthenticated with a Bearer API Secret created in the streaming dashboard\n(Settings -> Security -> API Secrets).\n\n\nContact Support:\n Name: Dolby OptiView Support",
+      "type": "text/plain"
+    }
+  }
+}

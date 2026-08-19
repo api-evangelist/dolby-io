@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders Webhooks API",
+    "version": "2026.05"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/webhooks"
+          },
+          "docs": "Get all webhooks"
+        },
+        {
+          "info": {
+            "name": "Create a new webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook"
+        },
+        {
+          "info": {
+            "name": "Get a webhook by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "Get a webhook by ID"
+        },
+        {
+          "info": {
+            "name": "Update a webhook by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.millicast.com/api/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a webhook by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a webhook by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.millicast.com/api/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "Delete a webhook by ID"
+        },
+        {
+          "info": {
+            "name": "Get a webhook secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/webhooks/:id/secret",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "Get a webhook secret"
+        },
+        {
+          "info": {
+            "name": "Get webhook logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/webhooks/:id/logs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start date in 'YYYY-MM-DDTHH:mm:ss.sssZ' format"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date in 'YYYY-MM-DDTHH:mm:ss.sssZ' format"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of logs to return (max 100)"
+              }
+            ]
+          },
+          "docs": "Get webhook logs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

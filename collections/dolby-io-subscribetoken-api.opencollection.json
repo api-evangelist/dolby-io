@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders SubscribeToken API",
+    "version": "2026.05"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SubscribeToken",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Subscribe Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/subscribe_token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a viewer token bound to specific streams, with optional IP, origin, geo, or referer restrictions."
+        },
+        {
+          "info": {
+            "name": "List Subscribe Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/subscribe_token/list"
+          },
+          "docs": "List Subscribe Tokens"
+        },
+        {
+          "info": {
+            "name": "Get Subscribe Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/subscribe_token/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Subscribe Token"
+        },
+        {
+          "info": {
+            "name": "Update Subscribe Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.millicast.com/api/subscribe_token/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Subscribe Token"
+        },
+        {
+          "info": {
+            "name": "Delete Subscribe Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.millicast.com/api/subscribe_token/:tokenID",
+            "params": [
+              {
+                "name": "tokenID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Subscribe Token"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

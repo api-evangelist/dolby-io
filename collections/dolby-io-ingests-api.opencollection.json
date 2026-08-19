@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders Ingests API",
+    "version": "2026.05"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ingests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ingests of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/ingests",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (max 100)"
+              }
+            ]
+          },
+          "docs": "Get ingests of a channel"
+        },
+        {
+          "info": {
+            "name": "Create an ingest for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/channels/:id/ingests",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an ingest for a channel"
+        },
+        {
+          "info": {
+            "name": "Get an ingest by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/ingests/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Ingest ID"
+              }
+            ]
+          },
+          "docs": "Get an ingest by ID"
+        },
+        {
+          "info": {
+            "name": "Update an ingest by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.millicast.com/api/ingests/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Ingest ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an ingest by ID"
+        },
+        {
+          "info": {
+            "name": "Delete an ingest by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.millicast.com/api/ingests/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Ingest ID"
+              }
+            ]
+          },
+          "docs": "Delete an ingest by ID"
+        },
+        {
+          "info": {
+            "name": "Get engines of an ingest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/ingests/:id/engines",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Ingest ID"
+              }
+            ]
+          },
+          "docs": "Get engines of an ingest"
+        },
+        {
+          "info": {
+            "name": "Create an engine for an ingest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/ingests/:id/engines",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Ingest ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an engine for an ingest"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

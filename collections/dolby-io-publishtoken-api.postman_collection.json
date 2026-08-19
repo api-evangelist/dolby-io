@@ -1,0 +1,606 @@
+{
+  "item": [
+    {
+      "id": "8ba7e473-fe90-4e43-965b-e1d1633a310c",
+      "name": "PublishToken",
+      "description": {
+        "content": "Create and manage publish (broadcaster) tokens.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7a2c3cd5-0228-414f-b5fe-cc5c87a63d40",
+          "name": "Create Publish Token",
+          "request": {
+            "name": "Create Publish Token",
+            "description": {
+              "content": "Create a new publish token bound to one or more stream names. Tokens may include geo restrictions, allowed origins, and recording configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "publish_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"streams\": [\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"record\": false,\n  \"multisource\": false,\n  \"enableThumbnails\": false,\n  \"expiresOn\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15990bf2-5178-4852-ae86-173b6ec06210",
+              "name": "Publish token created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"streams\": [\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"<string>\",\n      \"isRegex\": false\n    }\n  ],\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"record\": false,\n  \"multisource\": false,\n  \"enableThumbnails\": false,\n  \"expiresOn\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6002,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"2004-06-17T08:22:16.803Z\",\n  \"expiresOn\": \"1983-10-18T09:59:21.321Z\",\n  \"isActive\": true,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": true\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"originCluster\": \"string\",\n  \"record\": false,\n  \"multisource\": false,\n  \"enableThumbnails\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bffc9cf0-0d2e-4ba3-aa99-616c95b9a52d",
+          "name": "List Publish Tokens",
+          "request": {
+            "name": "List Publish Tokens",
+            "description": {},
+            "url": {
+              "path": [
+                "publish_token",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "itemsOnPage",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "736a6bd0-9e3e-43c9-8c60-f12e673042ec",
+              "name": "Page of publish tokens",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "itemsOnPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7662,\n    \"label\": \"string\",\n    \"token\": \"string\",\n    \"addedOn\": \"2007-11-24T01:21:49.334Z\",\n    \"expiresOn\": \"1998-03-08T20:34:54.588Z\",\n    \"isActive\": false,\n    \"streams\": [\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": false\n      },\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": true\n      }\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"originCluster\": \"string\",\n    \"record\": true,\n    \"multisource\": true,\n    \"enableThumbnails\": false\n  },\n  {\n    \"id\": 1211,\n    \"label\": \"string\",\n    \"token\": \"string\",\n    \"addedOn\": \"2019-10-23T06:20:07.808Z\",\n    \"expiresOn\": \"2002-04-11T07:11:54.826Z\",\n    \"isActive\": false,\n    \"streams\": [\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": true\n      },\n      {\n        \"streamName\": \"string\",\n        \"isRegex\": false\n      }\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"originCluster\": \"string\",\n    \"record\": true,\n    \"multisource\": false,\n    \"enableThumbnails\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3d57f1d-a19d-4c92-b9fc-fa06f03b3bbc",
+          "name": "Get Publish Token",
+          "request": {
+            "name": "Get Publish Token",
+            "description": {},
+            "url": {
+              "path": [
+                "publish_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44d2d9f1-1f54-48e2-b6fe-6731a3c2bda2",
+              "name": "Publish token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6167,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"1987-04-25T04:07:36.336Z\",\n  \"expiresOn\": \"2005-07-04T22:20:19.389Z\",\n  \"isActive\": true,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": true\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"originCluster\": \"string\",\n  \"record\": true,\n  \"multisource\": false,\n  \"enableThumbnails\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83446ccf-cc9c-42b9-a49f-7868457bc94f",
+          "name": "Update Publish Token",
+          "request": {
+            "name": "Update Publish Token",
+            "description": {},
+            "url": {
+              "path": [
+                "publish_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"record\": \"<boolean>\",\n  \"enableThumbnails\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c60cf2c6-5cf5-4944-97ae-c992dcf1b407",
+              "name": "Publish token updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"allowedOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"record\": \"<boolean>\",\n  \"enableThumbnails\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6167,\n  \"label\": \"string\",\n  \"token\": \"string\",\n  \"addedOn\": \"1987-04-25T04:07:36.336Z\",\n  \"expiresOn\": \"2005-07-04T22:20:19.389Z\",\n  \"isActive\": true,\n  \"streams\": [\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": false\n    },\n    {\n      \"streamName\": \"string\",\n      \"isRegex\": true\n    }\n  ],\n  \"allowedOrigins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"originCluster\": \"string\",\n  \"record\": true,\n  \"multisource\": false,\n  \"enableThumbnails\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51f75006-8754-4fd9-9347-080215358687",
+          "name": "Delete Publish Token",
+          "request": {
+            "name": "Delete Publish Token",
+            "description": {},
+            "url": {
+              "path": [
+                "publish_token",
+                ":tokenID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tokenID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77eafd70-a193-4d6e-8fcb-421930b04dca",
+              "name": "Publish token deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token",
+                    ":tokenID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tokenID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22beb7c4-2372-495e-ad59-b915622ee388",
+          "name": "List Active Publish Token IDs",
+          "request": {
+            "name": "List Active Publish Token IDs",
+            "description": {},
+            "url": {
+              "path": [
+                "publish_token",
+                "account",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bda9f80-1ac8-4f29-89a0-b5582bd55924",
+              "name": "Active token IDs for the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publish_token",
+                    "account",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  9530,\n  1730\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.millicast.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "425e326d-97a0-44db-bc83-d9f4fa00c065",
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders PublishToken API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io\nReal-time Streaming) — publish/subscribe tokens, recordings, transcoders,\nencoder profiles, clusters, analytics, and webhooks. All requests are\nauthenticated with a Bearer API Secret created in the streaming dashboard\n(Settings -> Security -> API Secrets).\n\n\nContact Support:\n Name: Dolby OptiView Support",
+      "type": "text/plain"
+    }
+  }
+}

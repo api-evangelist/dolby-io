@@ -1,0 +1,116 @@
+{
+  "item": [
+    {
+      "id": "6c214aa7-04f9-4929-ad55-193bf3152b4f",
+      "name": "ABR Ladders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "70008836-19e4-4aa9-9fd1-c665a78f3128",
+          "name": "Get all ABR ladders for your organization",
+          "request": {
+            "name": "Get all ABR ladders for your organization",
+            "description": {},
+            "url": {
+              "path": [
+                "abr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d063ddac-aaef-4f20-8a8d-445ff6eb6815",
+              "name": "List of ABR ladders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "abr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"video\": [\n        {\n          \"bitrate\": 5036.5127104185285,\n          \"id\": \"string\",\n          \"label\": \"string\",\n          \"width\": 1127.7108410825576,\n          \"height\": 5262.167603244498,\n          \"frameRate\": {\n            \"scale\": 8288.4998744434,\n            \"value\": 8218.992822140435\n          }\n        },\n        {\n          \"bitrate\": 8266.887770469835,\n          \"id\": \"string\",\n          \"label\": \"string\",\n          \"width\": 4161.060192810525,\n          \"height\": 4143.1997325223965,\n          \"frameRate\": {\n            \"scale\": 7103.5604659112205,\n            \"value\": 5249.514799071876\n          }\n        }\n      ],\n      \"audio\": {\n        \"bitrate\": 8473.4391010208\n      },\n      \"resources\": {\n        \"cpuCores\": 2222.8005388670044,\n        \"memoryMiB\": 2133.5278228976817\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"video\": [\n        {\n          \"bitrate\": 8685.712771836637,\n          \"id\": \"string\",\n          \"label\": \"string\",\n          \"width\": 9866.658105169148,\n          \"height\": 7825.125618343208,\n          \"frameRate\": {\n            \"scale\": 6635.638064736158,\n            \"value\": 2833.9543997333444\n          }\n        },\n        {\n          \"bitrate\": 5950.330846948441,\n          \"id\": \"string\",\n          \"label\": \"string\",\n          \"width\": 9742.849840135772,\n          \"height\": 9685.503072192412,\n          \"frameRate\": {\n            \"scale\": 6095.849019188956,\n            \"value\": 9260.116581248563\n          }\n        }\n      ],\n      \"audio\": {\n        \"bitrate\": 8611.568291400125\n      },\n      \"resources\": {\n        \"cpuCores\": 9510.963529074965,\n        \"memoryMiB\": 454.10404268943296\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.millicast.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8ea5f231-440e-4209-99d0-aa5c51db9c8f",
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io\nReal-time Streaming) — publish/subscribe tokens, recordings, transcoders,\nencoder profiles, clusters, analytics, and webhooks. All requests are\nauthenticated with a Bearer API Secret created in the streaming dashboard\n(Settings -> Security -> API Secrets).\n\n\nContact Support:\n Name: Dolby OptiView Support",
+      "type": "text/plain"
+    }
+  }
+}

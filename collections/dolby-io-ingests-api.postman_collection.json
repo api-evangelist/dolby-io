@@ -1,0 +1,775 @@
+{
+  "item": [
+    {
+      "id": "c9111aeb-97e3-40a9-b5ca-19d43a42569d",
+      "name": "Ingests",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2f1aa109-99a4-40e3-837f-8e6dd4714062",
+          "name": "Get ingests of a channel",
+          "request": {
+            "name": "Get ingests of a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "ingests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "Maximum number of items to return (max 100)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2c06abc-dd1c-4b19-811e-f567f610c8e5",
+              "name": "List of ingests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "ingests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"type\": \"rtmp-push\",\n      \"url\": \"string\",\n      \"streamKey\": \"string\",\n      \"tracks\": {\n        \"audio\": [\n          {\n            \"language\": \"string\",\n            \"label\": \"string\",\n            \"pid\": 8330.725642219326\n          },\n          {\n            \"language\": \"string\",\n            \"label\": \"string\",\n            \"pid\": 5753.280381182616\n          }\n        ]\n      },\n      \"captions\": [\n        {\n          \"channel\": 2658.926192313463,\n          \"language\": \"string\",\n          \"label\": \"string\"\n        },\n        {\n          \"channel\": 2473.062442702113,\n          \"language\": \"string\",\n          \"label\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"type\": \"rtmp-pull\",\n      \"url\": \"string\",\n      \"streamKey\": \"string\",\n      \"tracks\": {\n        \"audio\": [\n          {\n            \"language\": \"string\",\n            \"label\": \"string\",\n            \"pid\": 3752.059883135762\n          },\n          {\n            \"language\": \"string\",\n            \"label\": \"string\",\n            \"pid\": 110.87028208018435\n          }\n        ]\n      },\n      \"captions\": [\n        {\n          \"channel\": 3757.709266806681,\n          \"language\": \"string\",\n          \"label\": \"string\"\n        },\n        {\n          \"channel\": 7493.294420186163,\n          \"language\": \"string\",\n          \"label\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": true,\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc73ca49-e01f-49de-a7c6-bf457a667423",
+          "name": "Create an ingest for a channel",
+          "request": {
+            "name": "Create an ingest for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "ingests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<string>\",\n  \"region\": \"<string>\",\n  \"captions\": [\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"tracks\": {\n    \"audio\": [\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      },\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed34ad42-107d-4125-a9a7-34ed666841e5",
+              "name": "Ingest created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "ingests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<string>\",\n  \"region\": \"<string>\",\n  \"captions\": [\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"tracks\": {\n    \"audio\": [\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      },\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"string\",\n    \"type\": \"rtmp-pull\",\n    \"url\": \"string\",\n    \"streamKey\": \"string\",\n    \"tracks\": {\n      \"audio\": [\n        {\n          \"language\": \"string\",\n          \"label\": \"string\",\n          \"pid\": 5207.962941056044\n        },\n        {\n          \"language\": \"string\",\n          \"label\": \"string\",\n          \"pid\": 1335.0240661319513\n        }\n      ]\n    },\n    \"captions\": [\n      {\n        \"channel\": 8713.939562697435,\n        \"language\": \"string\",\n        \"label\": \"string\"\n      },\n      {\n        \"channel\": 9082.575082331176,\n        \"language\": \"string\",\n        \"label\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d35c387-a191-44a7-9c4e-92cf8fdfde27",
+          "name": "Get an ingest by ID",
+          "request": {
+            "name": "Get an ingest by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "ingests",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Ingest ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a17467d9-78f6-4242-ae93-a8e574616084",
+              "name": "The requested ingest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ingests",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Ingest ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"string\",\n    \"type\": \"rtmp-pull\",\n    \"url\": \"string\",\n    \"streamKey\": \"string\",\n    \"tracks\": {\n      \"audio\": [\n        {\n          \"language\": \"string\",\n          \"label\": \"string\",\n          \"pid\": 5207.962941056044\n        },\n        {\n          \"language\": \"string\",\n          \"label\": \"string\",\n          \"pid\": 1335.0240661319513\n        }\n      ]\n    },\n    \"captions\": [\n      {\n        \"channel\": 8713.939562697435,\n        \"language\": \"string\",\n        \"label\": \"string\"\n      },\n      {\n        \"channel\": 9082.575082331176,\n        \"language\": \"string\",\n        \"label\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc764a87-068e-4d21-86ab-ca094796f258",
+          "name": "Update an ingest by ID",
+          "request": {
+            "name": "Update an ingest by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "ingests",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Ingest ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<string>\",\n  \"region\": \"<string>\",\n  \"captions\": [\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"tracks\": {\n    \"audio\": [\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      },\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      }\n    ]\n  },\n  \"sdi\": {\n    \"persistentId\": \"<number>\",\n    \"deviceNumber\": \"<number>\",\n    \"audioConnection\": \"<string>\",\n    \"videoConnection\": \"<string>\",\n    \"videoMode\": \"<string>\",\n    \"profile\": \"<string>\",\n    \"videoFormat\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb5b4fbb-0aab-4044-99e3-375b015a1fa1",
+              "name": "Updated ingest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ingests",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Ingest ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<string>\",\n  \"region\": \"<string>\",\n  \"captions\": [\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    },\n    {\n      \"channel\": \"<number>\",\n      \"language\": \"<string>\",\n      \"label\": \"<string>\"\n    }\n  ],\n  \"tracks\": {\n    \"audio\": [\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      },\n      {\n        \"language\": \"<string>\",\n        \"label\": \"<string>\",\n        \"pid\": \"<number>\"\n      }\n    ]\n  },\n  \"sdi\": {\n    \"persistentId\": \"<number>\",\n    \"deviceNumber\": \"<number>\",\n    \"audioConnection\": \"<string>\",\n    \"videoConnection\": \"<string>\",\n    \"videoMode\": \"<string>\",\n    \"profile\": \"<string>\",\n    \"videoFormat\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"string\",\n    \"type\": \"rtmp-pull\",\n    \"url\": \"string\",\n    \"streamKey\": \"string\",\n    \"tracks\": {\n      \"audio\": [\n        {\n          \"language\": \"string\",\n          \"label\": \"string\",\n          \"pid\": 5207.962941056044\n        },\n        {\n          \"language\": \"string\",\n          \"label\": \"string\",\n          \"pid\": 1335.0240661319513\n        }\n      ]\n    },\n    \"captions\": [\n      {\n        \"channel\": 8713.939562697435,\n        \"language\": \"string\",\n        \"label\": \"string\"\n      },\n      {\n        \"channel\": 9082.575082331176,\n        \"language\": \"string\",\n        \"label\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd968332-85a4-443b-a2f8-81db5a24b2e4",
+          "name": "Delete an ingest by ID",
+          "request": {
+            "name": "Delete an ingest by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "ingests",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Ingest ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88dc15cc-794c-45ca-aa61-b497bfc9de72",
+              "name": "Empty response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ingests",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Ingest ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ea32321-c840-451d-acdf-4061c8db5131",
+          "name": "Get engines of an ingest",
+          "request": {
+            "name": "Get engines of an ingest",
+            "description": {},
+            "url": {
+              "path": [
+                "ingests",
+                ":id",
+                "engines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Ingest ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53280b20-8be5-4c2a-8bbf-74ddf2c0fc4d",
+              "name": "List of engines",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ingests",
+                    ":id",
+                    "engines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Ingest ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"quality\": {\n        \"abrLadderId\": \"string\"\n      },\n      \"overlays\": [\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 3969,\n            \"bottom\": 5713,\n            \"left\": 9441,\n            \"right\": 8123\n          },\n          \"size\": {\n            \"width\": 9674,\n            \"height\": 4787\n          },\n          \"opacity\": 0.4938579719209135\n        },\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 3348,\n            \"bottom\": 3239,\n            \"left\": 1000,\n            \"right\": 7749\n          },\n          \"size\": {\n            \"width\": 3428,\n            \"height\": 2817\n          },\n          \"opacity\": 0.07055434309948905\n        }\n      ],\n      \"drm\": true,\n      \"priority\": 1723.3450511049032,\n      \"status\": \"deleted\",\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"daiAssetKey\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"quality\": {\n        \"abrLadderId\": \"string\"\n      },\n      \"overlays\": [\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 30,\n            \"bottom\": 3816,\n            \"left\": 3245,\n            \"right\": 6344\n          },\n          \"size\": {\n            \"width\": 5466,\n            \"height\": 1760\n          },\n          \"opacity\": 0.4257275865344249\n        },\n        {\n          \"url\": \"string\",\n          \"position\": {\n            \"top\": 3612,\n            \"bottom\": 2032,\n            \"left\": 9419,\n            \"right\": 2068\n          },\n          \"size\": {\n            \"width\": 1160,\n            \"height\": 6664\n          },\n          \"opacity\": 0.6466898683348326\n        }\n      ],\n      \"drm\": true,\n      \"priority\": 8038.899534898694,\n      \"status\": \"ingesting\",\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"daiAssetKey\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": true,\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "512a8526-2c41-4657-8175-a72e6ceddbdc",
+          "name": "Create an engine for an ingest",
+          "request": {
+            "name": "Create an engine for an ingest",
+            "description": {},
+            "url": {
+              "path": [
+                "ingests",
+                ":id",
+                "engines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Ingest ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"region\": \"<string>\",\n  \"quality\": {\n    \"abrLadderId\": \"<string>\"\n  },\n  \"ingestId\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"drm\": \"<boolean>\",\n  \"daiAssetKey\": \"<string>\",\n  \"overlays\": [\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    }\n  ],\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ffc50250-1c00-4bb1-a27a-d887c23aa45b",
+              "name": "Engine created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ingests",
+                    ":id",
+                    "engines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Ingest ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"region\": \"<string>\",\n  \"quality\": {\n    \"abrLadderId\": \"<string>\"\n  },\n  \"ingestId\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"drm\": \"<boolean>\",\n  \"daiAssetKey\": \"<string>\",\n  \"overlays\": [\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"position\": {\n        \"top\": \"<integer>\",\n        \"bottom\": \"<integer>\",\n        \"left\": \"<integer>\",\n        \"right\": \"<integer>\"\n      },\n      \"size\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      },\n      \"opacity\": \"<number>\"\n    }\n  ],\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"quality\": {\n      \"abrLadderId\": \"string\"\n    },\n    \"overlays\": [\n      {\n        \"url\": \"string\",\n        \"position\": {\n          \"top\": 8934,\n          \"bottom\": 1600,\n          \"left\": 5510,\n          \"right\": 6330\n        },\n        \"size\": {\n          \"width\": 1542,\n          \"height\": 3672\n        },\n        \"opacity\": 0.03854403969540465\n      },\n      {\n        \"url\": \"string\",\n        \"position\": {\n          \"top\": 9453,\n          \"bottom\": 7397,\n          \"left\": 9286,\n          \"right\": 4703\n        },\n        \"size\": {\n          \"width\": 791,\n          \"height\": 161\n        },\n        \"opacity\": 0.3453730139894057\n      }\n    ],\n    \"drm\": true,\n    \"priority\": 7919.289074063034,\n    \"status\": \"stopped\",\n    \"outputs\": {\n      \"hesp\": true,\n      \"hls\": true,\n      \"hlsMpegTs\": false\n    },\n    \"daiAssetKey\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.millicast.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2f0e2e29-1e0a-4dc7-ade2-a789f34b7b74",
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders Ingests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io\nReal-time Streaming) — publish/subscribe tokens, recordings, transcoders,\nencoder profiles, clusters, analytics, and webhooks. All requests are\nauthenticated with a Bearer API Secret created in the streaming dashboard\n(Settings -> Security -> API Secrets).\n\n\nContact Support:\n Name: Dolby OptiView Support",
+      "type": "text/plain"
+    }
+  }
+}

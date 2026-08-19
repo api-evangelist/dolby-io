@@ -1,0 +1,973 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders Channels API",
+    "version": "2026.05"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by external ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of channels to return (max 100)"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by channel name"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search channels based on ID or name"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of statuses to filter by"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by channel ID"
+              }
+            ]
+          },
+          "docs": "Get all channels"
+        },
+        {
+          "info": {
+            "name": "Create a new channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/channels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new channel"
+        },
+        {
+          "info": {
+            "name": "Get a channel by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of related resources to include. Valid values: ingests, distributions, engines"
+              }
+            ]
+          },
+          "docs": "Get a channel by ID"
+        },
+        {
+          "info": {
+            "name": "Update a channel by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.millicast.com/api/channels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a channel by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a channel by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.millicast.com/api/channels/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "Delete a channel by ID"
+        },
+        {
+          "info": {
+            "name": "Start a channel (will start all connected engines)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/channels/:id/start",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "Start a channel (will start all connected engines)"
+        },
+        {
+          "info": {
+            "name": "Stop a channel (will stop all connected engines)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/channels/:id/stop",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "Stop a channel (will stop all connected engines)"
+        },
+        {
+          "info": {
+            "name": "Get ingests of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/ingests",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (max 100)"
+              }
+            ]
+          },
+          "docs": "Get ingests of a channel"
+        },
+        {
+          "info": {
+            "name": "Create an ingest for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/channels/:id/ingests",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an ingest for a channel"
+        },
+        {
+          "info": {
+            "name": "Get engines of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/engines",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (max 100)"
+              }
+            ]
+          },
+          "docs": "Get engines of a channel"
+        },
+        {
+          "info": {
+            "name": "Create an engine for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/channels/:id/engines",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an engine for a channel"
+        },
+        {
+          "info": {
+            "name": "Get distributions of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/distributions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (max 100)"
+              }
+            ]
+          },
+          "docs": "Get distributions of a channel"
+        },
+        {
+          "info": {
+            "name": "Create a distribution for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/channels/:id/distributions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a distribution for a channel"
+        },
+        {
+          "info": {
+            "name": "Send instream metadata for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/channels/:id/instream-metadata/:uuid",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Instream metadata UUID"
+              }
+            ]
+          },
+          "docs": "Send instream metadata for a channel"
+        },
+        {
+          "info": {
+            "name": "Get engine runs of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/runs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of runs to return"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Filter runs starting after this timestamp"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "Filter runs ending before this timestamp"
+              },
+              {
+                "name": "engineIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of engine IDs to filter by"
+              }
+            ]
+          },
+          "docs": "Get engine runs of a channel"
+        },
+        {
+          "info": {
+            "name": "Get transcoding minutes analytics for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/analytics/transcoding-minutes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Group results by engine or channel"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Time resolution for the analytics data"
+              },
+              {
+                "name": "engineIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of engine IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get transcoding minutes analytics for a channel"
+        },
+        {
+          "info": {
+            "name": "Get viewing minutes analytics for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/analytics/viewing-minutes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Group results by channel, distribution, or streaming format"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Time resolution for the analytics data"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get viewing minutes analytics for a channel"
+        },
+        {
+          "info": {
+            "name": "Get bytes transferred analytics for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/analytics/bytes-transferred",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Group results by channel, distribution, or streaming format"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Time resolution for the analytics data"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get bytes transferred analytics for a channel"
+        },
+        {
+          "info": {
+            "name": "Get viewing minutes grouped by browser for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/analytics/viewing-minutes/browsers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get viewing minutes grouped by browser for a channel"
+        },
+        {
+          "info": {
+            "name": "Get viewing minutes grouped by country for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/analytics/viewing-minutes/countries",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get viewing minutes grouped by country for a channel"
+        },
+        {
+          "info": {
+            "name": "Get bytes transferred grouped by browser for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/analytics/bytes-transferred/browsers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get bytes transferred grouped by browser for a channel"
+        },
+        {
+          "info": {
+            "name": "Get bytes transferred grouped by country for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/analytics/bytes-transferred/countries",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the analytics period"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the analytics period"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "utcOffset",
+                "value": "",
+                "type": "query",
+                "description": "UTC offset in minutes"
+              }
+            ]
+          },
+          "docs": "Get bytes transferred grouped by country for a channel"
+        },
+        {
+          "info": {
+            "name": "Get country insights for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/analytics/insights/countries",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Time period for the insights"
+              },
+              {
+                "name": "channelIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of channel IDs to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              }
+            ]
+          },
+          "docs": "Data is only available for the last 30 days."
+        },
+        {
+          "info": {
+            "name": "Get browser and OS insights for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/analytics/insights/browsers-os",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Time period for the insights"
+              },
+              {
+                "name": "channelIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of channel IDs to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              }
+            ]
+          },
+          "docs": "Data is only available for the last 30 days."
+        },
+        {
+          "info": {
+            "name": "Get viewer count insights for a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/analytics/insights/viewers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Time period for the insights"
+              },
+              {
+                "name": "channelIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of channel IDs to filter by"
+              },
+              {
+                "name": "distributionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of distribution IDs to filter by"
+              },
+              {
+                "name": "streamingFormats",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of streaming formats to filter by"
+              }
+            ]
+          },
+          "docs": "Data is only available for the last 30 days."
+        },
+        {
+          "info": {
+            "name": "List all custom endpoints of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.millicast.com/api/channels/:id/custom-endpoints",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ]
+          },
+          "docs": "List all custom endpoints of a channel"
+        },
+        {
+          "info": {
+            "name": "Create a custom endpoint on a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.millicast.com/api/channels/:id/custom-endpoints",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Channel ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a custom endpoint on a channel"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

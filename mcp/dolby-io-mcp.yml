@@ -1,66 +1,164 @@
 generated: '2026-06-20'
 method: derived
 status: candidate
-source: >-
-  openapi/dolby-io-realtime-streaming-api-openapi.yml,
-  openapi/dolby-io-theolive-api-openapi.yml
-notes: >-
-  No official hosted/remote MCP server was found for Dolby OptiView (checked the
-  dolbyio GitHub org, npm @modelcontextprotocol, and the OptiView docs). The
-  tools below are a CANDIDATE surface derived one-to-one from the published
-  OpenAPI operationIds, to seed a future MCP server. Not published by Dolby.
+source: openapi/dolby-io-realtime-streaming-api-openapi.yml, openapi/dolby-io-theolive-api-openapi.yml
+notes: No official hosted/remote MCP server was found for Dolby OptiView (checked the dolbyio GitHub org,
+  npm @modelcontextprotocol, and the OptiView docs). The tools below are a CANDIDATE surface derived one-to-one
+  from the published OpenAPI operationIds, to seed a future MCP server. Not published by Dolby.
 server:
   name: dolby-io
   transport: http
 tools:
-  # Real-time Streaming (Millicast) API
-  - {name: createPublishToken, description: Create a publish (broadcaster) token, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#createPublishToken'}
-  - {name: listPublishTokens, description: List publish tokens, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#listPublishTokens'}
-  - {name: getPublishToken, description: Get a publish token, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#getPublishToken'}
-  - {name: updatePublishToken, description: Update a publish token, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#updatePublishToken'}
-  - {name: deletePublishToken, description: Delete a publish token, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#deletePublishToken'}
-  - {name: listActivePublishTokenIds, description: List active publish token IDs, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#listActivePublishTokenIds'}
-  - {name: createSubscribeToken, description: Create a subscribe (viewer) token, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#createSubscribeToken'}
-  - {name: listSubscribeTokens, description: List subscribe tokens, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#listSubscribeTokens'}
-  - {name: getSubscribeToken, description: Get a subscribe token, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#getSubscribeToken'}
-  - {name: updateSubscribeToken, description: Update a subscribe token, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#updateSubscribeToken'}
-  - {name: deleteSubscribeToken, description: Delete a subscribe token, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#deleteSubscribeToken'}
-  - {name: listWebhooks, description: List webhooks, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#listWebhooks'}
-  - {name: createWebhook, description: Create a webhook, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#createWebhook'}
-  - {name: deleteWebhook, description: Delete a webhook, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#deleteWebhook'}
-  - {name: getAnalyticsTrackingTotal, description: Get account analytics tracking totals, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#getAnalyticsTrackingTotal'}
-  - {name: getCluster, description: Get region-specific cluster URLs, source_operation: 'openapi/dolby-io-realtime-streaming-api-openapi.yml#getCluster'}
-  # THEOlive (OptiView Live) API
-  - {name: get-channels, description: List channels, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-channels'}
-  - {name: create-channel, description: Create a channel, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#create-channel'}
-  - {name: get-channel, description: Get a channel, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-channel'}
-  - {name: update-channel, description: Update a channel, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#update-channel'}
-  - {name: delete-channel, description: Delete a channel, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#delete-channel'}
-  - {name: start-channel, description: Start a channel, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#start-channel'}
-  - {name: stop-channel, description: Stop a channel, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#stop-channel'}
-  - {name: get-channel-ingests, description: List a channel's ingests, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-channel-ingests'}
-  - {name: create-channel-ingest, description: Create a channel ingest, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#create-channel-ingest'}
-  - {name: get-channel-engines, description: List a channel's engines, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-channel-engines'}
-  - {name: create-channel-engine, description: Create a channel engine, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#create-channel-engine'}
-  - {name: get-channel-distributions, description: List a channel's distributions, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-channel-distributions'}
-  - {name: create-channel-distribution, description: Create a channel distribution, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#create-channel-distribution'}
-  - {name: send-channel-instream-metadata, description: Send in-stream metadata to a channel, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#send-channel-instream-metadata'}
-  - {name: get-channel-runs, description: List a channel's runs, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-channel-runs'}
-  - {name: get-ingest, description: Get an ingest, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-ingest'}
-  - {name: update-ingest, description: Update an ingest, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#update-ingest'}
-  - {name: delete-ingest, description: Delete an ingest, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#delete-ingest'}
-  - {name: get-engine, description: Get an engine, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-engine'}
-  - {name: update-engine, description: Update an engine, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#update-engine'}
-  - {name: delete-engine, description: Delete an engine, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#delete-engine'}
-  - {name: start-engine, description: Start an engine, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#start-engine'}
-  - {name: stop-engine, description: Stop an engine, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#stop-engine'}
-  - {name: get-engine-last-run, description: Get an engine's last run, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-engine-last-run'}
-  - {name: get-distribution, description: Get a distribution, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-distribution'}
-  - {name: update-distribution, description: Update a distribution, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#update-distribution'}
-  - {name: delete-distribution, description: Delete a distribution, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#delete-distribution'}
-  - {name: create-distribution-security-key, description: Create a distribution security key, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#create-distribution-security-key'}
-  - {name: get-regions, description: List regions, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-regions'}
-  - {name: get-webhooks, description: List webhooks, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-webhooks'}
-  - {name: create-webhook, description: Create a webhook, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#create-webhook'}
-  - {name: get-webhook-secret, description: Get a webhook signing secret, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-webhook-secret'}
-  - {name: get-webhook-logs, description: Get webhook delivery logs, source_operation: 'openapi/dolby-io-theolive-api-openapi.yml#get-webhook-logs'}
+- name: createPublishToken
+  description: Create a publish (broadcaster) token
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#createPublishToken
+- name: listPublishTokens
+  description: List publish tokens
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#listPublishTokens
+- name: getPublishToken
+  description: Get a publish token
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#getPublishToken
+- name: updatePublishToken
+  description: Update a publish token
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#updatePublishToken
+- name: deletePublishToken
+  description: Delete a publish token
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#deletePublishToken
+- name: listActivePublishTokenIds
+  description: List active publish token IDs
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#listActivePublishTokenIds
+- name: createSubscribeToken
+  description: Create a subscribe (viewer) token
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#createSubscribeToken
+- name: listSubscribeTokens
+  description: List subscribe tokens
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#listSubscribeTokens
+- name: getSubscribeToken
+  description: Get a subscribe token
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#getSubscribeToken
+- name: updateSubscribeToken
+  description: Update a subscribe token
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#updateSubscribeToken
+- name: deleteSubscribeToken
+  description: Delete a subscribe token
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#deleteSubscribeToken
+- name: listWebhooks
+  description: List webhooks
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#listWebhooks
+- name: createWebhook
+  description: Create a webhook
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#createWebhook
+- name: deleteWebhook
+  description: Delete a webhook
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#deleteWebhook
+- name: getAnalyticsTrackingTotal
+  description: Get account analytics tracking totals
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#getAnalyticsTrackingTotal
+- name: getCluster
+  description: Get region-specific cluster URLs
+  source_operation: openapi/dolby-io-realtime-streaming-api-openapi.yml#getCluster
+- name: get-channels
+  description: List channels
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-channels
+- name: create-channel
+  description: Create a channel
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#create-channel
+- name: get-channel
+  description: Get a channel
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-channel
+- name: update-channel
+  description: Update a channel
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#update-channel
+- name: delete-channel
+  description: Delete a channel
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#delete-channel
+- name: start-channel
+  description: Start a channel
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#start-channel
+- name: stop-channel
+  description: Stop a channel
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#stop-channel
+- name: get-channel-ingests
+  description: List a channel's ingests
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-channel-ingests
+- name: create-channel-ingest
+  description: Create a channel ingest
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#create-channel-ingest
+- name: get-channel-engines
+  description: List a channel's engines
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-channel-engines
+- name: create-channel-engine
+  description: Create a channel engine
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#create-channel-engine
+- name: get-channel-distributions
+  description: List a channel's distributions
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-channel-distributions
+- name: create-channel-distribution
+  description: Create a channel distribution
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#create-channel-distribution
+- name: send-channel-instream-metadata
+  description: Send in-stream metadata to a channel
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#send-channel-instream-metadata
+- name: get-channel-runs
+  description: List a channel's runs
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-channel-runs
+- name: get-ingest
+  description: Get an ingest
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-ingest
+- name: update-ingest
+  description: Update an ingest
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#update-ingest
+- name: delete-ingest
+  description: Delete an ingest
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#delete-ingest
+- name: get-engine
+  description: Get an engine
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-engine
+- name: update-engine
+  description: Update an engine
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#update-engine
+- name: delete-engine
+  description: Delete an engine
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#delete-engine
+- name: start-engine
+  description: Start an engine
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#start-engine
+- name: stop-engine
+  description: Stop an engine
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#stop-engine
+- name: get-engine-last-run
+  description: Get an engine's last run
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-engine-last-run
+- name: get-distribution
+  description: Get a distribution
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-distribution
+- name: update-distribution
+  description: Update a distribution
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#update-distribution
+- name: delete-distribution
+  description: Delete a distribution
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#delete-distribution
+- name: create-distribution-security-key
+  description: Create a distribution security key
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#create-distribution-security-key
+- name: get-regions
+  description: List regions
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-regions
+- name: get-webhooks
+  description: List webhooks
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-webhooks
+- name: create-webhook
+  description: Create a webhook
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#create-webhook
+- name: get-webhook-secret
+  description: Get a webhook signing secret
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-webhook-secret
+- name: get-webhook-logs
+  description: Get webhook delivery logs
+  source_operation: openapi/dolby-io-theolive-api-openapi.yml#get-webhook-logs
+deployment:
+  mode: none
+  verified: derived
+  tools: 49
+  checked: '2026-08-12'
+  source: catalog MCP census

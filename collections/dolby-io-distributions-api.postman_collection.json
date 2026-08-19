@@ -1,0 +1,2446 @@
+{
+  "item": [
+    {
+      "id": "ceb72d09-fbfa-4839-bdff-1e53334ae2e7",
+      "name": "Distributions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "774a9b5a-bb3e-4f04-843c-74fca00e530e",
+          "name": "Get distributions of a channel",
+          "request": {
+            "name": "Get distributions of a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "distributions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "Maximum number of items to return (max 100)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fed14765-d871-48c8-baa5-ef969b4d5643",
+              "name": "List of distributions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "distributions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"name\": \"string\",\n      \"enabled\": true,\n      \"security\": {\n        \"geoBlocking\": {\n          \"enabled\": false,\n          \"mode\": \"allow\",\n          \"countries\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"ipBlocking\": {\n          \"enabled\": true,\n          \"mode\": \"allow\",\n          \"cidrs\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"keys\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"refererBlocking\": {\n          \"enabled\": true,\n          \"allowedDomains\": [\n            \"string\",\n            \"string\"\n          ],\n          \"allowNativeApps\": true\n        }\n      },\n      \"endpoints\": {\n        \"engineIds\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"dvr\": {\n        \"enabled\": false\n      },\n      \"externalId\": \"string\",\n      \"targetLatency\": 2404.2331646910775,\n      \"webRtc\": {\n        \"priority\": 3098.8940479390612,\n        \"src\": {\n          \"name\": \"string\",\n          \"accountId\": \"string\",\n          \"apiUrl\": \"string\"\n        }\n      },\n      \"maxBitrate\": 5981.52513595565,\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"overrides\": [\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 63.980891658913784\n            },\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 91.53146338768207\n            }\n          ],\n          \"deviceType\": \"other\",\n          \"sdkType\": null,\n          \"osName\": \"other\",\n          \"profileId\": \"string\"\n        },\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 18.758244752015184\n            },\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 10.850754651863392\n            }\n          ],\n          \"deviceType\": \"other\",\n          \"sdkType\": \"web\",\n          \"osName\": null,\n          \"profileId\": \"string\"\n        }\n      ],\n      \"customEndpoints\": [\n        {\n          \"customEndpointId\": \"string\",\n          \"weight\": 8618.617407304933\n        },\n        {\n          \"customEndpointId\": \"string\",\n          \"weight\": 202.57477088998056\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"name\": \"string\",\n      \"enabled\": true,\n      \"security\": {\n        \"geoBlocking\": {\n          \"enabled\": true,\n          \"mode\": \"allow\",\n          \"countries\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"ipBlocking\": {\n          \"enabled\": false,\n          \"mode\": \"deny\",\n          \"cidrs\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"keys\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"refererBlocking\": {\n          \"enabled\": false,\n          \"allowedDomains\": [\n            \"string\",\n            \"string\"\n          ],\n          \"allowNativeApps\": false\n        }\n      },\n      \"endpoints\": {\n        \"engineIds\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"dvr\": {\n        \"enabled\": true\n      },\n      \"externalId\": \"string\",\n      \"targetLatency\": 3216.683574706112,\n      \"webRtc\": {\n        \"priority\": 7921.304464520429,\n        \"src\": {\n          \"name\": \"string\",\n          \"accountId\": \"string\",\n          \"apiUrl\": \"string\"\n        }\n      },\n      \"maxBitrate\": 9850.290638861778,\n      \"outputs\": {\n        \"hesp\": true,\n        \"hls\": true,\n        \"hlsMpegTs\": false\n      },\n      \"overrides\": [\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 11.857938870651608\n            },\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 20.08767814146436\n            }\n          ],\n          \"deviceType\": \"tv\",\n          \"sdkType\": \"native\",\n          \"osName\": \"roku\",\n          \"profileId\": \"string\"\n        },\n        {\n          \"targets\": [\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 21.68242777188133\n            },\n            {\n              \"distributionId\": \"string\",\n              \"weight\": 51.32566568584102\n            }\n          ],\n          \"deviceType\": null,\n          \"sdkType\": null,\n          \"osName\": \"roku\",\n          \"profileId\": \"string\"\n        }\n      ],\n      \"customEndpoints\": [\n        {\n          \"customEndpointId\": \"string\",\n          \"weight\": 4096.997201487805\n        },\n        {\n          \"customEndpointId\": \"string\",\n          \"weight\": 812.1785413246018\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": true,\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4461bbc9-374f-4b45-b8ac-635860e9d3aa",
+          "name": "Create a distribution for a channel",
+          "request": {
+            "name": "Create a distribution for a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":id",
+                "distributions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Channel ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"targetLatency\": \"<number>\",\n  \"security\": {\n    \"geoBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"ipBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"cidrs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"refererBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"allowedDomains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowNativeApps\": \"<boolean>\"\n    },\n    \"keys\": [\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"endpoints\": {\n    \"engineIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"webRtc\": {\n    \"priority\": \"<number>\",\n    \"src\": {\n      \"name\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"apiUrl\": \"<string>\"\n    }\n  },\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  },\n  \"maxBitrate\": \"<number>\",\n  \"dvr\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"overrides\": [\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    },\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    }\n  ],\n  \"customEndpoints\": [\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    },\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f5d6ef5c-469b-4504-8133-842f6a225a6e",
+              "name": "Distribution created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":id",
+                    "distributions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Channel ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"targetLatency\": \"<number>\",\n  \"security\": {\n    \"geoBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"ipBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"cidrs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"refererBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"allowedDomains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowNativeApps\": \"<boolean>\"\n    },\n    \"keys\": [\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"endpoints\": {\n    \"engineIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"webRtc\": {\n    \"priority\": \"<number>\",\n    \"src\": {\n      \"name\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"apiUrl\": \"<string>\"\n    }\n  },\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  },\n  \"maxBitrate\": \"<number>\",\n  \"dvr\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"overrides\": [\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    },\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    }\n  ],\n  \"customEndpoints\": [\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    },\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"name\": \"string\",\n    \"enabled\": false,\n    \"security\": {\n      \"geoBlocking\": {\n        \"enabled\": true,\n        \"mode\": \"allow\",\n        \"countries\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"ipBlocking\": {\n        \"enabled\": false,\n        \"mode\": \"allow\",\n        \"cidrs\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"keys\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"refererBlocking\": {\n        \"enabled\": true,\n        \"allowedDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"allowNativeApps\": true\n      }\n    },\n    \"endpoints\": {\n      \"engineIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"dvr\": {\n      \"enabled\": true\n    },\n    \"externalId\": \"string\",\n    \"targetLatency\": 4417.275335979809,\n    \"webRtc\": {\n      \"priority\": 7555.225061170763,\n      \"src\": {\n        \"name\": \"string\",\n        \"accountId\": \"string\",\n        \"apiUrl\": \"string\"\n      }\n    },\n    \"maxBitrate\": 4552.663611791775,\n    \"outputs\": {\n      \"hesp\": true,\n      \"hls\": true,\n      \"hlsMpegTs\": false\n    },\n    \"overrides\": [\n      {\n        \"targets\": [\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 36.824167710329604\n          },\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 66.1323695077981\n          }\n        ],\n        \"deviceType\": null,\n        \"sdkType\": \"native\",\n        \"osName\": \"other\",\n        \"profileId\": \"string\"\n      },\n      {\n        \"targets\": [\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 44.277065126152095\n          },\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 19.928264535339835\n          }\n        ],\n        \"deviceType\": \"desktop\",\n        \"sdkType\": null,\n        \"osName\": \"other\",\n        \"profileId\": \"string\"\n      }\n    ],\n    \"customEndpoints\": [\n      {\n        \"customEndpointId\": \"string\",\n        \"weight\": 7262.9719207002\n      },\n      {\n        \"customEndpointId\": \"string\",\n        \"weight\": 4466.836490024443\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f3f3f2e-8cd4-4da7-b460-69c379a44cf3",
+          "name": "Get a distribution by ID",
+          "request": {
+            "name": "Get a distribution by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5cd86b90-df1b-48f0-943c-6070ad1336e3",
+              "name": "The requested distribution",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"name\": \"string\",\n    \"enabled\": false,\n    \"security\": {\n      \"geoBlocking\": {\n        \"enabled\": true,\n        \"mode\": \"allow\",\n        \"countries\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"ipBlocking\": {\n        \"enabled\": false,\n        \"mode\": \"allow\",\n        \"cidrs\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"keys\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"refererBlocking\": {\n        \"enabled\": true,\n        \"allowedDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"allowNativeApps\": true\n      }\n    },\n    \"endpoints\": {\n      \"engineIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"dvr\": {\n      \"enabled\": true\n    },\n    \"externalId\": \"string\",\n    \"targetLatency\": 4417.275335979809,\n    \"webRtc\": {\n      \"priority\": 7555.225061170763,\n      \"src\": {\n        \"name\": \"string\",\n        \"accountId\": \"string\",\n        \"apiUrl\": \"string\"\n      }\n    },\n    \"maxBitrate\": 4552.663611791775,\n    \"outputs\": {\n      \"hesp\": true,\n      \"hls\": true,\n      \"hlsMpegTs\": false\n    },\n    \"overrides\": [\n      {\n        \"targets\": [\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 36.824167710329604\n          },\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 66.1323695077981\n          }\n        ],\n        \"deviceType\": null,\n        \"sdkType\": \"native\",\n        \"osName\": \"other\",\n        \"profileId\": \"string\"\n      },\n      {\n        \"targets\": [\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 44.277065126152095\n          },\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 19.928264535339835\n          }\n        ],\n        \"deviceType\": \"desktop\",\n        \"sdkType\": null,\n        \"osName\": \"other\",\n        \"profileId\": \"string\"\n      }\n    ],\n    \"customEndpoints\": [\n      {\n        \"customEndpointId\": \"string\",\n        \"weight\": 7262.9719207002\n      },\n      {\n        \"customEndpointId\": \"string\",\n        \"weight\": 4466.836490024443\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9580feed-bd43-4a42-8fbb-935c2dd33b29",
+          "name": "Update a distribution by ID",
+          "request": {
+            "name": "Update a distribution by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"targetLatency\": \"<number>\",\n  \"security\": {\n    \"geoBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"ipBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"cidrs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"refererBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"allowedDomains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowNativeApps\": \"<boolean>\"\n    },\n    \"keys\": [\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"endpoints\": {\n    \"engineIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"webRtc\": {\n    \"priority\": \"<number>\",\n    \"src\": {\n      \"name\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"apiUrl\": \"<string>\"\n    }\n  },\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  },\n  \"maxBitrate\": \"<number>\",\n  \"dvr\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"overrides\": [\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    },\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    }\n  ],\n  \"customEndpoints\": [\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    },\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f36b409-4405-4237-9f52-029f7a7182a0",
+              "name": "Updated distribution",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"targetLatency\": \"<number>\",\n  \"security\": {\n    \"geoBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"ipBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"mode\": \"<string>\",\n      \"cidrs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"refererBlocking\": {\n      \"enabled\": \"<boolean>\",\n      \"allowedDomains\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowNativeApps\": \"<boolean>\"\n    },\n    \"keys\": [\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"endpoints\": {\n    \"engineIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"webRtc\": {\n    \"priority\": \"<number>\",\n    \"src\": {\n      \"name\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"apiUrl\": \"<string>\"\n    }\n  },\n  \"outputs\": {\n    \"hesp\": true,\n    \"hls\": true,\n    \"hlsMpegTs\": false\n  },\n  \"maxBitrate\": \"<number>\",\n  \"dvr\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"overrides\": [\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    },\n    {\n      \"targets\": [\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"distributionId\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ],\n      \"deviceType\": \"<string>\",\n      \"sdkType\": \"<string>\",\n      \"osName\": \"<string>\",\n      \"profileId\": \"<string>\"\n    }\n  ],\n  \"customEndpoints\": [\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    },\n    {\n      \"customEndpointId\": \"<string>\",\n      \"weight\": 100\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"name\": \"string\",\n    \"enabled\": false,\n    \"security\": {\n      \"geoBlocking\": {\n        \"enabled\": true,\n        \"mode\": \"allow\",\n        \"countries\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"ipBlocking\": {\n        \"enabled\": false,\n        \"mode\": \"allow\",\n        \"cidrs\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"keys\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"refererBlocking\": {\n        \"enabled\": true,\n        \"allowedDomains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"allowNativeApps\": true\n      }\n    },\n    \"endpoints\": {\n      \"engineIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"dvr\": {\n      \"enabled\": true\n    },\n    \"externalId\": \"string\",\n    \"targetLatency\": 4417.275335979809,\n    \"webRtc\": {\n      \"priority\": 7555.225061170763,\n      \"src\": {\n        \"name\": \"string\",\n        \"accountId\": \"string\",\n        \"apiUrl\": \"string\"\n      }\n    },\n    \"maxBitrate\": 4552.663611791775,\n    \"outputs\": {\n      \"hesp\": true,\n      \"hls\": true,\n      \"hlsMpegTs\": false\n    },\n    \"overrides\": [\n      {\n        \"targets\": [\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 36.824167710329604\n          },\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 66.1323695077981\n          }\n        ],\n        \"deviceType\": null,\n        \"sdkType\": \"native\",\n        \"osName\": \"other\",\n        \"profileId\": \"string\"\n      },\n      {\n        \"targets\": [\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 44.277065126152095\n          },\n          {\n            \"distributionId\": \"string\",\n            \"weight\": 19.928264535339835\n          }\n        ],\n        \"deviceType\": \"desktop\",\n        \"sdkType\": null,\n        \"osName\": \"other\",\n        \"profileId\": \"string\"\n      }\n    ],\n    \"customEndpoints\": [\n      {\n        \"customEndpointId\": \"string\",\n        \"weight\": 7262.9719207002\n      },\n      {\n        \"customEndpointId\": \"string\",\n        \"weight\": 4466.836490024443\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1871983f-5efe-461b-a214-70048cce1dd9",
+          "name": "Delete a distribution by ID",
+          "request": {
+            "name": "Delete a distribution by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c182e7c4-be1c-4a6e-8828-68780b548b34",
+              "name": "Empty response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23ce97cf-586f-4771-b058-c2093a67a563",
+          "name": "Get security keys of a distribution",
+          "request": {
+            "name": "Get security keys of a distribution",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "security",
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8bc1ec5c-45bf-42ae-a449-08f9a61b739f",
+              "name": "List of security keys",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "security",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "687433a7-6b52-4922-9a08-1fba5e704f8c",
+          "name": "Add a security key to a distribution",
+          "request": {
+            "name": "Add a security key to a distribution",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "security",
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d70817ee-391c-434c-b0f5-3963291a0a89",
+              "name": "Security key created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "security",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8749a95a-4115-4b73-b51d-e2197a3ff10b",
+          "name": "Delete all security keys of a distribution",
+          "request": {
+            "name": "Delete all security keys of a distribution",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "security",
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b7a99946-73a7-4591-bdd1-0ce3ad33ab19",
+              "name": "Empty response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "security",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46816eb2-e310-499d-8fb5-2f8cdedb972d",
+          "name": "Get a specific security key",
+          "request": {
+            "name": "Get a specific security key",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "security",
+                "keys",
+                ":keyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyId",
+                  "description": "(Required) Security key ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "637d519b-784a-44ca-8f8b-d7089c56e437",
+              "name": "The requested security key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "security",
+                    "keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) Security key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "789b2e19-2d11-4373-97e4-45edc2cc8d96",
+          "name": "Delete a specific security key",
+          "request": {
+            "name": "Delete a specific security key",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "security",
+                "keys",
+                ":keyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyId",
+                  "description": "(Required) Security key ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0218f9e-cac0-44b8-979a-fc3cae4bab74",
+              "name": "Empty response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "security",
+                    "keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) Security key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cecd9ec5-7125-44b0-9a70-74c1ebfe7fd0",
+          "name": "Get viewing minutes analytics for a distribution",
+          "request": {
+            "name": "Get viewing minutes analytics for a distribution",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "analytics",
+                "viewing-minutes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupBy",
+                  "value": "<string>",
+                  "description": "Group results by channel, distribution, or streaming format"
+                },
+                {
+                  "disabled": false,
+                  "key": "resolution",
+                  "value": "<string>",
+                  "description": "(Required) Time resolution for the analytics data"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "957f599f-b876-4e74-92ef-71816b27bfe0",
+              "name": "Viewing minutes analytics data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "analytics",
+                    "viewing-minutes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolution",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"timestamp\": \"string\",\n      \"records\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 1695.819071840643\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 9923.264768094296\n        }\n      ]\n    },\n    {\n      \"timestamp\": \"string\",\n      \"records\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 1137.4726228094146\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 5167.166743866524\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b80a7e62-ec7c-4d12-bcb4-a9345ea0edf1",
+          "name": "Get bytes transferred analytics for a distribution",
+          "request": {
+            "name": "Get bytes transferred analytics for a distribution",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "analytics",
+                "bytes-transferred"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupBy",
+                  "value": "<string>",
+                  "description": "Group results by channel, distribution, or streaming format"
+                },
+                {
+                  "disabled": false,
+                  "key": "resolution",
+                  "value": "<string>",
+                  "description": "(Required) Time resolution for the analytics data"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65d08ee0-7c8a-4bbf-ba97-7b8cb99af53a",
+              "name": "Bytes transferred analytics data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "analytics",
+                    "bytes-transferred"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolution",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"timestamp\": \"string\",\n      \"records\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 1506.4216884447678\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 598.4738230780906\n        }\n      ]\n    },\n    {\n      \"timestamp\": \"string\",\n      \"records\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 7384.879928593337\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 2283.6055816440326\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "930140bb-b262-4eb8-8c2d-2d69c12813fd",
+          "name": "Get viewing minutes grouped by browser for a distribution",
+          "request": {
+            "name": "Get viewing minutes grouped by browser for a distribution",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "analytics",
+                "viewing-minutes",
+                "browsers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e0e42ed-aba4-4069-af62-e59c75175b91",
+              "name": "Viewing minutes by browser",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "analytics",
+                    "viewing-minutes",
+                    "browsers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"browserName\": \"string\",\n      \"hardwareType\": \"string\",\n      \"amount\": 8737.699024346635\n    },\n    {\n      \"browserName\": \"string\",\n      \"hardwareType\": \"string\",\n      \"amount\": 7005.063212049849\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a261eaff-4ea3-42a3-8eb3-dcc59ef3feea",
+          "name": "Get viewing minutes grouped by country for a distribution",
+          "request": {
+            "name": "Get viewing minutes grouped by country for a distribution",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "analytics",
+                "viewing-minutes",
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b170533-8697-4d04-afe3-aa6f0044a10d",
+              "name": "Viewing minutes by country",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "analytics",
+                    "viewing-minutes",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"countryCode\": \"string\",\n      \"amount\": 8182.065359849938\n    },\n    {\n      \"countryCode\": \"string\",\n      \"amount\": 4803.002663088571\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b25d028-0dd1-4301-83c2-a43b321c32cb",
+          "name": "Get bytes transferred grouped by browser for a distribution",
+          "request": {
+            "name": "Get bytes transferred grouped by browser for a distribution",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "analytics",
+                "bytes-transferred",
+                "browsers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebe9aa0a-dd7b-4167-8b79-de441250cbf0",
+              "name": "Bytes transferred by browser",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "analytics",
+                    "bytes-transferred",
+                    "browsers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"browserName\": \"string\",\n      \"hardwareType\": \"string\",\n      \"amount\": 2496.6168449716843\n    },\n    {\n      \"browserName\": \"string\",\n      \"hardwareType\": \"string\",\n      \"amount\": 1835.7966207765874\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee7598bc-bd0c-4d96-9fca-acc31545c61f",
+          "name": "Get bytes transferred grouped by country for a distribution",
+          "request": {
+            "name": "Get bytes transferred grouped by country for a distribution",
+            "description": {},
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "analytics",
+                "bytes-transferred",
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) End date for the analytics period"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "utcOffset",
+                  "value": "<string>",
+                  "description": "UTC offset in minutes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bad4ac3b-d72b-436d-9f2a-09aba6490803",
+              "name": "Bytes transferred by country",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "analytics",
+                    "bytes-transferred",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "utcOffset",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"countryCode\": \"string\",\n      \"amount\": 275.44505168239584\n    },\n    {\n      \"countryCode\": \"string\",\n      \"amount\": 6032.07001478755\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ddf9586-0fd4-48cf-b695-3db68ecd77d9",
+          "name": "Get country insights for a distribution",
+          "request": {
+            "name": "Get country insights for a distribution",
+            "description": {
+              "content": "Data is only available for the last 30 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "analytics",
+                "insights",
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>",
+                  "description": "(Required) Time period for the insights"
+                },
+                {
+                  "disabled": false,
+                  "key": "channelIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of channel IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ed2e47e-5d5d-4921-bda9-6c61beeaeb01",
+              "name": "Country insights data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "analytics",
+                    "insights",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"city\": \"string\",\n      \"countryCode\": \"string\",\n      \"geoLocation\": \"string\",\n      \"amount\": 9776.994069413722\n    },\n    {\n      \"city\": \"string\",\n      \"countryCode\": \"string\",\n      \"geoLocation\": \"string\",\n      \"amount\": 602.1997729493567\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4071e699-2a1c-433d-9c34-6e8820064814",
+          "name": "Get browser and OS insights for a distribution",
+          "request": {
+            "name": "Get browser and OS insights for a distribution",
+            "description": {
+              "content": "Data is only available for the last 30 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "analytics",
+                "insights",
+                "browsers-os"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>",
+                  "description": "(Required) Time period for the insights"
+                },
+                {
+                  "disabled": false,
+                  "key": "channelIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of channel IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b83376cc-4d42-4479-8743-04d406166a9a",
+              "name": "Browser/OS insights data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "analytics",
+                    "insights",
+                    "browsers-os"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"browserName\": \"string\",\n      \"browserVersion\": \"string\",\n      \"osName\": \"string\",\n      \"osVersion\": \"string\",\n      \"amount\": 4704.698376903277\n    },\n    {\n      \"browserName\": \"string\",\n      \"browserVersion\": \"string\",\n      \"osName\": \"string\",\n      \"osVersion\": \"string\",\n      \"amount\": 9315.440813203459\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d9a7aa1-ce50-48e4-8923-18766a6a464c",
+          "name": "Get viewer count insights for a distribution",
+          "request": {
+            "name": "Get viewer count insights for a distribution",
+            "description": {
+              "content": "Data is only available for the last 30 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "distributions",
+                ":id",
+                "analytics",
+                "insights",
+                "viewers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>",
+                  "description": "(Required) Time period for the insights"
+                },
+                {
+                  "disabled": false,
+                  "key": "channelIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of channel IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "distributionIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of distribution IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamingFormats",
+                  "value": "<string>",
+                  "description": "Comma-separated list of streaming formats to filter by"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Distribution ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b6d5cd2-062e-4191-8358-753fa6e37197",
+              "name": "Viewer count insights data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "distributions",
+                    ":id",
+                    "analytics",
+                    "insights",
+                    "viewers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distributionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamingFormats",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Distribution ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"timestamp\": \"string\",\n      \"amount\": 8607.022122317856\n    },\n    {\n      \"timestamp\": \"string\",\n      \"amount\": 6473.718512222366\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.millicast.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "85ccc164-f3c6-4be2-aba9-66f3627b9b74",
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders Distributions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io\nReal-time Streaming) — publish/subscribe tokens, recordings, transcoders,\nencoder profiles, clusters, analytics, and webhooks. All requests are\nauthenticated with a Bearer API Secret created in the streaming dashboard\n(Settings -> Security -> API Secrets).\n\n\nContact Support:\n Name: Dolby OptiView Support",
+      "type": "text/plain"
+    }
+  }
+}

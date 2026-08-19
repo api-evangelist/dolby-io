@@ -1,0 +1,143 @@
+{
+  "item": [
+    {
+      "id": "85341ff9-b718-44cc-9b73-529f1010cb1c",
+      "name": "Analytics",
+      "description": {
+        "content": "Account-level usage, tracking, and advanced reporting.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f709039f-456c-4a54-a964-bf4ab9245d40",
+          "name": "Get Account Tracking Totals",
+          "request": {
+            "name": "Get Account Tracking Totals",
+            "description": {
+              "content": "Return aggregate publish and viewer minute totals across the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "tracking",
+                "total"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e4cfcf1-2636-477f-a738-9fa9a80147ab",
+              "name": "Aggregated analytics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "tracking",
+                    "total"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"publishedMinutes\": 8826.168595347599,\n  \"viewedMinutes\": 1762.1546897058172,\n  \"bytesTransferred\": 7112.82738296227,\n  \"startDate\": \"1981-05-07\",\n  \"endDate\": \"1949-05-23\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.millicast.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "60a2be79-791f-4229-8bb3-6a1d270f811e",
+    "name": "Dolby OptiView Real-time Streaming ABR Ladders Analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io\nReal-time Streaming) — publish/subscribe tokens, recordings, transcoders,\nencoder profiles, clusters, analytics, and webhooks. All requests are\nauthenticated with a Bearer API Secret created in the streaming dashboard\n(Settings -> Security -> API Secrets).\n\n\nContact Support:\n Name: Dolby OptiView Support",
+      "type": "text/plain"
+    }
+  }
+}
