@@ -4,6 +4,22 @@ name: Dolby.io
 tags:
 - Media
 - Streaming
+- Real-Time Streaming
+- WebRTC
+- Live Streaming
+- Low Latency
+- Video
+- Audio
+- Broadcast
+- Player
+- Advertising
+- Dolby OptiView
+- Millicast
+- THEOlive
+- THEOplayer
+tags_raw:
+- Media
+- Streaming
 - Real-time Streaming
 - WebRTC
 - Live Streaming
@@ -80,6 +96,12 @@ apis:
 - aid: dolby-io:dolby-optiview-ads-api
   name: Dolby OptiView Ads API
   tags:
+  - Advertising
+  - Server-Guided Ad Insertion
+  - SGAI
+  - Live Streaming
+  - Manifests
+  tags_raw:
   - Advertising
   - Server-Guided Ad Insertion
   - SGAI
@@ -527,6 +549,8 @@ apis:
   description: The Webhooks API from Dolby.io — 4 operation(s) for webhooks.
   humanURL: https://optiview.dolby.com/docs/millicast/
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
