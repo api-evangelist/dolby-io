@@ -13,8 +13,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: theoliveApi
-  url: ../openapi/dolby-io-theolive-api-openapi.yml
+- name: channelsApi
+  url: ../openapi/dolby-io-channels-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: attach-ingest-engine-and-go-live

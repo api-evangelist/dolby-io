@@ -13,8 +13,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: theoliveApi
-  url: ../openapi/dolby-io-theolive-api-openapi.yml
+- name: channelsApi
+  url: ../openapi/dolby-io-channels-api-openapi.yml
+  type: openapi
+- name: enginesApi
+  url: ../openapi/dolby-io-engines-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: start-single-engine-and-confirm

@@ -12,8 +12,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: streamingApi
-  url: ../openapi/dolby-io-realtime-streaming-api-openapi.yml
+- name: subscribetokenApi
+  url: ../openapi/dolby-io-subscribetoken-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-viewer-token

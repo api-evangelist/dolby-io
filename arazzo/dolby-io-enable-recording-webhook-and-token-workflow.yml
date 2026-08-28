@@ -14,8 +14,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: streamingApi
-  url: ../openapi/dolby-io-realtime-streaming-api-openapi.yml
+- name: publishtokenApi
+  url: ../openapi/dolby-io-publishtoken-api-openapi.yml
+  type: openapi
+- name: webhookApi
+  url: ../openapi/dolby-io-webhook-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: enable-recording-webhook-and-token
