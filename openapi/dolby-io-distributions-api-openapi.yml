@@ -1,26 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dolby OptiView Real-time Streaming ABR Ladders Distributions API
-  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
-
-    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
-
-    encoder profiles, clusters, analytics, and webhooks. All requests are
-
-    authenticated with a Bearer API Secret created in the streaming dashboard
-
-    (Settings -> Security -> API Secrets).
-
-    '
-  version: '2026.05'
-  contact:
-    name: Dolby OptiView Support
-    url: https://optiview.dolby.com/docs/millicast/
+  title: Dolby OptiView THEOlive Distributions API
+  version: v2
+  description: REST API for managing OptiView Live (THEOlive) channels, ingests, engines, distributions, analytics, and webhooks.
 servers:
-- url: https://api.millicast.com/api
-  description: Production REST API
+- url: https://api.theo.live/v2
+  description: V2 API
+- url: https://api.theo.live
+  description: Base (for /v1 endpoints)
 security:
-- BearerAuth: []
+- BasicAuth: []
 tags:
 - name: Distributions
 paths:
@@ -46,8 +35,9 @@ paths:
         name: cursor
         in: query
       - schema:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           maximum: 100
           description: Maximum number of items to return (max 100)
         required: false
@@ -806,234 +796,38 @@ paths:
                 $ref: '#/components/schemas/ViewersInsightsListResult'
 components:
   schemas:
-    UpdateDistributionBody:
+    BrowserOsInsightsListResult:
       type: object
       properties:
-        name:
-          type: string
-          description: Name of the distribution
-        externalId:
-          type: string
-          nullable: true
-          description: External identifier for the distribution. Set to null to clear.
-        enabled:
-          type: boolean
-          description: Whether the distribution is enabled
-        targetLatency:
-          type: number
-          description: Target latency in seconds
-        security:
-          type: object
-          properties:
-            geoBlocking:
-              type: object
-              properties:
-                enabled:
-                  type: boolean
-                  description: Whether geo-blocking is enabled
-                mode:
-                  type: string
-                  enum:
-                  - allow
-                  - deny
-                  description: Geo-blocking mode
-                countries:
-                  type: array
-                  items:
-                    type: string
-                  description: List of country codes
-              description: Geo-blocking configuration
-            ipBlocking:
-              type: object
-              properties:
-                enabled:
-                  type: boolean
-                  description: Whether IP blocking is enabled
-                mode:
-                  type: string
-                  enum:
-                  - allow
-                  - deny
-                  description: IP blocking mode
-                cidrs:
-                  type: array
-                  items:
-                    type: string
-                  description: List of CIDR ranges
-              description: IP blocking configuration
-            refererBlocking:
-              type: object
-              properties:
-                enabled:
-                  type: boolean
-                  description: Whether referer blocking is enabled
-                allowedDomains:
-                  type: array
-                  items:
-                    type: string
-                  description: List of allowed domains
-                allowNativeApps:
-                  type: boolean
-                  description: Whether native apps are allowed
-              description: Referer blocking configuration
-            keys:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    description: Name of the security key
-                  key:
-                    type: string
-                    description: Security key value
-                required:
-                - key
-              maxItems: 2
-              description: Security keys (max 2, create only)
-          description: Security configuration
-        endpoints:
-          type: object
-          properties:
-            engineIds:
-              type: array
-              items:
-                type: string
-              description: Engine IDs to connect
-          description: Endpoint configuration
-        webRtc:
-          type: object
-          nullable: true
-          properties:
-            priority:
-              type: number
-              description: WebRTC priority
-            src:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: WebRTC source name
-                accountId:
-                  type: string
-                  description: WebRTC account ID
-                apiUrl:
-                  type: string
-                  description: WebRTC API URL
-              required:
-              - name
-              - accountId
-              - apiUrl
-              description: WebRTC source configuration
-          required:
-          - priority
-          - src
-          description: WebRTC configuration
-        outputs:
-          type: object
-          properties:
-            hesp:
-              type: boolean
-              default: true
-              description: Enable HESP output. Enabled by default.
-            hls:
-              type: boolean
-              default: true
-              description: Enable HLS output. Enabled by default.
-            hlsMpegTs:
-              type: boolean
-              default: false
-              description: Enable HLS MPEG-TS output. Disabled by default.
-          description: Output format configuration
-        maxBitrate:
-          type: number
-          nullable: true
-          description: Maximum bitrate limit in bps
-        dvr:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether DVR is enabled on the distribution
-          description: DVR configuration
-        overrides:
+        data:
           type: array
-          nullable: true
           items:
             type: object
             properties:
-              deviceType:
+              browserName:
                 type: string
-                nullable: true
-                enum:
-                - tv
-                - mobile
-                - desktop
-                - other
-                - null
-                description: Target device type
-              sdkType:
+                description: Browser name
+              browserVersion:
                 type: string
-                nullable: true
-                enum:
-                - native
-                - web
-                - null
-                description: Target SDK type
+                description: Browser version
               osName:
                 type: string
-                nullable: true
-                enum:
-                - apple
-                - android
-                - windows
-                - roku
-                - other
-                - null
-                description: Target OS name
-              profileId:
+                description: OS name
+              osVersion:
                 type: string
-                nullable: true
-                description: Target profile ID
-              targets:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    distributionId:
-                      type: string
-                      description: Target distribution ID
-                    weight:
-                      type: number
-                      minimum: 0
-                      maximum: 100
-                      description: Weight (0-100)
-                  required:
-                  - distributionId
-                  - weight
-                description: Override target distributions with weights
+                description: OS version
+              amount:
+                type: number
+                description: Number of unique viewers
             required:
-            - targets
-          description: Distribution overrides for device targeting
-        customEndpoints:
-          type: array
-          nullable: true
-          items:
-            type: object
-            properties:
-              customEndpointId:
-                type: string
-                description: ID of the custom endpoint to connect
-              weight:
-                type: integer
-                minimum: 0
-                maximum: 100
-                default: 100
-                description: Weight (0-100, default 100)
-            required:
-            - customEndpointId
-          description: Custom endpoints to connect to this distribution. Replaces all existing connections.
-      additionalProperties: false
+            - browserName
+            - browserVersion
+            - osName
+            - osVersion
+            - amount
+          description: List of browser/OS insights
+      required:
+      - data
     DistributionObjectResult:
       type: object
       properties:
@@ -1043,7 +837,7 @@ components:
           - description: Distribution object
       required:
       - data
-    ViewersInsightsListResult:
+    DistributionSecurityKeyListResult:
       type: object
       properties:
         data:
@@ -1051,291 +845,15 @@ components:
           items:
             type: object
             properties:
-              timestamp:
+              id:
                 type: string
-                description: Timestamp of the data point
-              amount:
-                type: number
-                description: Number of unique viewers
+                description: Security key ID
+              name:
+                type: string
+                description: Security key name
             required:
-            - timestamp
-            - amount
-          description: List of viewer count data points
-      required:
-      - data
-    CountryInsightsListResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              city:
-                type: string
-                description: City name
-              countryCode:
-                type: string
-                description: ISO country code
-              geoLocation:
-                type: string
-                description: Rounded latitude,longitude
-              amount:
-                type: number
-                description: Number of unique viewers
-            required:
-            - city
-            - countryCode
-            - geoLocation
-            - amount
-          description: List of country insights
-      required:
-      - data
-    CreateDistributionBody:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the distribution
-        externalId:
-          type: string
-          description: External identifier for the distribution
-        enabled:
-          type: boolean
-          description: Whether the distribution is enabled
-        targetLatency:
-          type: number
-          description: Target latency in seconds
-        security:
-          type: object
-          properties:
-            geoBlocking:
-              type: object
-              properties:
-                enabled:
-                  type: boolean
-                  description: Whether geo-blocking is enabled
-                mode:
-                  type: string
-                  enum:
-                  - allow
-                  - deny
-                  description: Geo-blocking mode
-                countries:
-                  type: array
-                  items:
-                    type: string
-                  description: List of country codes
-              description: Geo-blocking configuration
-            ipBlocking:
-              type: object
-              properties:
-                enabled:
-                  type: boolean
-                  description: Whether IP blocking is enabled
-                mode:
-                  type: string
-                  enum:
-                  - allow
-                  - deny
-                  description: IP blocking mode
-                cidrs:
-                  type: array
-                  items:
-                    type: string
-                  description: List of CIDR ranges
-              description: IP blocking configuration
-            refererBlocking:
-              type: object
-              properties:
-                enabled:
-                  type: boolean
-                  description: Whether referer blocking is enabled
-                allowedDomains:
-                  type: array
-                  items:
-                    type: string
-                  description: List of allowed domains
-                allowNativeApps:
-                  type: boolean
-                  description: Whether native apps are allowed
-              description: Referer blocking configuration
-            keys:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    description: Name of the security key
-                  key:
-                    type: string
-                    description: Security key value
-                required:
-                - key
-              maxItems: 2
-              description: Security keys (max 2, create only)
-          description: Security configuration
-        endpoints:
-          type: object
-          properties:
-            engineIds:
-              type: array
-              items:
-                type: string
-              description: Engine IDs to connect
-          description: Endpoint configuration
-        webRtc:
-          type: object
-          nullable: true
-          properties:
-            priority:
-              type: number
-              description: WebRTC priority
-            src:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: WebRTC source name
-                accountId:
-                  type: string
-                  description: WebRTC account ID
-                apiUrl:
-                  type: string
-                  description: WebRTC API URL
-              required:
-              - name
-              - accountId
-              - apiUrl
-              description: WebRTC source configuration
-          required:
-          - priority
-          - src
-          description: WebRTC configuration
-        outputs:
-          type: object
-          properties:
-            hesp:
-              type: boolean
-              default: true
-              description: Enable HESP output. Enabled by default.
-            hls:
-              type: boolean
-              default: true
-              description: Enable HLS output. Enabled by default.
-            hlsMpegTs:
-              type: boolean
-              default: false
-              description: Enable HLS MPEG-TS output. Disabled by default.
-          description: Output format configuration
-        maxBitrate:
-          type: number
-          nullable: true
-          description: Maximum bitrate limit in bps
-        dvr:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether DVR is enabled on the distribution
-          description: DVR configuration
-        overrides:
-          type: array
-          items:
-            type: object
-            properties:
-              deviceType:
-                type: string
-                nullable: true
-                enum:
-                - tv
-                - mobile
-                - desktop
-                - other
-                - null
-                description: Target device type
-              sdkType:
-                type: string
-                nullable: true
-                enum:
-                - native
-                - web
-                - null
-                description: Target SDK type
-              osName:
-                type: string
-                nullable: true
-                enum:
-                - apple
-                - android
-                - windows
-                - roku
-                - other
-                - null
-                description: Target OS name
-              profileId:
-                type: string
-                nullable: true
-                description: Target profile ID
-              targets:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    distributionId:
-                      type: string
-                      description: Target distribution ID
-                    weight:
-                      type: number
-                      minimum: 0
-                      maximum: 100
-                      description: Weight (0-100)
-                  required:
-                  - distributionId
-                  - weight
-                description: Override target distributions with weights
-            required:
-            - targets
-          description: Distribution overrides for device targeting
-        customEndpoints:
-          type: array
-          items:
-            type: object
-            properties:
-              customEndpointId:
-                type: string
-                description: ID of the custom endpoint to connect
-              weight:
-                type: integer
-                minimum: 0
-                maximum: 100
-                default: 100
-                description: Weight (0-100, default 100)
-            required:
-            - customEndpointId
-          description: Custom endpoints to connect to this distribution
-      required:
-      - name
-      additionalProperties: false
-    ViewingCountryListResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              countryCode:
-                type: string
-                description: ISO country code
-              amount:
-                type: number
-                description: Metric value
-            required:
-            - countryCode
-            - amount
-          description: List of country viewing data
+            - id
+          description: List of security keys
       required:
       - data
     Distribution:
@@ -1517,8 +1035,9 @@ components:
             type: object
             properties:
               deviceType:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 enum:
                 - tv
                 - mobile
@@ -1527,16 +1046,18 @@ components:
                 - null
                 description: Target device type
               sdkType:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 enum:
                 - native
                 - web
                 - null
                 description: Target SDK type
               osName:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 enum:
                 - apple
                 - android
@@ -1546,8 +1067,9 @@ components:
                 - null
                 description: Target OS name
               profileId:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 description: Target profile ID
               targets:
                 type: array
@@ -1593,37 +1115,6 @@ components:
       - security
       - endpoints
       - dvr
-    DistributionSecurityKeyListResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Security key ID
-              name:
-                type: string
-                description: Security key name
-            required:
-            - id
-          description: List of security keys
-      required:
-      - data
-    CreateDistributionSecurityKeyBody:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the security key
-        key:
-          type: string
-          description: Security key value
-      required:
-      - key
-      additionalProperties: false
     PaginatedDistributionResult:
       type: object
       properties:
@@ -1648,6 +1139,597 @@ components:
       required:
       - data
       - pagination
+    ViewersInsightsListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                description: Timestamp of the data point
+              amount:
+                type: number
+                description: Number of unique viewers
+            required:
+            - timestamp
+            - amount
+          description: List of viewer count data points
+      required:
+      - data
+    CountryInsightsListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              city:
+                type: string
+                description: City name
+              countryCode:
+                type: string
+                description: ISO country code
+              geoLocation:
+                type: string
+                description: Rounded latitude,longitude
+              amount:
+                type: number
+                description: Number of unique viewers
+            required:
+            - city
+            - countryCode
+            - geoLocation
+            - amount
+          description: List of country insights
+      required:
+      - data
+    CreateDistributionSecurityKeyBody:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the security key
+        key:
+          type: string
+          description: Security key value
+      required:
+      - key
+      additionalProperties: false
+    DistributionSecurityKeyObjectResult:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Security key ID
+            name:
+              type: string
+              description: Security key name
+          required:
+          - id
+          description: Security key object
+      required:
+      - data
+    CreateDistributionBody:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the distribution
+        externalId:
+          type: string
+          description: External identifier for the distribution
+        enabled:
+          type: boolean
+          description: Whether the distribution is enabled
+        targetLatency:
+          type: number
+          description: Target latency in seconds
+        security:
+          type: object
+          properties:
+            geoBlocking:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  description: Whether geo-blocking is enabled
+                mode:
+                  type: string
+                  enum:
+                  - allow
+                  - deny
+                  description: Geo-blocking mode
+                countries:
+                  type: array
+                  items:
+                    type: string
+                  description: List of country codes
+              description: Geo-blocking configuration
+            ipBlocking:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  description: Whether IP blocking is enabled
+                mode:
+                  type: string
+                  enum:
+                  - allow
+                  - deny
+                  description: IP blocking mode
+                cidrs:
+                  type: array
+                  items:
+                    type: string
+                  description: List of CIDR ranges
+              description: IP blocking configuration
+            refererBlocking:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  description: Whether referer blocking is enabled
+                allowedDomains:
+                  type: array
+                  items:
+                    type: string
+                  description: List of allowed domains
+                allowNativeApps:
+                  type: boolean
+                  description: Whether native apps are allowed
+              description: Referer blocking configuration
+            keys:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Name of the security key
+                  key:
+                    type: string
+                    description: Security key value
+                required:
+                - key
+              maxItems: 2
+              description: Security keys (max 2, create only)
+          description: Security configuration
+        endpoints:
+          type: object
+          properties:
+            engineIds:
+              type: array
+              items:
+                type: string
+              description: Engine IDs to connect
+          description: Endpoint configuration
+        webRtc:
+          type:
+          - object
+          - 'null'
+          properties:
+            priority:
+              type: number
+              description: WebRTC priority
+            src:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: WebRTC source name
+                accountId:
+                  type: string
+                  description: WebRTC account ID
+                apiUrl:
+                  type: string
+                  description: WebRTC API URL
+              required:
+              - name
+              - accountId
+              - apiUrl
+              description: WebRTC source configuration
+          required:
+          - priority
+          - src
+          description: WebRTC configuration
+        outputs:
+          type: object
+          properties:
+            hesp:
+              type: boolean
+              default: true
+              description: Enable HESP output. Enabled by default.
+            hls:
+              type: boolean
+              default: true
+              description: Enable HLS output. Enabled by default.
+            hlsMpegTs:
+              type: boolean
+              default: false
+              description: Enable HLS MPEG-TS output. Disabled by default.
+          description: Output format configuration
+        maxBitrate:
+          type:
+          - number
+          - 'null'
+          description: Maximum bitrate limit in bps
+        dvr:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether DVR is enabled on the distribution
+          description: DVR configuration
+        overrides:
+          type: array
+          items:
+            type: object
+            properties:
+              deviceType:
+                type:
+                - string
+                - 'null'
+                enum:
+                - tv
+                - mobile
+                - desktop
+                - other
+                - null
+                description: Target device type
+              sdkType:
+                type:
+                - string
+                - 'null'
+                enum:
+                - native
+                - web
+                - null
+                description: Target SDK type
+              osName:
+                type:
+                - string
+                - 'null'
+                enum:
+                - apple
+                - android
+                - windows
+                - roku
+                - other
+                - null
+                description: Target OS name
+              profileId:
+                type:
+                - string
+                - 'null'
+                description: Target profile ID
+              targets:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    distributionId:
+                      type: string
+                      description: Target distribution ID
+                    weight:
+                      type: number
+                      minimum: 0
+                      maximum: 100
+                      description: Weight (0-100)
+                  required:
+                  - distributionId
+                  - weight
+                description: Override target distributions with weights
+            required:
+            - targets
+          description: Distribution overrides for device targeting
+        customEndpoints:
+          type: array
+          items:
+            type: object
+            properties:
+              customEndpointId:
+                type: string
+                description: ID of the custom endpoint to connect
+              weight:
+                type: integer
+                minimum: 0
+                maximum: 100
+                default: 100
+                description: Weight (0-100, default 100)
+            required:
+            - customEndpointId
+          description: Custom endpoints to connect to this distribution
+      required:
+      - name
+      additionalProperties: false
+    ViewingCountryListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              countryCode:
+                type: string
+                description: ISO country code
+              amount:
+                type: number
+                description: Metric value
+            required:
+            - countryCode
+            - amount
+          description: List of country viewing data
+      required:
+      - data
+    UpdateDistributionBody:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the distribution
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: External identifier for the distribution. Set to null to clear.
+        enabled:
+          type: boolean
+          description: Whether the distribution is enabled
+        targetLatency:
+          type: number
+          description: Target latency in seconds
+        security:
+          type: object
+          properties:
+            geoBlocking:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  description: Whether geo-blocking is enabled
+                mode:
+                  type: string
+                  enum:
+                  - allow
+                  - deny
+                  description: Geo-blocking mode
+                countries:
+                  type: array
+                  items:
+                    type: string
+                  description: List of country codes
+              description: Geo-blocking configuration
+            ipBlocking:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  description: Whether IP blocking is enabled
+                mode:
+                  type: string
+                  enum:
+                  - allow
+                  - deny
+                  description: IP blocking mode
+                cidrs:
+                  type: array
+                  items:
+                    type: string
+                  description: List of CIDR ranges
+              description: IP blocking configuration
+            refererBlocking:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  description: Whether referer blocking is enabled
+                allowedDomains:
+                  type: array
+                  items:
+                    type: string
+                  description: List of allowed domains
+                allowNativeApps:
+                  type: boolean
+                  description: Whether native apps are allowed
+              description: Referer blocking configuration
+            keys:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Name of the security key
+                  key:
+                    type: string
+                    description: Security key value
+                required:
+                - key
+              maxItems: 2
+              description: Security keys (max 2, create only)
+          description: Security configuration
+        endpoints:
+          type: object
+          properties:
+            engineIds:
+              type: array
+              items:
+                type: string
+              description: Engine IDs to connect
+          description: Endpoint configuration
+        webRtc:
+          type:
+          - object
+          - 'null'
+          properties:
+            priority:
+              type: number
+              description: WebRTC priority
+            src:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: WebRTC source name
+                accountId:
+                  type: string
+                  description: WebRTC account ID
+                apiUrl:
+                  type: string
+                  description: WebRTC API URL
+              required:
+              - name
+              - accountId
+              - apiUrl
+              description: WebRTC source configuration
+          required:
+          - priority
+          - src
+          description: WebRTC configuration
+        outputs:
+          type: object
+          properties:
+            hesp:
+              type: boolean
+              default: true
+              description: Enable HESP output. Enabled by default.
+            hls:
+              type: boolean
+              default: true
+              description: Enable HLS output. Enabled by default.
+            hlsMpegTs:
+              type: boolean
+              default: false
+              description: Enable HLS MPEG-TS output. Disabled by default.
+          description: Output format configuration
+        maxBitrate:
+          type:
+          - number
+          - 'null'
+          description: Maximum bitrate limit in bps
+        dvr:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether DVR is enabled on the distribution
+          description: DVR configuration
+        overrides:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+            properties:
+              deviceType:
+                type:
+                - string
+                - 'null'
+                enum:
+                - tv
+                - mobile
+                - desktop
+                - other
+                - null
+                description: Target device type
+              sdkType:
+                type:
+                - string
+                - 'null'
+                enum:
+                - native
+                - web
+                - null
+                description: Target SDK type
+              osName:
+                type:
+                - string
+                - 'null'
+                enum:
+                - apple
+                - android
+                - windows
+                - roku
+                - other
+                - null
+                description: Target OS name
+              profileId:
+                type:
+                - string
+                - 'null'
+                description: Target profile ID
+              targets:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    distributionId:
+                      type: string
+                      description: Target distribution ID
+                    weight:
+                      type: number
+                      minimum: 0
+                      maximum: 100
+                      description: Weight (0-100)
+                  required:
+                  - distributionId
+                  - weight
+                description: Override target distributions with weights
+            required:
+            - targets
+          description: Distribution overrides for device targeting
+        customEndpoints:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+            properties:
+              customEndpointId:
+                type: string
+                description: ID of the custom endpoint to connect
+              weight:
+                type: integer
+                minimum: 0
+                maximum: 100
+                default: 100
+                description: Weight (0-100, default 100)
+            required:
+            - customEndpointId
+          description: Custom endpoints to connect to this distribution. Replaces all existing connections.
+      additionalProperties: false
+    ViewingBrowserListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              browserName:
+                type: string
+                description: Browser name
+              hardwareType:
+                type: string
+                description: Hardware type
+              amount:
+                type: number
+                description: Metric value
+            required:
+            - browserName
+            - hardwareType
+            - amount
+          description: List of browser viewing data
+      required:
+      - data
     AnalyticsListResult:
       type: object
       properties:
@@ -1680,81 +1762,7 @@ components:
           description: List of analytics data points
       required:
       - data
-    DistributionSecurityKeyObjectResult:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Security key ID
-            name:
-              type: string
-              description: Security key name
-          required:
-          - id
-          description: Security key object
-      required:
-      - data
-    BrowserOsInsightsListResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              browserName:
-                type: string
-                description: Browser name
-              browserVersion:
-                type: string
-                description: Browser version
-              osName:
-                type: string
-                description: OS name
-              osVersion:
-                type: string
-                description: OS version
-              amount:
-                type: number
-                description: Number of unique viewers
-            required:
-            - browserName
-            - browserVersion
-            - osName
-            - osVersion
-            - amount
-          description: List of browser/OS insights
-      required:
-      - data
-    ViewingBrowserListResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              browserName:
-                type: string
-                description: Browser name
-              hardwareType:
-                type: string
-                description: Hardware type
-              amount:
-                type: number
-                description: Metric value
-            required:
-            - browserName
-            - hardwareType
-            - amount
-          description: List of browser viewing data
-      required:
-      - data
   securitySchemes:
-    BearerAuth:
+    BasicAuth:
       type: http
-      scheme: bearer
-      bearerFormat: API Secret
+      scheme: basic

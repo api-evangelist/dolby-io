@@ -1,26 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dolby OptiView Real-time Streaming ABR Ladders Regions API
-  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
-
-    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
-
-    encoder profiles, clusters, analytics, and webhooks. All requests are
-
-    authenticated with a Bearer API Secret created in the streaming dashboard
-
-    (Settings -> Security -> API Secrets).
-
-    '
-  version: '2026.05'
-  contact:
-    name: Dolby OptiView Support
-    url: https://optiview.dolby.com/docs/millicast/
+  title: Dolby OptiView THEOlive Regions API
+  version: v2
+  description: REST API for managing OptiView Live (THEOlive) channels, ingests, engines, distributions, analytics, and webhooks.
 servers:
-- url: https://api.millicast.com/api
-  description: Production REST API
+- url: https://api.theo.live/v2
+  description: V2 API
+- url: https://api.theo.live
+  description: Base (for /v1 endpoints)
 security:
-- BearerAuth: []
+- BasicAuth: []
 tags:
 - name: Regions
 paths:
@@ -60,7 +49,6 @@ components:
       required:
       - data
   securitySchemes:
-    BearerAuth:
+    BasicAuth:
       type: http
-      scheme: bearer
-      bearerFormat: API Secret
+      scheme: basic

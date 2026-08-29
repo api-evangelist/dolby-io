@@ -1,26 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dolby OptiView Real-time Streaming ABR Ladders Webhooks API
-  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
-
-    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
-
-    encoder profiles, clusters, analytics, and webhooks. All requests are
-
-    authenticated with a Bearer API Secret created in the streaming dashboard
-
-    (Settings -> Security -> API Secrets).
-
-    '
-  version: '2026.05'
-  contact:
-    name: Dolby OptiView Support
-    url: https://optiview.dolby.com/docs/millicast/
+  title: Dolby OptiView THEOlive Webhooks API
+  version: v2
+  description: REST API for managing OptiView Live (THEOlive) channels, ingests, engines, distributions, analytics, and webhooks.
 servers:
-- url: https://api.millicast.com/api
-  description: Production REST API
+- url: https://api.theo.live/v2
+  description: V2 API
+- url: https://api.theo.live
+  description: Base (for /v1 endpoints)
 security:
-- BearerAuth: []
+- BasicAuth: []
 tags:
 - name: Webhooks
 paths:
@@ -170,8 +159,9 @@ paths:
         name: endDate
         in: query
       - schema:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           maximum: 100
           description: Maximum number of logs to return (max 100)
         required: false
@@ -187,18 +177,13 @@ paths:
                 $ref: '#/components/schemas/PaginatedWebhookLogResult'
 components:
   schemas:
-    WebhookSecretResult:
+    WebhookObjectResult:
       type: object
       properties:
         data:
-          type: object
-          properties:
-            secret:
-              type: string
-              description: The webhook signing secret
-          required:
-          - secret
-          description: Secret object
+          allOf:
+          - $ref: '#/components/schemas/Webhook'
+          - description: Webhook object
       required:
       - data
     Webhook:
@@ -279,77 +264,14 @@ components:
       - active
       - url
       - events
-    UpdateWebhookBody:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the webhook
-        description:
-          type: string
-          description: Description of the webhook
-        url:
-          type: string
-          format: uri
-          description: URL to send webhook events to
-        events:
-          type: array
-          items:
-            type: string
-            enum:
-            - '*'
-            - channel.created
-            - channel.stopped
-            - channel.deleted
-            - channel.deploying
-            - channel.updated
-            - webhook.created
-            - webhook.updated
-            - webhook.deleted
-            - scheduler.created
-            - scheduler.updated
-            - scheduler.deleted
-            - scheduler.active
-            - scheduler.terminated
-            - engine.deploying
-            - engine.waiting
-            - engine.starting
-            - engine.error
-            - engine.playing
-            - engine.ingesting
-            - engine.created
-            - engine.updated
-            - engine.stopping
-            - engine.stopped
-            - engine.deleting
-            - engine.deleted
-            - engine.log.warn
-            - engine.log.error
-            - engine.log.info
-            - ingest.created
-            - ingest.updated
-            - ingest.deleted
-            - distribution.created
-            - distribution.enabled
-            - distribution.disabled
-            - distribution.updated
-            - distribution.deleted
-            - distribution.security.key.added
-            - distribution.security.key.deleted
-            - distribution.security.keys.deleted
-          description: List of events to subscribe to
-        active:
-          type: boolean
-          description: Whether the webhook is active
-      additionalProperties: false
-    PaginatedWebhookResult:
+    PaginatedWebhookLogResult:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/Webhook'
-          description: List of webhooks
+            $ref: '#/components/schemas/WebhookLog'
+          description: List of webhook logs
         pagination:
           type: object
           properties:
@@ -366,14 +288,14 @@ components:
       required:
       - data
       - pagination
-    PaginatedWebhookLogResult:
+    PaginatedWebhookResult:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/WebhookLog'
-          description: List of webhook logs
+            $ref: '#/components/schemas/Webhook'
+          description: List of webhooks
         pagination:
           type: object
           properties:
@@ -455,15 +377,6 @@ components:
       - url
       - events
       additionalProperties: false
-    WebhookObjectResult:
-      type: object
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/Webhook'
-          - description: Webhook object
-      required:
-      - data
     WebhookLog:
       type: object
       properties:
@@ -615,7 +528,6 @@ components:
               - organizationId
               description: Object that triggered the event
             data:
-              nullable: true
               description: Additional event data
           required:
           - type
@@ -628,8 +540,84 @@ components:
       - type
       - statusCode
       - requestData
+    WebhookSecretResult:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            secret:
+              type: string
+              description: The webhook signing secret
+          required:
+          - secret
+          description: Secret object
+      required:
+      - data
+    UpdateWebhookBody:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the webhook
+        description:
+          type: string
+          description: Description of the webhook
+        url:
+          type: string
+          format: uri
+          description: URL to send webhook events to
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+            - '*'
+            - channel.created
+            - channel.stopped
+            - channel.deleted
+            - channel.deploying
+            - channel.updated
+            - webhook.created
+            - webhook.updated
+            - webhook.deleted
+            - scheduler.created
+            - scheduler.updated
+            - scheduler.deleted
+            - scheduler.active
+            - scheduler.terminated
+            - engine.deploying
+            - engine.waiting
+            - engine.starting
+            - engine.error
+            - engine.playing
+            - engine.ingesting
+            - engine.created
+            - engine.updated
+            - engine.stopping
+            - engine.stopped
+            - engine.deleting
+            - engine.deleted
+            - engine.log.warn
+            - engine.log.error
+            - engine.log.info
+            - ingest.created
+            - ingest.updated
+            - ingest.deleted
+            - distribution.created
+            - distribution.enabled
+            - distribution.disabled
+            - distribution.updated
+            - distribution.deleted
+            - distribution.security.key.added
+            - distribution.security.key.deleted
+            - distribution.security.keys.deleted
+          description: List of events to subscribe to
+        active:
+          type: boolean
+          description: Whether the webhook is active
+      additionalProperties: false
   securitySchemes:
-    BearerAuth:
+    BasicAuth:
       type: http
-      scheme: bearer
-      bearerFormat: API Secret
+      scheme: basic

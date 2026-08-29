@@ -1,26 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dolby OptiView Real-time Streaming ABR Ladders Custom Endpoints API
-  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
-
-    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
-
-    encoder profiles, clusters, analytics, and webhooks. All requests are
-
-    authenticated with a Bearer API Secret created in the streaming dashboard
-
-    (Settings -> Security -> API Secrets).
-
-    '
-  version: '2026.05'
-  contact:
-    name: Dolby OptiView Support
-    url: https://optiview.dolby.com/docs/millicast/
+  title: Dolby OptiView THEOlive Custom Endpoints API
+  version: v2
+  description: REST API for managing OptiView Live (THEOlive) channels, ingests, engines, distributions, analytics, and webhooks.
 servers:
-- url: https://api.millicast.com/api
-  description: Production REST API
+- url: https://api.theo.live/v2
+  description: V2 API
+- url: https://api.theo.live
+  description: Base (for /v1 endpoints)
 security:
-- BearerAuth: []
+- BasicAuth: []
 tags:
 - name: Custom Endpoints
 paths:
@@ -136,7 +125,7 @@ paths:
           description: Empty response
 components:
   schemas:
-    UpdateCustomEndpointBody:
+    CreateCustomEndpointBody:
       type: object
       properties:
         name:
@@ -159,50 +148,7 @@ components:
           minLength: 1
           description: Provider name (must be configured for the organization)
         drmConfig:
-          type: object
-          nullable: true
-          properties:
-            integration:
-              type: string
-              enum:
-              - ezdrm
-              - mediakind
-              description: DRM integration type
-            widevine:
-              type: object
-              properties:
-                licenseUrl:
-                  type: string
-                  description: Widevine license URL
-              required:
-              - licenseUrl
-              description: Widevine DRM configuration
-            playready:
-              type: object
-              properties:
-                licenseUrl:
-                  type: string
-                  description: PlayReady license URL
-              required:
-              - licenseUrl
-              description: PlayReady DRM configuration
-            fairplay:
-              type: object
-              properties:
-                licenseUrl:
-                  type: string
-                  description: FairPlay license URL
-                certificateUrl:
-                  type: string
-                  description: FairPlay certificate URL
-              required:
-              - licenseUrl
-              - certificateUrl
-              description: FairPlay DRM configuration
-          required:
-          - integration
-          additionalProperties: false
-          description: Optional DRM configuration
+          $ref: '#/components/schemas/CustomEndpointDrmConfig'
         cdn:
           type: string
           minLength: 1
@@ -211,12 +157,22 @@ components:
         priority:
           type: integer
           description: Priority (lower is higher priority)
+      required:
+      - name
+      - src
+      - srcType
+      - provider
+      - cdn
+      - priority
       additionalProperties: false
-    CustomEndpointObjectResult:
+    CustomEndpointListResult:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/CustomEndpoint'
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomEndpoint'
+          description: List of custom endpoints
       required:
       - data
     CustomEndpoint:
@@ -254,8 +210,9 @@ components:
           type: string
           description: Provider
         drmConfig:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           properties:
             integration:
               type: string
@@ -317,54 +274,11 @@ components:
       - cdn
       - priority
       description: Custom endpoint object
-    CreateCustomEndpointBody:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          description: Name of the custom endpoint
-        src:
-          type: string
-          minLength: 1
-          description: Source URL
-        srcType:
-          type: string
-          enum:
-          - hesp
-          - hls
-          - dash
-          description: Source type (hesp, hls or dash)
-        provider:
-          type: string
-          minLength: 1
-          description: Provider name (must be configured for the organization)
-        drmConfig:
-          $ref: '#/components/schemas/CustomEndpointDrmConfig'
-        cdn:
-          type: string
-          minLength: 1
-          pattern: ^[a-zA-Z0-9]+$
-          description: CDN identifier
-        priority:
-          type: integer
-          description: Priority (lower is higher priority)
-      required:
-      - name
-      - src
-      - srcType
-      - provider
-      - cdn
-      - priority
-      additionalProperties: false
-    CustomEndpointListResult:
+    CustomEndpointObjectResult:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomEndpoint'
-          description: List of custom endpoints
+          $ref: '#/components/schemas/CustomEndpoint'
       required:
       - data
     CustomEndpointDrmConfig:
@@ -411,8 +325,84 @@ components:
       - integration
       additionalProperties: false
       description: Optional DRM configuration
+    UpdateCustomEndpointBody:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Name of the custom endpoint
+        src:
+          type: string
+          minLength: 1
+          description: Source URL
+        srcType:
+          type: string
+          enum:
+          - hesp
+          - hls
+          - dash
+          description: Source type (hesp, hls or dash)
+        provider:
+          type: string
+          minLength: 1
+          description: Provider name (must be configured for the organization)
+        drmConfig:
+          type:
+          - object
+          - 'null'
+          properties:
+            integration:
+              type: string
+              enum:
+              - ezdrm
+              - mediakind
+              description: DRM integration type
+            widevine:
+              type: object
+              properties:
+                licenseUrl:
+                  type: string
+                  description: Widevine license URL
+              required:
+              - licenseUrl
+              description: Widevine DRM configuration
+            playready:
+              type: object
+              properties:
+                licenseUrl:
+                  type: string
+                  description: PlayReady license URL
+              required:
+              - licenseUrl
+              description: PlayReady DRM configuration
+            fairplay:
+              type: object
+              properties:
+                licenseUrl:
+                  type: string
+                  description: FairPlay license URL
+                certificateUrl:
+                  type: string
+                  description: FairPlay certificate URL
+              required:
+              - licenseUrl
+              - certificateUrl
+              description: FairPlay DRM configuration
+          required:
+          - integration
+          additionalProperties: false
+          description: Optional DRM configuration
+        cdn:
+          type: string
+          minLength: 1
+          pattern: ^[a-zA-Z0-9]+$
+          description: CDN identifier
+        priority:
+          type: integer
+          description: Priority (lower is higher priority)
+      additionalProperties: false
   securitySchemes:
-    BearerAuth:
+    BasicAuth:
       type: http
-      scheme: bearer
-      bearerFormat: API Secret
+      scheme: basic

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dolby OptiView Real-time Streaming ABR Ladders SubscribeToken API
+  title: Dolby OptiView Real-time Streaming Subscribe Token API
   description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
 
     Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
@@ -119,52 +119,6 @@ paths:
           description: Subscribe token deleted
 components:
   schemas:
-    SubscribeToken:
-      type: object
-      properties:
-        id:
-          type: integer
-        label:
-          type: string
-        token:
-          type: string
-        addedOn:
-          type: string
-          format: date-time
-        expiresOn:
-          type: string
-          format: date-time
-          nullable: true
-        isActive:
-          type: boolean
-        streams:
-          type: array
-          items:
-            type: object
-            properties:
-              streamName:
-                type: string
-              isRegex:
-                type: boolean
-        allowedOrigins:
-          type: array
-          items:
-            type: string
-        allowedIpAddresses:
-          type: array
-          items:
-            type: string
-        bindIpsOnUsage:
-          type: integer
-          nullable: true
-        allowedCountries:
-          type: array
-          items:
-            type: string
-        deniedCountries:
-          type: array
-          items:
-            type: string
     SubscribeTokenCreate:
       type: object
       required:
@@ -192,8 +146,9 @@ components:
           items:
             type: string
         bindIpsOnUsage:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
         allowedCountries:
           type: array
           items:
@@ -203,9 +158,58 @@ components:
           items:
             type: string
         expiresOn:
+          type:
+          - string
+          - 'null'
+          format: date-time
+    SubscribeToken:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        token:
+          type: string
+        addedOn:
           type: string
           format: date-time
-          nullable: true
+        expiresOn:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        isActive:
+          type: boolean
+        streams:
+          type: array
+          items:
+            type: object
+            properties:
+              streamName:
+                type: string
+              isRegex:
+                type: boolean
+        allowedOrigins:
+          type: array
+          items:
+            type: string
+        allowedIpAddresses:
+          type: array
+          items:
+            type: string
+        bindIpsOnUsage:
+          type:
+          - integer
+          - 'null'
+        allowedCountries:
+          type: array
+          items:
+            type: string
+        deniedCountries:
+          type: array
+          items:
+            type: string
     SubscribeTokenUpdate:
       type: object
       properties:

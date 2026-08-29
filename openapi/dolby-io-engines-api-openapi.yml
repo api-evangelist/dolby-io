@@ -1,26 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dolby OptiView Real-time Streaming ABR Ladders Engines API
-  description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
-
-    Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
-
-    encoder profiles, clusters, analytics, and webhooks. All requests are
-
-    authenticated with a Bearer API Secret created in the streaming dashboard
-
-    (Settings -> Security -> API Secrets).
-
-    '
-  version: '2026.05'
-  contact:
-    name: Dolby OptiView Support
-    url: https://optiview.dolby.com/docs/millicast/
+  title: Dolby OptiView THEOlive Engines API
+  version: v2
+  description: REST API for managing OptiView Live (THEOlive) channels, ingests, engines, distributions, analytics, and webhooks.
 servers:
-- url: https://api.millicast.com/api
-  description: Production REST API
+- url: https://api.theo.live/v2
+  description: V2 API
+- url: https://api.theo.live
+  description: Base (for /v1 endpoints)
 security:
-- BearerAuth: []
+- BasicAuth: []
 tags:
 - name: Engines
 paths:
@@ -46,8 +35,9 @@ paths:
         name: cursor
         in: query
       - schema:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           maximum: 100
           description: Maximum number of items to return (max 100)
         required: false
@@ -108,8 +98,9 @@ paths:
                   - abrLadderId
                   description: Quality configuration
                 daiAssetKey:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: DAI asset key
                 overlays:
                   type: array
@@ -255,8 +246,9 @@ paths:
                   - abrLadderId
                   description: Quality configuration
                 daiAssetKey:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: DAI asset key
                 overlays:
                   type: array
@@ -424,199 +416,6 @@ paths:
                 $ref: '#/components/schemas/PaginatedEngineRunResult'
 components:
   schemas:
-    EngineRun:
-      type: object
-      properties:
-        engineId:
-          type: string
-          description: Engine ID
-        start:
-          type: string
-          description: Run start timestamp
-        end:
-          type: string
-          description: Run end timestamp
-        config:
-          type: object
-          properties:
-            ingest:
-              type: object
-              properties:
-                type:
-                  type: string
-                  description: Ingest type used
-                url:
-                  type: string
-                  description: Ingest URL used
-              required:
-              - type
-            abrLadderId:
-              type: string
-              description: ABR ladder ID used
-            drm:
-              type: boolean
-              description: Whether DRM was enabled
-          required:
-          - ingest
-          - abrLadderId
-          - drm
-          description: Run configuration
-        startType:
-          type: string
-          description: How the run was started
-        startId:
-          type: string
-          description: ID of the entity who did the start action
-        stopType:
-          type: string
-          description: How the run was stopped
-        stopId:
-          type: string
-          description: ID of entity who did the stop action
-      required:
-      - engineId
-      - start
-      - config
-      - startType
-      - startId
-    EngineRunObjectResult:
-      type: object
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/EngineRun'
-          - description: Engine run object
-      required:
-      - data
-    EngineObjectResult:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Unique identifier of the engine
-            name:
-              type: string
-              description: Name of the engine
-            createdAt:
-              type: string
-              description: Creation timestamp
-            updatedAt:
-              type: string
-              description: Last update timestamp
-            quality:
-              type: object
-              properties:
-                abrLadderId:
-                  type: string
-                  description: ABR ladder ID
-              required:
-              - abrLadderId
-              description: Quality configuration
-            overlays:
-              type: array
-              items:
-                type: object
-                properties:
-                  url:
-                    type: string
-                    description: URL of the overlay image
-                  position:
-                    type: object
-                    properties:
-                      top:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from top
-                      bottom:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from bottom (ignored if top is present)
-                      left:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from left
-                      right:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from right (ignored if left is present)
-                    description: Overlay position
-                  size:
-                    type: object
-                    properties:
-                      width:
-                        type: integer
-                        minimum: 0
-                        description: Width in pixels
-                      height:
-                        type: integer
-                        minimum: 0
-                        description: Height in pixels
-                    description: Overlay size
-                  opacity:
-                    type: number
-                    minimum: 0
-                    maximum: 1
-                    description: Overlay opacity (0=invisible, 1=fully visible)
-                required:
-                - url
-              description: Image overlay configuration
-            drm:
-              type: boolean
-              description: Whether DRM is enabled
-            priority:
-              type: number
-              description: Engine priority
-            status:
-              type: string
-              enum:
-              - stopped
-              - deploying
-              - starting
-              - waiting
-              - ingesting
-              - playing
-              - stopping
-              - error
-              - deleting
-              - deleted
-              description: Current status of the engine
-            daiAssetKey:
-              type: string
-              nullable: true
-              description: DAI asset key
-            outputs:
-              type: object
-              properties:
-                hesp:
-                  type: boolean
-                  default: true
-                  description: Enable HESP output. Enabled by default.
-                hls:
-                  type: boolean
-                  default: true
-                  description: Enable HLS output. Enabled by default.
-                hlsMpegTs:
-                  type: boolean
-                  default: false
-                  description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
-              description: Output format configuration
-          required:
-          - id
-          - name
-          - createdAt
-          - updatedAt
-          - quality
-          - overlays
-          - drm
-          - priority
-          - status
-          - outputs
-          description: Engine object
-      required:
-      - data
     PaginatedEngineResult:
       type: object
       properties:
@@ -715,8 +514,9 @@ components:
                 - deleted
                 description: Current status of the engine
               daiAssetKey:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 description: DAI asset key
               outputs:
                 type: object
@@ -786,8 +586,201 @@ components:
       required:
       - data
       - pagination
+    EngineObjectResult:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the engine
+            name:
+              type: string
+              description: Name of the engine
+            createdAt:
+              type: string
+              description: Creation timestamp
+            updatedAt:
+              type: string
+              description: Last update timestamp
+            quality:
+              type: object
+              properties:
+                abrLadderId:
+                  type: string
+                  description: ABR ladder ID
+              required:
+              - abrLadderId
+              description: Quality configuration
+            overlays:
+              type: array
+              items:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: URL of the overlay image
+                  position:
+                    type: object
+                    properties:
+                      top:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from top
+                      bottom:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from bottom (ignored if top is present)
+                      left:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from left
+                      right:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from right (ignored if left is present)
+                    description: Overlay position
+                  size:
+                    type: object
+                    properties:
+                      width:
+                        type: integer
+                        minimum: 0
+                        description: Width in pixels
+                      height:
+                        type: integer
+                        minimum: 0
+                        description: Height in pixels
+                    description: Overlay size
+                  opacity:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+                    description: Overlay opacity (0=invisible, 1=fully visible)
+                required:
+                - url
+              description: Image overlay configuration
+            drm:
+              type: boolean
+              description: Whether DRM is enabled
+            priority:
+              type: number
+              description: Engine priority
+            status:
+              type: string
+              enum:
+              - stopped
+              - deploying
+              - starting
+              - waiting
+              - ingesting
+              - playing
+              - stopping
+              - error
+              - deleting
+              - deleted
+              description: Current status of the engine
+            daiAssetKey:
+              type:
+              - string
+              - 'null'
+              description: DAI asset key
+            outputs:
+              type: object
+              properties:
+                hesp:
+                  type: boolean
+                  default: true
+                  description: Enable HESP output. Enabled by default.
+                hls:
+                  type: boolean
+                  default: true
+                  description: Enable HLS output. Enabled by default.
+                hlsMpegTs:
+                  type: boolean
+                  default: false
+                  description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
+              description: Output format configuration
+          required:
+          - id
+          - name
+          - createdAt
+          - updatedAt
+          - quality
+          - overlays
+          - drm
+          - priority
+          - status
+          - outputs
+          description: Engine object
+      required:
+      - data
+    EngineRunObjectResult:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/EngineRun'
+          - description: Engine run object
+      required:
+      - data
+    EngineRun:
+      type: object
+      properties:
+        engineId:
+          type: string
+          description: Engine ID
+        start:
+          type: string
+          description: Run start timestamp
+        end:
+          type: string
+          description: Run end timestamp
+        config:
+          type: object
+          properties:
+            ingest:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: Ingest type used
+                url:
+                  type: string
+                  description: Ingest URL used
+              required:
+              - type
+            abrLadderId:
+              type: string
+              description: ABR ladder ID used
+            drm:
+              type: boolean
+              description: Whether DRM was enabled
+          required:
+          - ingest
+          - abrLadderId
+          - drm
+          description: Run configuration
+        startType:
+          type: string
+          description: How the run was started
+        startId:
+          type: string
+          description: ID of the entity who did the start action
+        stopType:
+          type: string
+          description: How the run was stopped
+        stopId:
+          type: string
+          description: ID of entity who did the stop action
+      required:
+      - engineId
+      - start
+      - config
+      - startType
+      - startId
   securitySchemes:
-    BearerAuth:
+    BasicAuth:
       type: http
-      scheme: bearer
-      bearerFormat: API Secret
+      scheme: basic

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dolby OptiView Real-time Streaming ABR Ladders PublishToken API
+  title: Dolby OptiView Real-time Streaming Publish Token API
   description: 'REST API for managing OptiView Real-time Streaming (formerly Millicast / Dolby.io
 
     Real-time Streaming) — publish/subscribe tokens, recordings, transcoders,
@@ -146,6 +146,64 @@ paths:
                   type: integer
 components:
   schemas:
+    PublishTokenUpdate:
+      type: object
+      properties:
+        label:
+          type: string
+        isActive:
+          type: boolean
+        allowedOrigins:
+          type: array
+          items:
+            type: string
+        record:
+          type: boolean
+        enableThumbnails:
+          type: boolean
+    PublishToken:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        token:
+          type: string
+          description: JWT used by the broadcaster (WebRTC/WHIP) to publish.
+        addedOn:
+          type: string
+          format: date-time
+        expiresOn:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        isActive:
+          type: boolean
+        streams:
+          type: array
+          items:
+            type: object
+            properties:
+              streamName:
+                type: string
+              isRegex:
+                type: boolean
+        allowedOrigins:
+          type: array
+          items:
+            type: string
+        originCluster:
+          type:
+          - string
+          - 'null'
+        record:
+          type: boolean
+        multisource:
+          type: boolean
+        enableThumbnails:
+          type: boolean
     PublishTokenCreate:
       type: object
       required:
@@ -178,65 +236,10 @@ components:
           type: boolean
           default: false
         expiresOn:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
-    PublishTokenUpdate:
-      type: object
-      properties:
-        label:
-          type: string
-        isActive:
-          type: boolean
-        allowedOrigins:
-          type: array
-          items:
-            type: string
-        record:
-          type: boolean
-        enableThumbnails:
-          type: boolean
-    PublishToken:
-      type: object
-      properties:
-        id:
-          type: integer
-        label:
-          type: string
-        token:
-          type: string
-          description: JWT used by the broadcaster (WebRTC/WHIP) to publish.
-        addedOn:
-          type: string
-          format: date-time
-        expiresOn:
-          type: string
-          format: date-time
-          nullable: true
-        isActive:
-          type: boolean
-        streams:
-          type: array
-          items:
-            type: object
-            properties:
-              streamName:
-                type: string
-              isRegex:
-                type: boolean
-        allowedOrigins:
-          type: array
-          items:
-            type: string
-        originCluster:
-          type: string
-          nullable: true
-        record:
-          type: boolean
-        multisource:
-          type: boolean
-        enableThumbnails:
-          type: boolean
   securitySchemes:
     BearerAuth:
       type: http
