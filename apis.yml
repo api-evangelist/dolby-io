@@ -4,7 +4,7 @@ name: Dolby.io
 tags:
 - Media
 - Streaming
-- Real-time Streaming
+- Real-Time Streaming
 - WebRTC
 - Live Streaming
 - Low Latency
@@ -112,7 +112,7 @@ apis:
   - Server-Guided Ad Insertion
   - SGAI
   - Live Streaming
-  - Manifest
+  - Manifests
   tags_raw:
   - Advertising
   - Server-Guided Ad Insertion
