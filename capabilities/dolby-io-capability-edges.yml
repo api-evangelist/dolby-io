@@ -11,8 +11,45 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 4
 edges:
+- tag: Channels
+  spec_file: dolby-io-channels-api-openapi.yml
+  capability_id: BC-3740.20
+  capability_id_l1: BC-3740
+  capability_name: OTT & Streaming Delivery
+  confidence: 0.85
+  evidence: POST /channels/{id}/start Start a channel (will start all connected engines); GET /channels/{id}/ingests
+    Get ingests of a channel; GET /channels/{id}/distributions Get distributions of a channel; schema
+    CustomEndpointDrmConfig
+  reason: Operations create, start/stop and configure live streaming channels with ingests, engines and
+    distribution endpoints on an OTT live streaming platform — operation of streaming origin/packaging
+    and live streaming delivery. DRM config and viewing analytics schemas are adjacent, so the specific
+    L2 is streaming delivery.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Custom Endpoints
+  spec_file: dolby-io-custom-endpoints-api-openapi.yml
+  capability_id: BC-3740.20
+  capability_id_l1: BC-3740
+  capability_name: OTT & Streaming Delivery
+  confidence: 0.75
+  evidence: POST /channels/{id}/custom-endpoints 'Create a custom endpoint on a channel'; schema CustomEndpointDrmConfig
+  reason: Operations manage per-channel delivery endpoints (with DRM configuration) for the THEOlive live-streaming
+    service — i.e. configuration of streaming output/delivery paths for an OTT live service, which is
+    OTT & Streaming Delivery. Some overlap with content protection, hence not maximal confidence.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
+- tag: Distributions
+  spec_file: dolby-io-distributions-api-openapi.yml
+  capability_id: BC-3740.20
+  capability_id_l1: BC-3740
+  capability_name: OTT & Streaming Delivery
+  confidence: 0.75
+  evidence: POST /channels/{id}/distributions 'Create a distribution for a channel'; GET /distributions/{id}/analytics/viewing-minutes;
+    GET /distributions/{id}/security/keys
+  reason: Distributions are the delivery outputs of a live streaming channel, with security keys and viewing/bytes-transferred
+    analytics — operation of streaming delivery for a live OTT service. Analytics endpoints are secondary
+    to the distribution lifecycle.
+  recovered_from: vertical-media-entertainment-telecom-content-edges.json
 - tag: Webhook
   spec_file: dolby-io-webhook-api-openapi.yml
   capability_id: BC-4270.80
