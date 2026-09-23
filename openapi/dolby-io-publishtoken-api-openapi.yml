@@ -9,9 +9,7 @@ info:
 
     authenticated with a Bearer API Secret created in the streaming dashboard
 
-    (Settings -> Security -> API Secrets).
-
-    '
+    (Settings -> Security -> API Secrets).'
   version: '2026.05'
   contact:
     name: Dolby OptiView Support
@@ -161,6 +159,42 @@ components:
           type: boolean
         enableThumbnails:
           type: boolean
+    PublishTokenCreate:
+      type: object
+      required:
+      - label
+      - streams
+      properties:
+        label:
+          type: string
+        streams:
+          type: array
+          items:
+            type: object
+            properties:
+              streamName:
+                type: string
+              isRegex:
+                type: boolean
+                default: false
+        allowedOrigins:
+          type: array
+          items:
+            type: string
+        record:
+          type: boolean
+          default: false
+        multisource:
+          type: boolean
+          default: false
+        enableThumbnails:
+          type: boolean
+          default: false
+        expiresOn:
+          type:
+          - string
+          - 'null'
+          format: date-time
     PublishToken:
       type: object
       properties:
@@ -204,42 +238,6 @@ components:
           type: boolean
         enableThumbnails:
           type: boolean
-    PublishTokenCreate:
-      type: object
-      required:
-      - label
-      - streams
-      properties:
-        label:
-          type: string
-        streams:
-          type: array
-          items:
-            type: object
-            properties:
-              streamName:
-                type: string
-              isRegex:
-                type: boolean
-                default: false
-        allowedOrigins:
-          type: array
-          items:
-            type: string
-        record:
-          type: boolean
-          default: false
-        multisource:
-          type: boolean
-          default: false
-        enableThumbnails:
-          type: boolean
-          default: false
-        expiresOn:
-          type:
-          - string
-          - 'null'
-          format: date-time
   securitySchemes:
     BearerAuth:
       type: http

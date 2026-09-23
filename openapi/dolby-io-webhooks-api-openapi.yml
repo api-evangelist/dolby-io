@@ -177,15 +177,30 @@ paths:
                 $ref: '#/components/schemas/PaginatedWebhookLogResult'
 components:
   schemas:
-    WebhookObjectResult:
+    PaginatedWebhookLogResult:
       type: object
       properties:
         data:
-          allOf:
-          - $ref: '#/components/schemas/Webhook'
-          - description: Webhook object
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookLog'
+          description: List of webhook logs
+        pagination:
+          type: object
+          properties:
+            hasMore:
+              type: boolean
+              description: Whether more results are available
+            cursor:
+              type: string
+              description: Cursor for the next page of results
+          required:
+          - hasMore
+          - cursor
+          description: Pagination info
       required:
       - data
+      - pagination
     Webhook:
       type: object
       properties:
@@ -264,54 +279,6 @@ components:
       - active
       - url
       - events
-    PaginatedWebhookLogResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookLog'
-          description: List of webhook logs
-        pagination:
-          type: object
-          properties:
-            hasMore:
-              type: boolean
-              description: Whether more results are available
-            cursor:
-              type: string
-              description: Cursor for the next page of results
-          required:
-          - hasMore
-          - cursor
-          description: Pagination info
-      required:
-      - data
-      - pagination
-    PaginatedWebhookResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Webhook'
-          description: List of webhooks
-        pagination:
-          type: object
-          properties:
-            hasMore:
-              type: boolean
-              description: Whether more results are available
-            cursor:
-              type: string
-              description: Cursor for the next page of results
-          required:
-          - hasMore
-          - cursor
-          description: Pagination info
-      required:
-      - data
-      - pagination
     CreateWebhookBody:
       type: object
       properties:
@@ -376,6 +343,78 @@ components:
       - name
       - url
       - events
+      additionalProperties: false
+    WebhookObjectResult:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Webhook'
+          - description: Webhook object
+      required:
+      - data
+    UpdateWebhookBody:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the webhook
+        description:
+          type: string
+          description: Description of the webhook
+        url:
+          type: string
+          format: uri
+          description: URL to send webhook events to
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+            - '*'
+            - channel.created
+            - channel.stopped
+            - channel.deleted
+            - channel.deploying
+            - channel.updated
+            - webhook.created
+            - webhook.updated
+            - webhook.deleted
+            - scheduler.created
+            - scheduler.updated
+            - scheduler.deleted
+            - scheduler.active
+            - scheduler.terminated
+            - engine.deploying
+            - engine.waiting
+            - engine.starting
+            - engine.error
+            - engine.playing
+            - engine.ingesting
+            - engine.created
+            - engine.updated
+            - engine.stopping
+            - engine.stopped
+            - engine.deleting
+            - engine.deleted
+            - engine.log.warn
+            - engine.log.error
+            - engine.log.info
+            - ingest.created
+            - ingest.updated
+            - ingest.deleted
+            - distribution.created
+            - distribution.enabled
+            - distribution.disabled
+            - distribution.updated
+            - distribution.deleted
+            - distribution.security.key.added
+            - distribution.security.key.deleted
+            - distribution.security.keys.deleted
+          description: List of events to subscribe to
+        active:
+          type: boolean
+          description: Whether the webhook is active
       additionalProperties: false
     WebhookLog:
       type: object
@@ -554,69 +593,30 @@ components:
           description: Secret object
       required:
       - data
-    UpdateWebhookBody:
+    PaginatedWebhookResult:
       type: object
       properties:
-        name:
-          type: string
-          description: Name of the webhook
-        description:
-          type: string
-          description: Description of the webhook
-        url:
-          type: string
-          format: uri
-          description: URL to send webhook events to
-        events:
+        data:
           type: array
           items:
-            type: string
-            enum:
-            - '*'
-            - channel.created
-            - channel.stopped
-            - channel.deleted
-            - channel.deploying
-            - channel.updated
-            - webhook.created
-            - webhook.updated
-            - webhook.deleted
-            - scheduler.created
-            - scheduler.updated
-            - scheduler.deleted
-            - scheduler.active
-            - scheduler.terminated
-            - engine.deploying
-            - engine.waiting
-            - engine.starting
-            - engine.error
-            - engine.playing
-            - engine.ingesting
-            - engine.created
-            - engine.updated
-            - engine.stopping
-            - engine.stopped
-            - engine.deleting
-            - engine.deleted
-            - engine.log.warn
-            - engine.log.error
-            - engine.log.info
-            - ingest.created
-            - ingest.updated
-            - ingest.deleted
-            - distribution.created
-            - distribution.enabled
-            - distribution.disabled
-            - distribution.updated
-            - distribution.deleted
-            - distribution.security.key.added
-            - distribution.security.key.deleted
-            - distribution.security.keys.deleted
-          description: List of events to subscribe to
-        active:
-          type: boolean
-          description: Whether the webhook is active
-      additionalProperties: false
+            $ref: '#/components/schemas/Webhook'
+          description: List of webhooks
+        pagination:
+          type: object
+          properties:
+            hasMore:
+              type: boolean
+              description: Whether more results are available
+            cursor:
+              type: string
+              description: Cursor for the next page of results
+          required:
+          - hasMore
+          - cursor
+          description: Pagination info
+      required:
+      - data
+      - pagination
   securitySchemes:
     BasicAuth:
       type: http

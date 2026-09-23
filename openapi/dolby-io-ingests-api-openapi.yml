@@ -353,391 +353,6 @@ paths:
                 $ref: '#/components/schemas/EngineObjectResult'
 components:
   schemas:
-    PaginatedEngineResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Unique identifier of the engine
-              name:
-                type: string
-                description: Name of the engine
-              createdAt:
-                type: string
-                description: Creation timestamp
-              updatedAt:
-                type: string
-                description: Last update timestamp
-              quality:
-                type: object
-                properties:
-                  abrLadderId:
-                    type: string
-                    description: ABR ladder ID
-                required:
-                - abrLadderId
-                description: Quality configuration
-              overlays:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    url:
-                      type: string
-                      description: URL of the overlay image
-                    position:
-                      type: object
-                      properties:
-                        top:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from top
-                        bottom:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from bottom (ignored if top is present)
-                        left:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from left
-                        right:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from right (ignored if left is present)
-                      description: Overlay position
-                    size:
-                      type: object
-                      properties:
-                        width:
-                          type: integer
-                          minimum: 0
-                          description: Width in pixels
-                        height:
-                          type: integer
-                          minimum: 0
-                          description: Height in pixels
-                      description: Overlay size
-                    opacity:
-                      type: number
-                      minimum: 0
-                      maximum: 1
-                      description: Overlay opacity (0=invisible, 1=fully visible)
-                  required:
-                  - url
-                description: Image overlay configuration
-              drm:
-                type: boolean
-                description: Whether DRM is enabled
-              priority:
-                type: number
-                description: Engine priority
-              status:
-                type: string
-                enum:
-                - stopped
-                - deploying
-                - starting
-                - waiting
-                - ingesting
-                - playing
-                - stopping
-                - error
-                - deleting
-                - deleted
-                description: Current status of the engine
-              daiAssetKey:
-                type:
-                - string
-                - 'null'
-                description: DAI asset key
-              outputs:
-                type: object
-                properties:
-                  hesp:
-                    type: boolean
-                    default: true
-                    description: Enable HESP output. Enabled by default.
-                  hls:
-                    type: boolean
-                    default: true
-                    description: Enable HLS output. Enabled by default.
-                  hlsMpegTs:
-                    type: boolean
-                    default: false
-                    description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
-                description: Output format configuration
-            required:
-            - id
-            - name
-            - createdAt
-            - updatedAt
-            - quality
-            - overlays
-            - drm
-            - priority
-            - status
-            - outputs
-          description: List of engines
-        pagination:
-          type: object
-          properties:
-            hasMore:
-              type: boolean
-              description: Whether more results are available
-            cursor:
-              type: string
-              description: Cursor for the next page of results
-          required:
-          - hasMore
-          - cursor
-          description: Pagination info
-      required:
-      - data
-      - pagination
-    PaginatedIngestResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ingest'
-          description: List of ingests
-        pagination:
-          type: object
-          properties:
-            hasMore:
-              type: boolean
-              description: Whether more results are available
-            cursor:
-              type: string
-              description: Cursor for the next page of results
-          required:
-          - hasMore
-          - cursor
-          description: Pagination info
-      required:
-      - data
-      - pagination
-    IngestObjectResult:
-      type: object
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/Ingest'
-          - description: Ingest object
-      required:
-      - data
-    Ingest:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the ingest
-        name:
-          type: string
-          description: Name of the ingest
-        createdAt:
-          type: string
-          description: Creation timestamp
-        type:
-          type: string
-          enum:
-          - rtmp-push
-          - rtmp-pull
-          - srt-pull
-          - srt-push
-          - sdi-pull
-          description: Ingest type
-        url:
-          type: string
-          description: Ingest URL
-        streamKey:
-          type: string
-          description: Stream key for RTMP push ingests
-        tracks:
-          type: object
-          properties:
-            audio:
-              type: array
-              items:
-                type: object
-                properties:
-                  pid:
-                    type: number
-                    description: Audio track PID (mandatory for multi-audio)
-                  language:
-                    type: string
-                    description: Audio track language code
-                  label:
-                    type: string
-                    description: Audio track label
-                required:
-                - language
-                - label
-              description: Audio track configuration
-          description: Audio track configuration
-        captions:
-          type: array
-          items:
-            type: object
-            properties:
-              channel:
-                type: number
-                description: Caption channel number
-              language:
-                type: string
-                description: Caption language code
-              label:
-                type: string
-                description: Caption label
-            required:
-            - channel
-            - language
-          description: Caption configuration
-      required:
-      - id
-      - name
-      - createdAt
-      - type
-      - url
-      - streamKey
-      - tracks
-      - captions
-    EngineObjectResult:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Unique identifier of the engine
-            name:
-              type: string
-              description: Name of the engine
-            createdAt:
-              type: string
-              description: Creation timestamp
-            updatedAt:
-              type: string
-              description: Last update timestamp
-            quality:
-              type: object
-              properties:
-                abrLadderId:
-                  type: string
-                  description: ABR ladder ID
-              required:
-              - abrLadderId
-              description: Quality configuration
-            overlays:
-              type: array
-              items:
-                type: object
-                properties:
-                  url:
-                    type: string
-                    description: URL of the overlay image
-                  position:
-                    type: object
-                    properties:
-                      top:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from top
-                      bottom:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from bottom (ignored if top is present)
-                      left:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from left
-                      right:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from right (ignored if left is present)
-                    description: Overlay position
-                  size:
-                    type: object
-                    properties:
-                      width:
-                        type: integer
-                        minimum: 0
-                        description: Width in pixels
-                      height:
-                        type: integer
-                        minimum: 0
-                        description: Height in pixels
-                    description: Overlay size
-                  opacity:
-                    type: number
-                    minimum: 0
-                    maximum: 1
-                    description: Overlay opacity (0=invisible, 1=fully visible)
-                required:
-                - url
-              description: Image overlay configuration
-            drm:
-              type: boolean
-              description: Whether DRM is enabled
-            priority:
-              type: number
-              description: Engine priority
-            status:
-              type: string
-              enum:
-              - stopped
-              - deploying
-              - starting
-              - waiting
-              - ingesting
-              - playing
-              - stopping
-              - error
-              - deleting
-              - deleted
-              description: Current status of the engine
-            daiAssetKey:
-              type:
-              - string
-              - 'null'
-              description: DAI asset key
-            outputs:
-              type: object
-              properties:
-                hesp:
-                  type: boolean
-                  default: true
-                  description: Enable HESP output. Enabled by default.
-                hls:
-                  type: boolean
-                  default: true
-                  description: Enable HLS output. Enabled by default.
-                hlsMpegTs:
-                  type: boolean
-                  default: false
-                  description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
-              description: Output format configuration
-          required:
-          - id
-          - name
-          - createdAt
-          - updatedAt
-          - quality
-          - overlays
-          - drm
-          - priority
-          - status
-          - outputs
-          description: Engine object
-      required:
-      - data
     UpdateIngestBody:
       type: object
       properties:
@@ -927,6 +542,391 @@ components:
           - deviceNumber
           description: SDI configuration
       additionalProperties: false
+    PaginatedEngineResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Unique identifier of the engine
+              name:
+                type: string
+                description: Name of the engine
+              createdAt:
+                type: string
+                description: Creation timestamp
+              updatedAt:
+                type: string
+                description: Last update timestamp
+              quality:
+                type: object
+                properties:
+                  abrLadderId:
+                    type: string
+                    description: ABR ladder ID
+                required:
+                - abrLadderId
+                description: Quality configuration
+              overlays:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                      description: URL of the overlay image
+                    position:
+                      type: object
+                      properties:
+                        top:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from top
+                        bottom:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from bottom (ignored if top is present)
+                        left:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from left
+                        right:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from right (ignored if left is present)
+                      description: Overlay position
+                    size:
+                      type: object
+                      properties:
+                        width:
+                          type: integer
+                          minimum: 0
+                          description: Width in pixels
+                        height:
+                          type: integer
+                          minimum: 0
+                          description: Height in pixels
+                      description: Overlay size
+                    opacity:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                      description: Overlay opacity (0=invisible, 1=fully visible)
+                  required:
+                  - url
+                description: Image overlay configuration
+              drm:
+                type: boolean
+                description: Whether DRM is enabled
+              priority:
+                type: number
+                description: Engine priority
+              status:
+                type: string
+                enum:
+                - stopped
+                - deploying
+                - starting
+                - waiting
+                - ingesting
+                - playing
+                - stopping
+                - error
+                - deleting
+                - deleted
+                description: Current status of the engine
+              daiAssetKey:
+                type:
+                - string
+                - 'null'
+                description: DAI asset key
+              outputs:
+                type: object
+                properties:
+                  hesp:
+                    type: boolean
+                    default: true
+                    description: Enable HESP output. Enabled by default.
+                  hls:
+                    type: boolean
+                    default: true
+                    description: Enable HLS output. Enabled by default.
+                  hlsMpegTs:
+                    type: boolean
+                    default: false
+                    description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
+                description: Output format configuration
+            required:
+            - id
+            - name
+            - createdAt
+            - updatedAt
+            - quality
+            - overlays
+            - drm
+            - priority
+            - status
+            - outputs
+          description: List of engines
+        pagination:
+          type: object
+          properties:
+            hasMore:
+              type: boolean
+              description: Whether more results are available
+            cursor:
+              type: string
+              description: Cursor for the next page of results
+          required:
+          - hasMore
+          - cursor
+          description: Pagination info
+      required:
+      - data
+      - pagination
+    EngineObjectResult:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the engine
+            name:
+              type: string
+              description: Name of the engine
+            createdAt:
+              type: string
+              description: Creation timestamp
+            updatedAt:
+              type: string
+              description: Last update timestamp
+            quality:
+              type: object
+              properties:
+                abrLadderId:
+                  type: string
+                  description: ABR ladder ID
+              required:
+              - abrLadderId
+              description: Quality configuration
+            overlays:
+              type: array
+              items:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: URL of the overlay image
+                  position:
+                    type: object
+                    properties:
+                      top:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from top
+                      bottom:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from bottom (ignored if top is present)
+                      left:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from left
+                      right:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from right (ignored if left is present)
+                    description: Overlay position
+                  size:
+                    type: object
+                    properties:
+                      width:
+                        type: integer
+                        minimum: 0
+                        description: Width in pixels
+                      height:
+                        type: integer
+                        minimum: 0
+                        description: Height in pixels
+                    description: Overlay size
+                  opacity:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+                    description: Overlay opacity (0=invisible, 1=fully visible)
+                required:
+                - url
+              description: Image overlay configuration
+            drm:
+              type: boolean
+              description: Whether DRM is enabled
+            priority:
+              type: number
+              description: Engine priority
+            status:
+              type: string
+              enum:
+              - stopped
+              - deploying
+              - starting
+              - waiting
+              - ingesting
+              - playing
+              - stopping
+              - error
+              - deleting
+              - deleted
+              description: Current status of the engine
+            daiAssetKey:
+              type:
+              - string
+              - 'null'
+              description: DAI asset key
+            outputs:
+              type: object
+              properties:
+                hesp:
+                  type: boolean
+                  default: true
+                  description: Enable HESP output. Enabled by default.
+                hls:
+                  type: boolean
+                  default: true
+                  description: Enable HLS output. Enabled by default.
+                hlsMpegTs:
+                  type: boolean
+                  default: false
+                  description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
+              description: Output format configuration
+          required:
+          - id
+          - name
+          - createdAt
+          - updatedAt
+          - quality
+          - overlays
+          - drm
+          - priority
+          - status
+          - outputs
+          description: Engine object
+      required:
+      - data
+    IngestObjectResult:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Ingest'
+          - description: Ingest object
+      required:
+      - data
+    Ingest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the ingest
+        name:
+          type: string
+          description: Name of the ingest
+        createdAt:
+          type: string
+          description: Creation timestamp
+        type:
+          type: string
+          enum:
+          - rtmp-push
+          - rtmp-pull
+          - srt-pull
+          - srt-push
+          - sdi-pull
+          description: Ingest type
+        url:
+          type: string
+          description: Ingest URL
+        streamKey:
+          type: string
+          description: Stream key for RTMP push ingests
+        tracks:
+          type: object
+          properties:
+            audio:
+              type: array
+              items:
+                type: object
+                properties:
+                  pid:
+                    type: number
+                    description: Audio track PID (mandatory for multi-audio)
+                  language:
+                    type: string
+                    description: Audio track language code
+                  label:
+                    type: string
+                    description: Audio track label
+                required:
+                - language
+                - label
+              description: Audio track configuration
+          description: Audio track configuration
+        captions:
+          type: array
+          items:
+            type: object
+            properties:
+              channel:
+                type: number
+                description: Caption channel number
+              language:
+                type: string
+                description: Caption language code
+              label:
+                type: string
+                description: Caption label
+            required:
+            - channel
+            - language
+          description: Caption configuration
+      required:
+      - id
+      - name
+      - createdAt
+      - type
+      - url
+      - streamKey
+      - tracks
+      - captions
+    PaginatedIngestResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ingest'
+          description: List of ingests
+        pagination:
+          type: object
+          properties:
+            hasMore:
+              type: boolean
+              description: Whether more results are available
+            cursor:
+              type: string
+              description: Cursor for the next page of results
+          required:
+          - hasMore
+          - cursor
+          description: Pagination info
+      required:
+      - data
+      - pagination
   securitySchemes:
     BasicAuth:
       type: http

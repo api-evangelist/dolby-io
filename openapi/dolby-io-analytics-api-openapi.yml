@@ -9,9 +9,7 @@ info:
 
     authenticated with a Bearer API Secret created in the streaming dashboard
 
-    (Settings -> Security -> API Secrets).
-
-    '
+    (Settings -> Security -> API Secrets).'
   version: '2026.05'
   contact:
     name: Dolby OptiView Support

@@ -416,6 +416,30 @@ paths:
                 $ref: '#/components/schemas/PaginatedEngineRunResult'
 components:
   schemas:
+    PaginatedEngineRunResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EngineRun'
+          description: List of engine runs
+        pagination:
+          type: object
+          properties:
+            hasMore:
+              type: boolean
+              description: Whether more results are available
+            cursor:
+              type: string
+              description: Cursor for the next page of results
+          required:
+          - hasMore
+          - cursor
+          description: Pagination info
+      required:
+      - data
+      - pagination
     PaginatedEngineResult:
       type: object
       properties:
@@ -546,30 +570,6 @@ components:
             - status
             - outputs
           description: List of engines
-        pagination:
-          type: object
-          properties:
-            hasMore:
-              type: boolean
-              description: Whether more results are available
-            cursor:
-              type: string
-              description: Cursor for the next page of results
-          required:
-          - hasMore
-          - cursor
-          description: Pagination info
-      required:
-      - data
-      - pagination
-    PaginatedEngineRunResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EngineRun'
-          description: List of engine runs
         pagination:
           type: object
           properties:

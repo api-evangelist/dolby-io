@@ -1305,102 +1305,23 @@ paths:
                 $ref: '#/components/schemas/CustomEndpointListResult'
 components:
   schemas:
-    CreateCustomEndpointBody:
+    SendInstreamMetadataBody:
+      type: string
+      format: binary
+      description: Binary blob of instream metadata
+    UpdateChannelBody:
       type: object
       properties:
-        name:
-          type: string
-          minLength: 1
-          description: Name of the custom endpoint
-        src:
-          type: string
-          minLength: 1
-          description: Source URL
-        srcType:
-          type: string
-          enum:
-          - hesp
-          - hls
-          - dash
-          description: Source type (hesp, hls or dash)
-        provider:
-          type: string
-          minLength: 1
-          description: Provider name (must be configured for the organization)
-        drmConfig:
-          $ref: '#/components/schemas/CustomEndpointDrmConfig'
-        cdn:
-          type: string
-          minLength: 1
-          pattern: ^[a-zA-Z0-9]+$
-          description: CDN identifier
-        priority:
-          type: integer
-          description: Priority (lower is higher priority)
-      required:
-      - name
-      - src
-      - srcType
-      - provider
-      - cdn
-      - priority
-      additionalProperties: false
-    PaginatedChannelResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Channel'
-          description: List of channels
-        pagination:
-          type: object
-          properties:
-            hasMore:
-              type: boolean
-              description: Whether more results are available
-            cursor:
-              type: string
-              description: Cursor for the next page of results
-          required:
-          - hasMore
-          - cursor
-          description: Pagination info
-      required:
-      - data
-      - pagination
-    Channel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the channel
-        createdAt:
-          type: string
-          description: Creation timestamp
         name:
           type: string
           description: Name of the channel
-        status:
-          type: string
-          enum:
-          - stopped
-          - deploying
-          - starting
-          - waiting
-          - ingesting
-          - playing
-          - stopping
-          - error
-          - deleting
-          - deleted
-          description: Current status of the channel
         externalId:
           type: string
-          description: External identifier
+          description: External identifier for the channel
         timeout:
           type: number
-          description: Timeout in seconds
+          minimum: 0
+          description: Timeout in seconds (minimum 60). To never stop, pass 0
         ads:
           type: object
           properties:
@@ -1438,7 +1359,7 @@ components:
               description: Ad settings (required when enabled is true)
           required:
           - enabled
-          description: Ads configuration
+          description: Ads configuration. Only available when ads feature is enabled on organization level.
         dvr:
           type: object
           properties:
@@ -1452,7 +1373,7 @@ components:
               description: DVR window in seconds (60-86400)
           required:
           - enabled
-          description: DVR configuration
+          description: DVR configuration. Only available when DVR feature is enabled on organization level.
         nielsen:
           type: object
           properties:
@@ -1461,7 +1382,7 @@ components:
               description: Whether Nielsen is enabled
           required:
           - enabled
-          description: Nielsen configuration
+          description: Nielsen configuration. Only available when Nielsen feature is enabled on organization level.
         instreamMetadata:
           type: object
           properties:
@@ -1477,496 +1398,7 @@ components:
           required:
           - enabled
           description: Instream metadata configuration
-        perpetual:
-          type: boolean
-          description: Whether this channel is 24/7 (never times out, excluded from transcoding analytics)
-        organizationId:
-          type: string
-          description: Organization ID
-      required:
-      - id
-      - createdAt
-      - name
-      - status
-      - timeout
-      - perpetual
-      - organizationId
-    IncludedEngines:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Unique identifier of the engine
-              name:
-                type: string
-                description: Name of the engine
-              createdAt:
-                type: string
-                description: Creation timestamp
-              updatedAt:
-                type: string
-                description: Last update timestamp
-              quality:
-                type: object
-                properties:
-                  abrLadderId:
-                    type: string
-                    description: ABR ladder ID
-                required:
-                - abrLadderId
-                description: Quality configuration
-              overlays:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    url:
-                      type: string
-                      description: URL of the overlay image
-                    position:
-                      type: object
-                      properties:
-                        top:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from top
-                        bottom:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from bottom (ignored if top is present)
-                        left:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from left
-                        right:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from right (ignored if left is present)
-                      description: Overlay position
-                    size:
-                      type: object
-                      properties:
-                        width:
-                          type: integer
-                          minimum: 0
-                          description: Width in pixels
-                        height:
-                          type: integer
-                          minimum: 0
-                          description: Height in pixels
-                      description: Overlay size
-                    opacity:
-                      type: number
-                      minimum: 0
-                      maximum: 1
-                      description: Overlay opacity (0=invisible, 1=fully visible)
-                  required:
-                  - url
-                description: Image overlay configuration
-              drm:
-                type: boolean
-                description: Whether DRM is enabled
-              priority:
-                type: number
-                description: Engine priority
-              status:
-                type: string
-                enum:
-                - stopped
-                - deploying
-                - starting
-                - waiting
-                - ingesting
-                - playing
-                - stopping
-                - error
-                - deleting
-                - deleted
-                description: Current status of the engine
-              daiAssetKey:
-                type:
-                - string
-                - 'null'
-                description: DAI asset key
-              outputs:
-                type: object
-                properties:
-                  hesp:
-                    type: boolean
-                    default: true
-                    description: Enable HESP output. Enabled by default.
-                  hls:
-                    type: boolean
-                    default: true
-                    description: Enable HLS output. Enabled by default.
-                  hlsMpegTs:
-                    type: boolean
-                    default: false
-                    description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
-                description: Output format configuration
-            required:
-            - id
-            - name
-            - createdAt
-            - updatedAt
-            - quality
-            - overlays
-            - drm
-            - priority
-            - status
-            - outputs
-          description: First 10 engines
-        hasMore:
-          type: boolean
-          description: Whether there are more than 10 engines
-        link:
-          type: string
-          description: Link to the full engines list
-        count:
-          type: number
-          description: Total number of engines
-      required:
-      - data
-      - hasMore
-      - link
-      - count
-      description: Included engines preview
-    PaginatedEngineRunResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EngineRun'
-          description: List of engine runs
-        pagination:
-          type: object
-          properties:
-            hasMore:
-              type: boolean
-              description: Whether more results are available
-            cursor:
-              type: string
-              description: Cursor for the next page of results
-          required:
-          - hasMore
-          - cursor
-          description: Pagination info
-      required:
-      - data
-      - pagination
-    CountryInsightsListResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              city:
-                type: string
-                description: City name
-              countryCode:
-                type: string
-                description: ISO country code
-              geoLocation:
-                type: string
-                description: Rounded latitude,longitude
-              amount:
-                type: number
-                description: Number of unique viewers
-            required:
-            - city
-            - countryCode
-            - geoLocation
-            - amount
-          description: List of country insights
-      required:
-      - data
-    ChannelCreatedObjectResult:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ChannelCreated'
-      required:
-      - data
-    Ingest:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the ingest
-        name:
-          type: string
-          description: Name of the ingest
-        createdAt:
-          type: string
-          description: Creation timestamp
-        type:
-          type: string
-          enum:
-          - rtmp-push
-          - rtmp-pull
-          - srt-pull
-          - srt-push
-          - sdi-pull
-          description: Ingest type
-        url:
-          type: string
-          description: Ingest URL
-        streamKey:
-          type: string
-          description: Stream key for RTMP push ingests
-        tracks:
-          type: object
-          properties:
-            audio:
-              type: array
-              items:
-                type: object
-                properties:
-                  pid:
-                    type: number
-                    description: Audio track PID (mandatory for multi-audio)
-                  language:
-                    type: string
-                    description: Audio track language code
-                  label:
-                    type: string
-                    description: Audio track label
-                required:
-                - language
-                - label
-              description: Audio track configuration
-          description: Audio track configuration
-        captions:
-          type: array
-          items:
-            type: object
-            properties:
-              channel:
-                type: number
-                description: Caption channel number
-              language:
-                type: string
-                description: Caption language code
-              label:
-                type: string
-                description: Caption label
-            required:
-            - channel
-            - language
-          description: Caption configuration
-      required:
-      - id
-      - name
-      - createdAt
-      - type
-      - url
-      - streamKey
-      - tracks
-      - captions
-    IncludedIngests:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ingest'
-          description: First 10 ingests
-        hasMore:
-          type: boolean
-          description: Whether there are more than 10 ingests
-        link:
-          type: string
-          description: Link to the full ingests list
-        count:
-          type: number
-          description: Total number of ingests
-      required:
-      - data
-      - hasMore
-      - link
-      - count
-      description: Included ingests preview
-    SendInstreamMetadataBody:
-      type: string
-      format: binary
-      description: Binary blob of instream metadata
-    IncludedDistributions:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Distribution'
-          description: First 10 distributions
-        hasMore:
-          type: boolean
-          description: Whether there are more than 10 distributions
-        link:
-          type: string
-          description: Link to the full distributions list
-        count:
-          type: number
-          description: Total number of distributions
-      required:
-      - data
-      - hasMore
-      - link
-      - count
-      description: Included distributions preview
-    PaginatedEngineResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Unique identifier of the engine
-              name:
-                type: string
-                description: Name of the engine
-              createdAt:
-                type: string
-                description: Creation timestamp
-              updatedAt:
-                type: string
-                description: Last update timestamp
-              quality:
-                type: object
-                properties:
-                  abrLadderId:
-                    type: string
-                    description: ABR ladder ID
-                required:
-                - abrLadderId
-                description: Quality configuration
-              overlays:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    url:
-                      type: string
-                      description: URL of the overlay image
-                    position:
-                      type: object
-                      properties:
-                        top:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from top
-                        bottom:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from bottom (ignored if top is present)
-                        left:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from left
-                        right:
-                          type: integer
-                          minimum: 0
-                          description: Pixels from right (ignored if left is present)
-                      description: Overlay position
-                    size:
-                      type: object
-                      properties:
-                        width:
-                          type: integer
-                          minimum: 0
-                          description: Width in pixels
-                        height:
-                          type: integer
-                          minimum: 0
-                          description: Height in pixels
-                      description: Overlay size
-                    opacity:
-                      type: number
-                      minimum: 0
-                      maximum: 1
-                      description: Overlay opacity (0=invisible, 1=fully visible)
-                  required:
-                  - url
-                description: Image overlay configuration
-              drm:
-                type: boolean
-                description: Whether DRM is enabled
-              priority:
-                type: number
-                description: Engine priority
-              status:
-                type: string
-                enum:
-                - stopped
-                - deploying
-                - starting
-                - waiting
-                - ingesting
-                - playing
-                - stopping
-                - error
-                - deleting
-                - deleted
-                description: Current status of the engine
-              daiAssetKey:
-                type:
-                - string
-                - 'null'
-                description: DAI asset key
-              outputs:
-                type: object
-                properties:
-                  hesp:
-                    type: boolean
-                    default: true
-                    description: Enable HESP output. Enabled by default.
-                  hls:
-                    type: boolean
-                    default: true
-                    description: Enable HLS output. Enabled by default.
-                  hlsMpegTs:
-                    type: boolean
-                    default: false
-                    description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
-                description: Output format configuration
-            required:
-            - id
-            - name
-            - createdAt
-            - updatedAt
-            - quality
-            - overlays
-            - drm
-            - priority
-            - status
-            - outputs
-          description: List of engines
-        pagination:
-          type: object
-          properties:
-            hasMore:
-              type: boolean
-              description: Whether more results are available
-            cursor:
-              type: string
-              description: Cursor for the next page of results
-          required:
-          - hasMore
-          - cursor
-          description: Pagination info
-      required:
-      - data
-      - pagination
+      additionalProperties: false
     DistributionObjectResult:
       type: object
       properties:
@@ -1976,72 +1408,6 @@ components:
           - description: Distribution object
       required:
       - data
-    ChannelObjectResultWithIncludes:
-      type: object
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/Channel'
-          - description: Channel object
-        ingests:
-          $ref: '#/components/schemas/IncludedIngests'
-        engines:
-          $ref: '#/components/schemas/IncludedEngines'
-        distributions:
-          $ref: '#/components/schemas/IncludedDistributions'
-      required:
-      - data
-    CustomEndpointObjectResult:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CustomEndpoint'
-      required:
-      - data
-    CustomEndpointDrmConfig:
-      type: object
-      properties:
-        integration:
-          type: string
-          enum:
-          - ezdrm
-          - mediakind
-          description: DRM integration type
-        widevine:
-          type: object
-          properties:
-            licenseUrl:
-              type: string
-              description: Widevine license URL
-          required:
-          - licenseUrl
-          description: Widevine DRM configuration
-        playready:
-          type: object
-          properties:
-            licenseUrl:
-              type: string
-              description: PlayReady license URL
-          required:
-          - licenseUrl
-          description: PlayReady DRM configuration
-        fairplay:
-          type: object
-          properties:
-            licenseUrl:
-              type: string
-              description: FairPlay license URL
-            certificateUrl:
-              type: string
-              description: FairPlay certificate URL
-          required:
-          - licenseUrl
-          - certificateUrl
-          description: FairPlay DRM configuration
-      required:
-      - integration
-      additionalProperties: false
-      description: Optional DRM configuration
     CreateChannelBody:
       type: object
       properties:
@@ -2533,7 +1899,17 @@ components:
       required:
       - name
       additionalProperties: false
-    ViewingCountryListResult:
+    CustomEndpointListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomEndpoint'
+          description: List of custom endpoints
+      required:
+      - data
+    IncludedEngines:
       type: object
       properties:
         data:
@@ -2541,19 +1917,183 @@ components:
           items:
             type: object
             properties:
-              countryCode:
+              id:
                 type: string
-                description: ISO country code
-              amount:
+                description: Unique identifier of the engine
+              name:
+                type: string
+                description: Name of the engine
+              createdAt:
+                type: string
+                description: Creation timestamp
+              updatedAt:
+                type: string
+                description: Last update timestamp
+              quality:
+                type: object
+                properties:
+                  abrLadderId:
+                    type: string
+                    description: ABR ladder ID
+                required:
+                - abrLadderId
+                description: Quality configuration
+              overlays:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                      description: URL of the overlay image
+                    position:
+                      type: object
+                      properties:
+                        top:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from top
+                        bottom:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from bottom (ignored if top is present)
+                        left:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from left
+                        right:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from right (ignored if left is present)
+                      description: Overlay position
+                    size:
+                      type: object
+                      properties:
+                        width:
+                          type: integer
+                          minimum: 0
+                          description: Width in pixels
+                        height:
+                          type: integer
+                          minimum: 0
+                          description: Height in pixels
+                      description: Overlay size
+                    opacity:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                      description: Overlay opacity (0=invisible, 1=fully visible)
+                  required:
+                  - url
+                description: Image overlay configuration
+              drm:
+                type: boolean
+                description: Whether DRM is enabled
+              priority:
                 type: number
-                description: Metric value
+                description: Engine priority
+              status:
+                type: string
+                enum:
+                - stopped
+                - deploying
+                - starting
+                - waiting
+                - ingesting
+                - playing
+                - stopping
+                - error
+                - deleting
+                - deleted
+                description: Current status of the engine
+              daiAssetKey:
+                type:
+                - string
+                - 'null'
+                description: DAI asset key
+              outputs:
+                type: object
+                properties:
+                  hesp:
+                    type: boolean
+                    default: true
+                    description: Enable HESP output. Enabled by default.
+                  hls:
+                    type: boolean
+                    default: true
+                    description: Enable HLS output. Enabled by default.
+                  hlsMpegTs:
+                    type: boolean
+                    default: false
+                    description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
+                description: Output format configuration
             required:
-            - countryCode
-            - amount
-          description: List of country viewing data
+            - id
+            - name
+            - createdAt
+            - updatedAt
+            - quality
+            - overlays
+            - drm
+            - priority
+            - status
+            - outputs
+          description: First 10 engines
+        hasMore:
+          type: boolean
+          description: Whether there are more than 10 engines
+        link:
+          type: string
+          description: Link to the full engines list
+        count:
+          type: number
+          description: Total number of engines
       required:
       - data
-    ViewingBrowserListResult:
+      - hasMore
+      - link
+      - count
+      description: Included engines preview
+    ChannelObjectResultWithIncludes:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Channel'
+          - description: Channel object
+        ingests:
+          $ref: '#/components/schemas/IncludedIngests'
+        engines:
+          $ref: '#/components/schemas/IncludedEngines'
+        distributions:
+          $ref: '#/components/schemas/IncludedDistributions'
+      required:
+      - data
+    PaginatedDistributionResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Distribution'
+          description: List of distributions
+        pagination:
+          type: object
+          properties:
+            hasMore:
+              type: boolean
+              description: Whether more results are available
+            cursor:
+              type: string
+              description: Cursor for the next page of results
+          required:
+          - hasMore
+          - cursor
+          description: Pagination info
+      required:
+      - data
+      - pagination
+    BrowserOsInsightsListResult:
       type: object
       properties:
         data:
@@ -2564,114 +2104,25 @@ components:
               browserName:
                 type: string
                 description: Browser name
-              hardwareType:
+              browserVersion:
                 type: string
-                description: Hardware type
+                description: Browser version
+              osName:
+                type: string
+                description: OS name
+              osVersion:
+                type: string
+                description: OS version
               amount:
                 type: number
-                description: Metric value
+                description: Number of unique viewers
             required:
             - browserName
-            - hardwareType
+            - browserVersion
+            - osName
+            - osVersion
             - amount
-          description: List of browser viewing data
-      required:
-      - data
-    AnalyticsListResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              timestamp:
-                type: string
-                description: Timestamp of the data point
-              records:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      description: Identifier of the grouped entity
-                    amount:
-                      type: number
-                      description: Metric value
-                  required:
-                  - id
-                  - amount
-                description: Records for this time bucket
-            required:
-            - timestamp
-            - records
-          description: List of analytics data points
-      required:
-      - data
-    EngineRun:
-      type: object
-      properties:
-        engineId:
-          type: string
-          description: Engine ID
-        start:
-          type: string
-          description: Run start timestamp
-        end:
-          type: string
-          description: Run end timestamp
-        config:
-          type: object
-          properties:
-            ingest:
-              type: object
-              properties:
-                type:
-                  type: string
-                  description: Ingest type used
-                url:
-                  type: string
-                  description: Ingest URL used
-              required:
-              - type
-            abrLadderId:
-              type: string
-              description: ABR ladder ID used
-            drm:
-              type: boolean
-              description: Whether DRM was enabled
-          required:
-          - ingest
-          - abrLadderId
-          - drm
-          description: Run configuration
-        startType:
-          type: string
-          description: How the run was started
-        startId:
-          type: string
-          description: ID of the entity who did the start action
-        stopType:
-          type: string
-          description: How the run was stopped
-        stopId:
-          type: string
-          description: ID of entity who did the stop action
-      required:
-      - engineId
-      - start
-      - config
-      - startType
-      - startId
-    CustomEndpointListResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomEndpoint'
-          description: List of custom endpoints
+          description: List of browser/OS insights
       required:
       - data
     Distribution:
@@ -2933,248 +2384,6 @@ components:
       - security
       - endpoints
       - dvr
-    CustomEndpoint:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier
-        createdAt:
-          type: string
-          description: Creation timestamp
-        updatedAt:
-          type: string
-          description: Last update timestamp
-        organizationId:
-          type: string
-          description: Organization ID
-        channelId:
-          type: string
-          description: Channel ID
-        name:
-          type: string
-          description: Name
-        src:
-          type: string
-          description: Source URL
-        srcType:
-          type: string
-          enum:
-          - hesp
-          - hls
-          - dash
-          description: Source type
-        provider:
-          type: string
-          description: Provider
-        drmConfig:
-          type:
-          - object
-          - 'null'
-          properties:
-            integration:
-              type: string
-              enum:
-              - ezdrm
-              - mediakind
-              description: DRM integration type
-            widevine:
-              type: object
-              properties:
-                licenseUrl:
-                  type: string
-                  description: Widevine license URL
-              required:
-              - licenseUrl
-              description: Widevine DRM configuration
-            playready:
-              type: object
-              properties:
-                licenseUrl:
-                  type: string
-                  description: PlayReady license URL
-              required:
-              - licenseUrl
-              description: PlayReady DRM configuration
-            fairplay:
-              type: object
-              properties:
-                licenseUrl:
-                  type: string
-                  description: FairPlay license URL
-                certificateUrl:
-                  type: string
-                  description: FairPlay certificate URL
-              required:
-              - licenseUrl
-              - certificateUrl
-              description: FairPlay DRM configuration
-          required:
-          - integration
-          additionalProperties: false
-          description: DRM configuration
-        cdn:
-          type: string
-          description: CDN identifier
-        priority:
-          type: number
-          description: Priority
-      required:
-      - id
-      - createdAt
-      - updatedAt
-      - organizationId
-      - channelId
-      - name
-      - src
-      - srcType
-      - provider
-      - cdn
-      - priority
-      description: Custom endpoint object
-    PaginatedIngestResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ingest'
-          description: List of ingests
-        pagination:
-          type: object
-          properties:
-            hasMore:
-              type: boolean
-              description: Whether more results are available
-            cursor:
-              type: string
-              description: Cursor for the next page of results
-          required:
-          - hasMore
-          - cursor
-          description: Pagination info
-      required:
-      - data
-      - pagination
-    UpdateChannelBody:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the channel
-        externalId:
-          type: string
-          description: External identifier for the channel
-        timeout:
-          type: number
-          minimum: 0
-          description: Timeout in seconds (minimum 60). To never stop, pass 0
-        ads:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether ads are enabled
-            settings:
-              type: object
-              properties:
-                assetKey:
-                  type: string
-                  description: DAI asset key
-                layout:
-                  type: string
-                  enum:
-                  - SINGLE
-                  - DOUBLE
-                  - LSHAPE_AD
-                  - LSHAPE_CONTENT
-                  description: Ad layout type
-                enableBumperAds:
-                  type: boolean
-                  description: Whether bumper ads are enabled
-                podDuration:
-                  type: number
-                  description: Pod duration in seconds
-                customAdTagParameters:
-                  type: object
-                  additionalProperties:
-                    type: string
-                  description: Custom ad tag parameters
-              required:
-              - assetKey
-              - layout
-              description: Ad settings (required when enabled is true)
-          required:
-          - enabled
-          description: Ads configuration. Only available when ads feature is enabled on organization level.
-        dvr:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether DVR is enabled
-            windowInSeconds:
-              type: number
-              minimum: 60
-              maximum: 86400
-              description: DVR window in seconds (60-86400)
-          required:
-          - enabled
-          description: DVR configuration. Only available when DVR feature is enabled on organization level.
-        nielsen:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether Nielsen is enabled
-          required:
-          - enabled
-          description: Nielsen configuration. Only available when Nielsen feature is enabled on organization level.
-        instreamMetadata:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether instream metadata is enabled
-            uuids:
-              type: array
-              items:
-                type: string
-                format: uuid
-              description: Array of instream metadata UUIDs
-          required:
-          - enabled
-          description: Instream metadata configuration
-      additionalProperties: false
-    ViewersInsightsListResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              timestamp:
-                type: string
-                description: Timestamp of the data point
-              amount:
-                type: number
-                description: Number of unique viewers
-            required:
-            - timestamp
-            - amount
-          description: List of viewer count data points
-      required:
-      - data
-    ChannelObjectResult:
-      type: object
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/Channel'
-          - description: Channel object
-      required:
-      - data
     ChannelCreated:
       allOf:
       - $ref: '#/components/schemas/Channel'
@@ -3322,176 +2531,14 @@ components:
         - engines
         - distributions
       description: Created channel with connected resources
-    EngineObjectResult:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Unique identifier of the engine
-            name:
-              type: string
-              description: Name of the engine
-            createdAt:
-              type: string
-              description: Creation timestamp
-            updatedAt:
-              type: string
-              description: Last update timestamp
-            quality:
-              type: object
-              properties:
-                abrLadderId:
-                  type: string
-                  description: ABR ladder ID
-              required:
-              - abrLadderId
-              description: Quality configuration
-            overlays:
-              type: array
-              items:
-                type: object
-                properties:
-                  url:
-                    type: string
-                    description: URL of the overlay image
-                  position:
-                    type: object
-                    properties:
-                      top:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from top
-                      bottom:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from bottom (ignored if top is present)
-                      left:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from left
-                      right:
-                        type: integer
-                        minimum: 0
-                        description: Pixels from right (ignored if left is present)
-                    description: Overlay position
-                  size:
-                    type: object
-                    properties:
-                      width:
-                        type: integer
-                        minimum: 0
-                        description: Width in pixels
-                      height:
-                        type: integer
-                        minimum: 0
-                        description: Height in pixels
-                    description: Overlay size
-                  opacity:
-                    type: number
-                    minimum: 0
-                    maximum: 1
-                    description: Overlay opacity (0=invisible, 1=fully visible)
-                required:
-                - url
-              description: Image overlay configuration
-            drm:
-              type: boolean
-              description: Whether DRM is enabled
-            priority:
-              type: number
-              description: Engine priority
-            status:
-              type: string
-              enum:
-              - stopped
-              - deploying
-              - starting
-              - waiting
-              - ingesting
-              - playing
-              - stopping
-              - error
-              - deleting
-              - deleted
-              description: Current status of the engine
-            daiAssetKey:
-              type:
-              - string
-              - 'null'
-              description: DAI asset key
-            outputs:
-              type: object
-              properties:
-                hesp:
-                  type: boolean
-                  default: true
-                  description: Enable HESP output. Enabled by default.
-                hls:
-                  type: boolean
-                  default: true
-                  description: Enable HLS output. Enabled by default.
-                hlsMpegTs:
-                  type: boolean
-                  default: false
-                  description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
-              description: Output format configuration
-          required:
-          - id
-          - name
-          - createdAt
-          - updatedAt
-          - quality
-          - overlays
-          - drm
-          - priority
-          - status
-          - outputs
-          description: Engine object
-      required:
-      - data
-    BrowserOsInsightsListResult:
+    PaginatedEngineRunResult:
       type: object
       properties:
         data:
           type: array
           items:
-            type: object
-            properties:
-              browserName:
-                type: string
-                description: Browser name
-              browserVersion:
-                type: string
-                description: Browser version
-              osName:
-                type: string
-                description: OS name
-              osVersion:
-                type: string
-                description: OS version
-              amount:
-                type: number
-                description: Number of unique viewers
-            required:
-            - browserName
-            - browserVersion
-            - osName
-            - osVersion
-            - amount
-          description: List of browser/OS insights
-      required:
-      - data
-    PaginatedDistributionResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Distribution'
-          description: List of distributions
+            $ref: '#/components/schemas/EngineRun'
+          description: List of engine runs
         pagination:
           type: object
           properties:
@@ -3508,13 +2555,80 @@ components:
       required:
       - data
       - pagination
-    IngestObjectResult:
+    ViewersInsightsListResult:
       type: object
       properties:
         data:
-          allOf:
-          - $ref: '#/components/schemas/Ingest'
-          - description: Ingest object
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                description: Timestamp of the data point
+              amount:
+                type: number
+                description: Number of unique viewers
+            required:
+            - timestamp
+            - amount
+          description: List of viewer count data points
+      required:
+      - data
+    PaginatedChannelResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Channel'
+          description: List of channels
+        pagination:
+          type: object
+          properties:
+            hasMore:
+              type: boolean
+              description: Whether more results are available
+            cursor:
+              type: string
+              description: Cursor for the next page of results
+          required:
+          - hasMore
+          - cursor
+          description: Pagination info
+      required:
+      - data
+      - pagination
+    AnalyticsListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                description: Timestamp of the data point
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Identifier of the grouped entity
+                    amount:
+                      type: number
+                      description: Metric value
+                  required:
+                  - id
+                  - amount
+                description: Records for this time bucket
+            required:
+            - timestamp
+            - records
+          description: List of analytics data points
       required:
       - data
     CreateDistributionBody:
@@ -3750,6 +2864,892 @@ components:
       required:
       - name
       additionalProperties: false
+    IngestObjectResult:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Ingest'
+          - description: Ingest object
+      required:
+      - data
+    CreateCustomEndpointBody:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Name of the custom endpoint
+        src:
+          type: string
+          minLength: 1
+          description: Source URL
+        srcType:
+          type: string
+          enum:
+          - hesp
+          - hls
+          - dash
+          description: Source type (hesp, hls or dash)
+        provider:
+          type: string
+          minLength: 1
+          description: Provider name (must be configured for the organization)
+        drmConfig:
+          $ref: '#/components/schemas/CustomEndpointDrmConfig'
+        cdn:
+          type: string
+          minLength: 1
+          pattern: ^[a-zA-Z0-9]+$
+          description: CDN identifier
+        priority:
+          type: integer
+          description: Priority (lower is higher priority)
+      required:
+      - name
+      - src
+      - srcType
+      - provider
+      - cdn
+      - priority
+      additionalProperties: false
+    Channel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the channel
+        createdAt:
+          type: string
+          description: Creation timestamp
+        name:
+          type: string
+          description: Name of the channel
+        status:
+          type: string
+          enum:
+          - stopped
+          - deploying
+          - starting
+          - waiting
+          - ingesting
+          - playing
+          - stopping
+          - error
+          - deleting
+          - deleted
+          description: Current status of the channel
+        externalId:
+          type: string
+          description: External identifier
+        timeout:
+          type: number
+          description: Timeout in seconds
+        ads:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether ads are enabled
+            settings:
+              type: object
+              properties:
+                assetKey:
+                  type: string
+                  description: DAI asset key
+                layout:
+                  type: string
+                  enum:
+                  - SINGLE
+                  - DOUBLE
+                  - LSHAPE_AD
+                  - LSHAPE_CONTENT
+                  description: Ad layout type
+                enableBumperAds:
+                  type: boolean
+                  description: Whether bumper ads are enabled
+                podDuration:
+                  type: number
+                  description: Pod duration in seconds
+                customAdTagParameters:
+                  type: object
+                  additionalProperties:
+                    type: string
+                  description: Custom ad tag parameters
+              required:
+              - assetKey
+              - layout
+              description: Ad settings (required when enabled is true)
+          required:
+          - enabled
+          description: Ads configuration
+        dvr:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether DVR is enabled
+            windowInSeconds:
+              type: number
+              minimum: 60
+              maximum: 86400
+              description: DVR window in seconds (60-86400)
+          required:
+          - enabled
+          description: DVR configuration
+        nielsen:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether Nielsen is enabled
+          required:
+          - enabled
+          description: Nielsen configuration
+        instreamMetadata:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether instream metadata is enabled
+            uuids:
+              type: array
+              items:
+                type: string
+                format: uuid
+              description: Array of instream metadata UUIDs
+          required:
+          - enabled
+          description: Instream metadata configuration
+        perpetual:
+          type: boolean
+          description: Whether this channel is 24/7 (never times out, excluded from transcoding analytics)
+        organizationId:
+          type: string
+          description: Organization ID
+      required:
+      - id
+      - createdAt
+      - name
+      - status
+      - timeout
+      - perpetual
+      - organizationId
+    CustomEndpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+        createdAt:
+          type: string
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          description: Last update timestamp
+        organizationId:
+          type: string
+          description: Organization ID
+        channelId:
+          type: string
+          description: Channel ID
+        name:
+          type: string
+          description: Name
+        src:
+          type: string
+          description: Source URL
+        srcType:
+          type: string
+          enum:
+          - hesp
+          - hls
+          - dash
+          description: Source type
+        provider:
+          type: string
+          description: Provider
+        drmConfig:
+          type:
+          - object
+          - 'null'
+          properties:
+            integration:
+              type: string
+              enum:
+              - ezdrm
+              - mediakind
+              description: DRM integration type
+            widevine:
+              type: object
+              properties:
+                licenseUrl:
+                  type: string
+                  description: Widevine license URL
+              required:
+              - licenseUrl
+              description: Widevine DRM configuration
+            playready:
+              type: object
+              properties:
+                licenseUrl:
+                  type: string
+                  description: PlayReady license URL
+              required:
+              - licenseUrl
+              description: PlayReady DRM configuration
+            fairplay:
+              type: object
+              properties:
+                licenseUrl:
+                  type: string
+                  description: FairPlay license URL
+                certificateUrl:
+                  type: string
+                  description: FairPlay certificate URL
+              required:
+              - licenseUrl
+              - certificateUrl
+              description: FairPlay DRM configuration
+          required:
+          - integration
+          additionalProperties: false
+          description: DRM configuration
+        cdn:
+          type: string
+          description: CDN identifier
+        priority:
+          type: number
+          description: Priority
+      required:
+      - id
+      - createdAt
+      - updatedAt
+      - organizationId
+      - channelId
+      - name
+      - src
+      - srcType
+      - provider
+      - cdn
+      - priority
+      description: Custom endpoint object
+    ViewingCountryListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              countryCode:
+                type: string
+                description: ISO country code
+              amount:
+                type: number
+                description: Metric value
+            required:
+            - countryCode
+            - amount
+          description: List of country viewing data
+      required:
+      - data
+    ViewingBrowserListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              browserName:
+                type: string
+                description: Browser name
+              hardwareType:
+                type: string
+                description: Hardware type
+              amount:
+                type: number
+                description: Metric value
+            required:
+            - browserName
+            - hardwareType
+            - amount
+          description: List of browser viewing data
+      required:
+      - data
+    CustomEndpointObjectResult:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CustomEndpoint'
+      required:
+      - data
+    PaginatedEngineResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Unique identifier of the engine
+              name:
+                type: string
+                description: Name of the engine
+              createdAt:
+                type: string
+                description: Creation timestamp
+              updatedAt:
+                type: string
+                description: Last update timestamp
+              quality:
+                type: object
+                properties:
+                  abrLadderId:
+                    type: string
+                    description: ABR ladder ID
+                required:
+                - abrLadderId
+                description: Quality configuration
+              overlays:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                      description: URL of the overlay image
+                    position:
+                      type: object
+                      properties:
+                        top:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from top
+                        bottom:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from bottom (ignored if top is present)
+                        left:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from left
+                        right:
+                          type: integer
+                          minimum: 0
+                          description: Pixels from right (ignored if left is present)
+                      description: Overlay position
+                    size:
+                      type: object
+                      properties:
+                        width:
+                          type: integer
+                          minimum: 0
+                          description: Width in pixels
+                        height:
+                          type: integer
+                          minimum: 0
+                          description: Height in pixels
+                      description: Overlay size
+                    opacity:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                      description: Overlay opacity (0=invisible, 1=fully visible)
+                  required:
+                  - url
+                description: Image overlay configuration
+              drm:
+                type: boolean
+                description: Whether DRM is enabled
+              priority:
+                type: number
+                description: Engine priority
+              status:
+                type: string
+                enum:
+                - stopped
+                - deploying
+                - starting
+                - waiting
+                - ingesting
+                - playing
+                - stopping
+                - error
+                - deleting
+                - deleted
+                description: Current status of the engine
+              daiAssetKey:
+                type:
+                - string
+                - 'null'
+                description: DAI asset key
+              outputs:
+                type: object
+                properties:
+                  hesp:
+                    type: boolean
+                    default: true
+                    description: Enable HESP output. Enabled by default.
+                  hls:
+                    type: boolean
+                    default: true
+                    description: Enable HLS output. Enabled by default.
+                  hlsMpegTs:
+                    type: boolean
+                    default: false
+                    description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
+                description: Output format configuration
+            required:
+            - id
+            - name
+            - createdAt
+            - updatedAt
+            - quality
+            - overlays
+            - drm
+            - priority
+            - status
+            - outputs
+          description: List of engines
+        pagination:
+          type: object
+          properties:
+            hasMore:
+              type: boolean
+              description: Whether more results are available
+            cursor:
+              type: string
+              description: Cursor for the next page of results
+          required:
+          - hasMore
+          - cursor
+          description: Pagination info
+      required:
+      - data
+      - pagination
+    ChannelObjectResult:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Channel'
+          - description: Channel object
+      required:
+      - data
+    EngineObjectResult:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the engine
+            name:
+              type: string
+              description: Name of the engine
+            createdAt:
+              type: string
+              description: Creation timestamp
+            updatedAt:
+              type: string
+              description: Last update timestamp
+            quality:
+              type: object
+              properties:
+                abrLadderId:
+                  type: string
+                  description: ABR ladder ID
+              required:
+              - abrLadderId
+              description: Quality configuration
+            overlays:
+              type: array
+              items:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: URL of the overlay image
+                  position:
+                    type: object
+                    properties:
+                      top:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from top
+                      bottom:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from bottom (ignored if top is present)
+                      left:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from left
+                      right:
+                        type: integer
+                        minimum: 0
+                        description: Pixels from right (ignored if left is present)
+                    description: Overlay position
+                  size:
+                    type: object
+                    properties:
+                      width:
+                        type: integer
+                        minimum: 0
+                        description: Width in pixels
+                      height:
+                        type: integer
+                        minimum: 0
+                        description: Height in pixels
+                    description: Overlay size
+                  opacity:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+                    description: Overlay opacity (0=invisible, 1=fully visible)
+                required:
+                - url
+              description: Image overlay configuration
+            drm:
+              type: boolean
+              description: Whether DRM is enabled
+            priority:
+              type: number
+              description: Engine priority
+            status:
+              type: string
+              enum:
+              - stopped
+              - deploying
+              - starting
+              - waiting
+              - ingesting
+              - playing
+              - stopping
+              - error
+              - deleting
+              - deleted
+              description: Current status of the engine
+            daiAssetKey:
+              type:
+              - string
+              - 'null'
+              description: DAI asset key
+            outputs:
+              type: object
+              properties:
+                hesp:
+                  type: boolean
+                  default: true
+                  description: Enable HESP output. Enabled by default.
+                hls:
+                  type: boolean
+                  default: true
+                  description: Enable HLS output. Enabled by default.
+                hlsMpegTs:
+                  type: boolean
+                  default: false
+                  description: Enable HLS MPEG-TS output. Only available when enabled on organization level.
+              description: Output format configuration
+          required:
+          - id
+          - name
+          - createdAt
+          - updatedAt
+          - quality
+          - overlays
+          - drm
+          - priority
+          - status
+          - outputs
+          description: Engine object
+      required:
+      - data
+    ChannelCreatedObjectResult:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ChannelCreated'
+      required:
+      - data
+    Ingest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the ingest
+        name:
+          type: string
+          description: Name of the ingest
+        createdAt:
+          type: string
+          description: Creation timestamp
+        type:
+          type: string
+          enum:
+          - rtmp-push
+          - rtmp-pull
+          - srt-pull
+          - srt-push
+          - sdi-pull
+          description: Ingest type
+        url:
+          type: string
+          description: Ingest URL
+        streamKey:
+          type: string
+          description: Stream key for RTMP push ingests
+        tracks:
+          type: object
+          properties:
+            audio:
+              type: array
+              items:
+                type: object
+                properties:
+                  pid:
+                    type: number
+                    description: Audio track PID (mandatory for multi-audio)
+                  language:
+                    type: string
+                    description: Audio track language code
+                  label:
+                    type: string
+                    description: Audio track label
+                required:
+                - language
+                - label
+              description: Audio track configuration
+          description: Audio track configuration
+        captions:
+          type: array
+          items:
+            type: object
+            properties:
+              channel:
+                type: number
+                description: Caption channel number
+              language:
+                type: string
+                description: Caption language code
+              label:
+                type: string
+                description: Caption label
+            required:
+            - channel
+            - language
+          description: Caption configuration
+      required:
+      - id
+      - name
+      - createdAt
+      - type
+      - url
+      - streamKey
+      - tracks
+      - captions
+    EngineRun:
+      type: object
+      properties:
+        engineId:
+          type: string
+          description: Engine ID
+        start:
+          type: string
+          description: Run start timestamp
+        end:
+          type: string
+          description: Run end timestamp
+        config:
+          type: object
+          properties:
+            ingest:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: Ingest type used
+                url:
+                  type: string
+                  description: Ingest URL used
+              required:
+              - type
+            abrLadderId:
+              type: string
+              description: ABR ladder ID used
+            drm:
+              type: boolean
+              description: Whether DRM was enabled
+          required:
+          - ingest
+          - abrLadderId
+          - drm
+          description: Run configuration
+        startType:
+          type: string
+          description: How the run was started
+        startId:
+          type: string
+          description: ID of the entity who did the start action
+        stopType:
+          type: string
+          description: How the run was stopped
+        stopId:
+          type: string
+          description: ID of entity who did the stop action
+      required:
+      - engineId
+      - start
+      - config
+      - startType
+      - startId
+    CustomEndpointDrmConfig:
+      type: object
+      properties:
+        integration:
+          type: string
+          enum:
+          - ezdrm
+          - mediakind
+          description: DRM integration type
+        widevine:
+          type: object
+          properties:
+            licenseUrl:
+              type: string
+              description: Widevine license URL
+          required:
+          - licenseUrl
+          description: Widevine DRM configuration
+        playready:
+          type: object
+          properties:
+            licenseUrl:
+              type: string
+              description: PlayReady license URL
+          required:
+          - licenseUrl
+          description: PlayReady DRM configuration
+        fairplay:
+          type: object
+          properties:
+            licenseUrl:
+              type: string
+              description: FairPlay license URL
+            certificateUrl:
+              type: string
+              description: FairPlay certificate URL
+          required:
+          - licenseUrl
+          - certificateUrl
+          description: FairPlay DRM configuration
+      required:
+      - integration
+      additionalProperties: false
+      description: Optional DRM configuration
+    CountryInsightsListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              city:
+                type: string
+                description: City name
+              countryCode:
+                type: string
+                description: ISO country code
+              geoLocation:
+                type: string
+                description: Rounded latitude,longitude
+              amount:
+                type: number
+                description: Number of unique viewers
+            required:
+            - city
+            - countryCode
+            - geoLocation
+            - amount
+          description: List of country insights
+      required:
+      - data
+    IncludedIngests:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ingest'
+          description: First 10 ingests
+        hasMore:
+          type: boolean
+          description: Whether there are more than 10 ingests
+        link:
+          type: string
+          description: Link to the full ingests list
+        count:
+          type: number
+          description: Total number of ingests
+      required:
+      - data
+      - hasMore
+      - link
+      - count
+      description: Included ingests preview
+    IncludedDistributions:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Distribution'
+          description: First 10 distributions
+        hasMore:
+          type: boolean
+          description: Whether there are more than 10 distributions
+        link:
+          type: string
+          description: Link to the full distributions list
+        count:
+          type: number
+          description: Total number of distributions
+      required:
+      - data
+      - hasMore
+      - link
+      - count
+      description: Included distributions preview
+    PaginatedIngestResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ingest'
+          description: List of ingests
+        pagination:
+          type: object
+          properties:
+            hasMore:
+              type: boolean
+              description: Whether more results are available
+            cursor:
+              type: string
+              description: Cursor for the next page of results
+          required:
+          - hasMore
+          - cursor
+          description: Pagination info
+      required:
+      - data
+      - pagination
   securitySchemes:
     BasicAuth:
       type: http

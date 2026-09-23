@@ -28,6 +28,16 @@ paths:
                 $ref: '#/components/schemas/CustomEndpointProviderListResult'
 components:
   schemas:
+    CustomEndpointProviderListResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomEndpointProvider'
+          description: List of custom endpoint providers
+      required:
+      - data
     CustomEndpointProvider:
       type: object
       properties:
@@ -52,16 +62,6 @@ components:
       - inUse
       - createdAt
       - updatedAt
-    CustomEndpointProviderListResult:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomEndpointProvider'
-          description: List of custom endpoint providers
-      required:
-      - data
   securitySchemes:
     BasicAuth:
       type: http

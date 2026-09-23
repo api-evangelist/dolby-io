@@ -125,6 +125,134 @@ paths:
           description: Empty response
 components:
   schemas:
+    UpdateCustomEndpointBody:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Name of the custom endpoint
+        src:
+          type: string
+          minLength: 1
+          description: Source URL
+        srcType:
+          type: string
+          enum:
+          - hesp
+          - hls
+          - dash
+          description: Source type (hesp, hls or dash)
+        provider:
+          type: string
+          minLength: 1
+          description: Provider name (must be configured for the organization)
+        drmConfig:
+          type:
+          - object
+          - 'null'
+          properties:
+            integration:
+              type: string
+              enum:
+              - ezdrm
+              - mediakind
+              description: DRM integration type
+            widevine:
+              type: object
+              properties:
+                licenseUrl:
+                  type: string
+                  description: Widevine license URL
+              required:
+              - licenseUrl
+              description: Widevine DRM configuration
+            playready:
+              type: object
+              properties:
+                licenseUrl:
+                  type: string
+                  description: PlayReady license URL
+              required:
+              - licenseUrl
+              description: PlayReady DRM configuration
+            fairplay:
+              type: object
+              properties:
+                licenseUrl:
+                  type: string
+                  description: FairPlay license URL
+                certificateUrl:
+                  type: string
+                  description: FairPlay certificate URL
+              required:
+              - licenseUrl
+              - certificateUrl
+              description: FairPlay DRM configuration
+          required:
+          - integration
+          additionalProperties: false
+          description: Optional DRM configuration
+        cdn:
+          type: string
+          minLength: 1
+          pattern: ^[a-zA-Z0-9]+$
+          description: CDN identifier
+        priority:
+          type: integer
+          description: Priority (lower is higher priority)
+      additionalProperties: false
+    CustomEndpointDrmConfig:
+      type: object
+      properties:
+        integration:
+          type: string
+          enum:
+          - ezdrm
+          - mediakind
+          description: DRM integration type
+        widevine:
+          type: object
+          properties:
+            licenseUrl:
+              type: string
+              description: Widevine license URL
+          required:
+          - licenseUrl
+          description: Widevine DRM configuration
+        playready:
+          type: object
+          properties:
+            licenseUrl:
+              type: string
+              description: PlayReady license URL
+          required:
+          - licenseUrl
+          description: PlayReady DRM configuration
+        fairplay:
+          type: object
+          properties:
+            licenseUrl:
+              type: string
+              description: FairPlay license URL
+            certificateUrl:
+              type: string
+              description: FairPlay certificate URL
+          required:
+          - licenseUrl
+          - certificateUrl
+          description: FairPlay DRM configuration
+      required:
+      - integration
+      additionalProperties: false
+      description: Optional DRM configuration
+    CustomEndpointObjectResult:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CustomEndpoint'
+      required:
+      - data
     CreateCustomEndpointBody:
       type: object
       properties:
@@ -274,134 +402,6 @@ components:
       - cdn
       - priority
       description: Custom endpoint object
-    CustomEndpointObjectResult:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CustomEndpoint'
-      required:
-      - data
-    CustomEndpointDrmConfig:
-      type: object
-      properties:
-        integration:
-          type: string
-          enum:
-          - ezdrm
-          - mediakind
-          description: DRM integration type
-        widevine:
-          type: object
-          properties:
-            licenseUrl:
-              type: string
-              description: Widevine license URL
-          required:
-          - licenseUrl
-          description: Widevine DRM configuration
-        playready:
-          type: object
-          properties:
-            licenseUrl:
-              type: string
-              description: PlayReady license URL
-          required:
-          - licenseUrl
-          description: PlayReady DRM configuration
-        fairplay:
-          type: object
-          properties:
-            licenseUrl:
-              type: string
-              description: FairPlay license URL
-            certificateUrl:
-              type: string
-              description: FairPlay certificate URL
-          required:
-          - licenseUrl
-          - certificateUrl
-          description: FairPlay DRM configuration
-      required:
-      - integration
-      additionalProperties: false
-      description: Optional DRM configuration
-    UpdateCustomEndpointBody:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          description: Name of the custom endpoint
-        src:
-          type: string
-          minLength: 1
-          description: Source URL
-        srcType:
-          type: string
-          enum:
-          - hesp
-          - hls
-          - dash
-          description: Source type (hesp, hls or dash)
-        provider:
-          type: string
-          minLength: 1
-          description: Provider name (must be configured for the organization)
-        drmConfig:
-          type:
-          - object
-          - 'null'
-          properties:
-            integration:
-              type: string
-              enum:
-              - ezdrm
-              - mediakind
-              description: DRM integration type
-            widevine:
-              type: object
-              properties:
-                licenseUrl:
-                  type: string
-                  description: Widevine license URL
-              required:
-              - licenseUrl
-              description: Widevine DRM configuration
-            playready:
-              type: object
-              properties:
-                licenseUrl:
-                  type: string
-                  description: PlayReady license URL
-              required:
-              - licenseUrl
-              description: PlayReady DRM configuration
-            fairplay:
-              type: object
-              properties:
-                licenseUrl:
-                  type: string
-                  description: FairPlay license URL
-                certificateUrl:
-                  type: string
-                  description: FairPlay certificate URL
-              required:
-              - licenseUrl
-              - certificateUrl
-              description: FairPlay DRM configuration
-          required:
-          - integration
-          additionalProperties: false
-          description: Optional DRM configuration
-        cdn:
-          type: string
-          minLength: 1
-          pattern: ^[a-zA-Z0-9]+$
-          description: CDN identifier
-        priority:
-          type: integer
-          description: Priority (lower is higher priority)
-      additionalProperties: false
   securitySchemes:
     BasicAuth:
       type: http

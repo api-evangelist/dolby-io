@@ -35,7 +35,8 @@
     "dolby-io-theolive-api-openapi.yml: declared missing tag: Engines",
     "dolby-io-theolive-api-openapi.yml: declared missing tag: Ingests",
     "dolby-io-theolive-api-openapi.yml: declared missing tag: Regions",
-    "dolby-io-theolive-api-openapi.yml: declared missing tag: Webhooks"
+    "dolby-io-theolive-api-openapi.yml: declared missing tag: Webhooks",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "dolby-io-abr-ladders-api-openapi.yml: previously refined output, superseded by openapi/_original/",

@@ -9,9 +9,7 @@ info:
 
     authenticated with a Bearer API Secret created in the streaming dashboard
 
-    (Settings -> Security -> API Secrets).
-
-    '
+    (Settings -> Security -> API Secrets).'
   version: '2026.05'
   contact:
     name: Dolby OptiView Support
@@ -162,6 +160,21 @@ components:
           - string
           - 'null'
           format: date-time
+    SubscribeTokenUpdate:
+      type: object
+      properties:
+        label:
+          type: string
+        isActive:
+          type: boolean
+        allowedOrigins:
+          type: array
+          items:
+            type: string
+        allowedIpAddresses:
+          type: array
+          items:
+            type: string
     SubscribeToken:
       type: object
       properties:
@@ -207,21 +220,6 @@ components:
           items:
             type: string
         deniedCountries:
-          type: array
-          items:
-            type: string
-    SubscribeTokenUpdate:
-      type: object
-      properties:
-        label:
-          type: string
-        isActive:
-          type: boolean
-        allowedOrigins:
-          type: array
-          items:
-            type: string
-        allowedIpAddresses:
           type: array
           items:
             type: string

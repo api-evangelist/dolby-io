@@ -9,9 +9,7 @@ info:
 
     authenticated with a Bearer API Secret created in the streaming dashboard
 
-    (Settings -> Security -> API Secrets).
-
-    '
+    (Settings -> Security -> API Secrets).'
   version: '2026.05'
   contact:
     name: Dolby OptiView Support
@@ -76,27 +74,6 @@ paths:
           description: Webhook removed
 components:
   schemas:
-    Webhook:
-      type: object
-      properties:
-        id:
-          type: integer
-        url:
-          type: string
-          format: uri
-        secret:
-          type: string
-          description: HMAC-SHA1 secret used to sign event payloads (X-Millicast-Signature header).
-        isFeedHooks:
-          type: boolean
-        isRecordingHooks:
-          type: boolean
-        isThumbnailHooks:
-          type: boolean
-        isTranscoderHooks:
-          type: boolean
-        isViewerConnectionHooks:
-          type: boolean
     WebhookCreate:
       type: object
       required:
@@ -120,6 +97,27 @@ components:
         isViewerConnectionHooks:
           type: boolean
           default: false
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+          format: uri
+        secret:
+          type: string
+          description: HMAC-SHA1 secret used to sign event payloads (X-Millicast-Signature header).
+        isFeedHooks:
+          type: boolean
+        isRecordingHooks:
+          type: boolean
+        isThumbnailHooks:
+          type: boolean
+        isTranscoderHooks:
+          type: boolean
+        isViewerConnectionHooks:
+          type: boolean
   securitySchemes:
     BearerAuth:
       type: http
